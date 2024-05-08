@@ -59,8 +59,8 @@ var rule = {
         }
     }),
     lazy: '',
-    推荐: '.leibox&&li;*;*;*;*',
-    // double:true, // 推荐内容是否双层定位
+    推荐: 'body&&.mi_btcon;ul&&li;*;*;*;*',
+    double:true, // 推荐内容是否双层定位
     一级: '.mrb&&li;img&&alt;img&&data-original;.jidi&&Text;a&&href',
     二级: {
         "title": "h1&&Text;.moviedteail_list&&li:eq(0)&&Text",
