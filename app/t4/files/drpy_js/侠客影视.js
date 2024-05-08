@@ -1,3 +1,4 @@
+muban.mxpro.二级.tabs = '.module-tab-items-box&&.module-tab-item';
 var rule = {
     title: '侠客影视',
     模板: 'mxpro',
