@@ -57,7 +57,10 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
         content_type_keys = [key for key in headers if key.lower() == 'content-type']
         content_type = 'application/json'
         if content_type_keys:
-            headers[content_type_keys[-1]] = content_type
+            content_type_key = content_type_keys[-1]
+            old_content_type = headers[content_type_key]
+            if content_type not in old_content_type:
+                headers[content_type_key] = content_type
         else:
             headers['Content-Type'] = content_type
 
