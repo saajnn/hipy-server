@@ -1,4 +1,5 @@
 muban.mxpro.二级.tabs = '.module-tab-items-box&&.module-tab-item';
+muban.mxpro.二级.tab_text = 'span&&Text';
 var rule = {
     title: '侠客影视',
     模板: 'mxpro',
@@ -10,5 +11,46 @@ var rule = {
     filterable: 1,
     class_parse: '.navbar-items li;a&&Text;a&&href;/(\\d+).html',
     cate_exclude: '直播',
-    lazy: '',
+    lazy: $js.toString(() => {
+        let html = JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1])
+        let url = html.url
+        let from = html.from
+        if (html.encrypt == '1') {
+            url = unescape(url);
+        } else if (html.encrypt == '2') {
+            url = unescape(base64Decode(url));
+        }
+        log('切片地址:' + url);
+        if (/qiyi|youku|mgtv|haiwaikan|bilibili/.test(from)) {
+            var jx = request(HOST + "/static/player/" + from + ".js").match(/ src="(.*?)'/)[1];
+            log(jx)
+            let con = request(jx + url, {headers: {'Referer': HOST}}).match(/let ConFig.*}/)[0];
+            log(con)
+            eval(con + '\nrule.ConFig=ConFig')
+
+            function ec(str, uid) {
+                eval(getCryptoJS());
+                return CryptoJS.enc.Utf8.stringify(CryptoJS.AES.decrypt(str, CryptoJS.enc.Utf8.parse('2890' + uid + 'tB959C'), {
+                    iv: CryptoJS.enc.Utf8.parse('2F131BE91247866E'),
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7
+                }));
+            };
+            //log(rule.ConFig.url)
+            //log(rule.ConFig.config.uid)
+            let purl = ec(rule.ConFig.url, rule.ConFig.config.uid);
+            //log(purl)
+            input = {
+                jx: 0,
+                url: purl,
+                parse: 0,
+                //headers:{'Origin':'http://jx.xyks.link'}
+            }
+        } else if (/m3u8|mp4/.test(url)) {
+            input = url;
+        } else {
+            input
+        }
+    }),
+
 }
