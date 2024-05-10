@@ -18,3 +18,4 @@
 **/.env.local
 **/.env.*.local
 /app/configs/.env.jiumu
+/app/t4/spiders/log/

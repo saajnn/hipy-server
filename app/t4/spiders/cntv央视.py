@@ -1013,11 +1013,15 @@ if __name__ == '__main__':
     # print(vid)
     # detail_content = spider.detailContent([vid])
     # print(detail_content)
-    #
+    # #
     # vod_play_from = detail_content['list'][0]['vod_play_from']
     # vod_play_url = detail_content['list'][0]['vod_play_url']
     # print(vod_play_from, vod_play_url)
     # _url = vod_play_url.split('#')[0].split('$')[1]
     # print(_url)
+    # print('vod_play_from:',vod_play_from,' vod_play_url:',_url)
     # play = spider.playerContent(vod_play_from, _url, None)
     # print(play)
+
+    play = spider.playerContent('道长在线直播', 'cctv1||https://tv.cctv.com/live/cctv1/', None)
+    print(play)
