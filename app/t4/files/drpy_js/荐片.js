@@ -53,7 +53,7 @@ var rule = {
 		}
 	}],
 	lazy: '',
-	图片来源: '@Referer=www.jianpianapp.com@User-Agent=jianpian-version353',
+	图片来源: '@Referer=www.jianpianapp.com@User-Agent=jianpian-version361',
 	// 推荐:'json:.video;*;*;*;*',
 	推荐: `js:
         var d = [];
