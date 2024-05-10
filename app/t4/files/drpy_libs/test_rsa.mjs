@@ -1,4 +1,5 @@
 import JSEncrypt from './jsencrypt.js';
+// import './jsencrypt.js';
 
 var log = console.log;
 // 封装的RSA加解密类

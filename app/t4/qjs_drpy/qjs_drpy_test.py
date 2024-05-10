@@ -20,18 +20,18 @@ if __name__ == '__main__':
     # with open('../files/drpy_js/农民影视新.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/小蚂蚁资源2.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/爱看机器人.js', encoding='utf-8') as f:
-    with open('../files/drpy_js/荐片.js', encoding='utf-8') as f:
+    # with open('../files/drpy_js/荐片.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/我的哔哩.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/腾云驾雾.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/非凡资源.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/白嫖影视.js', encoding='utf-8') as f:
-    # with open('../files/drpy_js/量子资源.js', encoding='utf-8') as f:
+    with open('../files/drpy_js/量子资源.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/耐看.js', encoding='utf-8') as f:
         code = f.read()
     code = code.replace('$nmjx_url', 'http://127.0.0.1:5708/nm?all=&url=')
     drpy.init(code)
     drpy.setDebug(1)
-    print(drpy.homeContent())
+    # print(drpy.homeContent())
     # print(drpy.homeVideoContent())
     # print(drpy.categoryContent('2', 1, False, {}))
     # print(drpy.detailContent('https://v.ikanbot.com/play/846474'))

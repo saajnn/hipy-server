@@ -12,7 +12,7 @@ var rule = {
 	quickSearch:0,
 	filterable:0,
 	headers:{
-		'User-Agent': PC_UA,
+		'User-Agent': 'PC_UA',
 		'Accept': '*/*',
 		'Referer': 'https://www.magicalsearch.top/'
 	},
