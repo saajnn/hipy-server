@@ -52,8 +52,9 @@ class Drpy:
         with open(_('qjs_module_pako.js'), encoding='utf-8') as f:
             _qjs_module_pako = f.read()
         with open(_('qjs_module_drpy2.js'), encoding='utf-8') as f:
-            _qjs_module_drpy2 = f.read() + f'\nglobalThis.{self.key} = ' + '{ init, home, homeVod, category, detail, ' \
-                                                                           'play, search, proxy, sniffer, isVideo};'
+            _qjs_module_drpy2 = f.read() + f'\nglobalThis.{self.key} = ' + """
+            { getRule, init, home, homeVod, category, detail,play, search, proxy, sniffer, isVideo};
+            """
 
         ctx = initContext(Context(), url='', prefix_code='true', env={'debug': self.debug}, getParams=lambda: {},
                           getCryptoJS=lambda: 'true')
@@ -150,6 +151,15 @@ class Drpy:
         返回是否为视频的匹配字符串
         @return: None空 reg:正则表达式  js:input js代码
         """
+        # rule = self.toDict(self.submit(self.ctx.eval, f'globalThis.{self.key}.getRule()'))
+        # rule = self.toDict(self.call('getRule'))
+        # is_video_str = str(rule.get('is_video') or '')
+
+        is_video_str = self.call('getRule', 'is_video')
+        # print('is_video_str:', is_video_str)
+        if is_video_str and not is_video_str.startswith('reg:'):
+            is_video_str = 'reg:' + is_video_str
+        return is_video_str
         # return 'js:input.includes(".m3u8)?true:false'
 
     @staticmethod

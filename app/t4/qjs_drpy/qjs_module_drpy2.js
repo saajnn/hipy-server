@@ -211,7 +211,7 @@ m7mp8il0kaftHdSxTbspG3tZ2fjIiFIZkLEOmRpd7ogWumgOajzUdA==
         console.log('decrypted: ', decrypted);
     })();
     let t2 = new Date().getTime();
-    console.log('rsa_demo_test 测试耗时:'+(t2-t1)+'毫秒');
+    console.log('rsa_demo_test 测试耗时:' + (t2 - t1) + '毫秒');
 }
 
 
@@ -3165,4 +3165,12 @@ function isVideo(url) {
         log('成功执行辅助嗅探规则并检测到视频地址:\n' + rule.isVideo);
     }
     return result
+}
+
+/**
+ * 获取规则
+ * @returns {{}}
+ */
+function getRule(key) {
+    return key ? rule[key]||'' : rule
 }
