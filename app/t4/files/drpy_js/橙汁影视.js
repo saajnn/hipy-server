@@ -20,7 +20,7 @@ var rule = {
         input = {
             parse: 1,
             url: input,
-            js: "try{location.href = document.querySelectorAll('iframe')[0].src;}catch(err) {}document.querySelector('.ec-no').click()",
+            // js: "try{location.href = document.querySelectorAll('iframe')[0].src;}catch(err) {}document.querySelector('.ec-no').click()",
         };
     }),
     double: false,
