@@ -3,8 +3,11 @@ var rule = {
     模板: '首图',
     host: 'https://www.ddkk.tv',
     url: '/channel/fyclass-fypage.html',
-    searchUrl: '/search/-------------.html?wd=**',
-    searchable: 0,
+    //searchUrl: '/search/-------------.html?wd=**',
+    detailUrl: '/detail/fyid.html',
+    searchUrl: '/index.php/ajax/suggest?mid=1&wd=**',
+    搜索: 'json:list;name;pic;en;id',
+    searchable: 1,
     headers: {
         'User-Agent': 'PC_UA',
     },
