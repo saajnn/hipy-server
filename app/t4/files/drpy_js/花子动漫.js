@@ -18,7 +18,7 @@ var rule = {
     detailUrl: '/voddetail/fyid.html',
     play_parse: true,
     sniffer: 1,
-    is_video: 'obj/tos-alisg-ve',
+    is_video: 'obj/tos|bd.xhscdn|/ugc/',
     lazy: $js.toString(() => {
         input = {
             parse: 1,
