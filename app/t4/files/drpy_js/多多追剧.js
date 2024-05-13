@@ -12,4 +12,13 @@ var rule = {
         'User-Agent': 'PC_UA',
     },
     class_parse: '.myui-header__menu li;a&&Text;a&&href;/(\\d+).html',
+    lazy: $js.toString(() => {
+        input = {
+            parse: 1,
+            url: input,
+            header: {
+                'User-Agent': PC_UA
+            }
+        }
+    }),
 }
