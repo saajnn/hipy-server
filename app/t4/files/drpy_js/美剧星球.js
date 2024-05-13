@@ -17,7 +17,21 @@ var rule = {
     cate_exclude: '排行|网站',
     play_parse: true,
     lazy: $js.toString(() => {
-        input = {parse: 1, url: input, js: ''};
+        function getrandom(str) {
+            let string = str.substring(8, str.length);
+            let substr = atob(string);
+            return decodeURIComponent(substr.substring(8, substr.length - 8))
+        }
+
+        var src = jsp.pdfh(request(input), 'iframe&&src')
+        log(src)
+        var pconfig = jsp.pdfh(request(HOST + src), 'body&&script,0&&Html').match(/config = {[\s\S]*?}/)[0];
+        log(pconfig)
+        var config = {};
+        eval(pconfig);
+        var purl = config.url
+        log(purl)
+        input = {parse: 0, url: purl, js: 0};
     }),
     double: true,
     推荐: '.bt_img;ul&&li;*;*;.qb&&Text;*',
