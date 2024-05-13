@@ -53,7 +53,7 @@ class Drpy:
             _qjs_module_pako = f.read()
         with open(_('qjs_module_drpy2.js'), encoding='utf-8') as f:
             _qjs_module_drpy2 = f.read() + f'\nglobalThis.{self.key} = ' + """
-            { getRule, init, home, homeVod, category, detail,play, search, proxy, sniffer, isVideo};
+            { getRule, init, home, homeVod, category, detail,play, search, proxy, sniffer, isVideo, fixAdM3u8Ai };
             """
 
         ctx = initContext(Context(), url='', prefix_code='true', env={'debug': self.debug}, getParams=lambda: {},
