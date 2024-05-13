@@ -24,6 +24,7 @@ var rule = {
     play_parse: true,
     lazy: '',
     limit: 6,
+    tab_exclude: '热门资讯',
     推荐: 'ul.myui-vodlist;li;*;*;*;*',
     double: true, // 推荐内容是否双层定位
     一级: '.myui-vodlist__box;a&&title;.lazyload&&data-original;.tag&&Text;a&&href',
