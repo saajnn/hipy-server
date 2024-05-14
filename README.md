@@ -9,8 +9,8 @@
 [并发测试](https://runnergo.apipost.cn/)  
 [android tv_box推荐下载](https://wwi.lanzoup.com/igYqY1wazxmj)  
 [android mobile_box推荐下载【tb】](https://wwi.lanzoup.com/ioaM11yjw0li)  
-[android mobile_box推荐下载【eb】](https://wwi.lanzoup.com/iCP4Z1yjw38d)  
-[PC Player推荐下载](https://wwi.lanzoup.com/iKE931yjveej)  
+[android mobile_box推荐下载【eb】](https://wwi.lanzoup.com/i1JTt1yrfuib)  
+[PC Player推荐下载](https://wwi.lanzoup.com/iq0S11yrljbe)  
 [PC 嗅探器推荐下载](https://wwi.lanzoup.com/iLh2g1yjviaj)  
 
 #### zy佬一键部署

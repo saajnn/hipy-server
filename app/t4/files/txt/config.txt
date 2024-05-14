@@ -5,6 +5,7 @@
 "spider": "{{ config.vod_custom_jar }}",
 {% if alists|length > 0 %}"drives": {{alists_str}},{% endif %}
 "homepage":"https://github.com/hjdhnx/hipy-server",
+"homeLogo":"{{host}}/static/img/logo500x200-1.png",
 "sites": [{% for rule in rules %}{% if rule.file_type ==".py" %}
 {
     "key":"{% if mode == 0 %}hipy_t4_{{ rule.name }}{% else %}hipy_t3_{{ rule.name }}{% endif %}",
