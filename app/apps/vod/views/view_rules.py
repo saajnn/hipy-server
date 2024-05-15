@@ -240,7 +240,7 @@ const $js = {
     }
 };      
         """.strip()
-        prefix_js_code = utils_js_code+'\n'+before + '\n' + 'var muban = JSON.parse(JSON.stringify(mubanDict));\n'
+        prefix_js_code = utils_js_code + '\n' + before + '\n' + 'var muban = JSON.parse(JSON.stringify(mubanDict));\n'
         endfix_js_code = '\n' + 'if(rule.模板){rule = Object.assign(muban[rule.模板],rule)}'
         return prefix_js_code, endfix_js_code
     else:
@@ -328,10 +328,13 @@ async def uploadData(*,
             else:
                 file_info.update({
                     'order_num': 0,
-                    'ext': '',
                     'status': 1,
                     'active': True,
                 })
+                if not file_info.get('ext'):
+                    file_info.update({
+                        'ext': '',
+                    })
                 max_order_num = curd.get_max_order_num(db)
                 file_info.update({'order_num': max_order_num + 1})
                 record = curd.create(db, obj_in=file_info, creator_id=u['id'])
@@ -411,10 +414,13 @@ async def refreshRules(*,
         else:
             file_info.update({
                 'order_num': 0,
-                'ext': '',
                 'status': 1,
                 'active': True,
             })
+            if not file_info.get('ext'):
+                file_info.update({
+                    'ext': '',
+                })
             max_order_num = curd.get_max_order_num(db)
             file_info.update({'order_num': max_order_num + 1})
             record = curd.create(db, obj_in=file_info, creator_id=u['id'])
