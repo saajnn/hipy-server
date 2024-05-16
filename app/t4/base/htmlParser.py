@@ -5,6 +5,7 @@
 # Date  : 2022/8/25
 # upDate  : 2022/11/17 支持 -- 剔除元素 多个剔除
 # upDate  : 2024/04/09 取html返回的文本自动解除转义，防止script里取Html的内容被转义无法执行
+# upDate  : 2024/05/16 支持:not,even,odd,has,contans,matches,empty 新特性，pdfh取属性支持||
 
 import ujson
 from pyquery import PyQuery as pq
@@ -15,7 +16,7 @@ from jsonpath import jsonpath
 from html import escape, unescape
 
 PARSE_CACHE = True  # 解析缓存
-NOADD_INDEX = ':eq|:lt|:gt|:first|:last|^body$|^#'  # 不自动加eq下标索引
+NOADD_INDEX = ':eq|:lt|:gt|:first|:last|:not|:even|:odd|:has|:contains|:matches|:empty|^body$|^#'  # 不自动加eq下标索引
 URLJOIN_ATTR = '(url|src|href|-original|-src|-play|-url|style)$'  # 需要自动urljoin的属性
 SPECIAL_URL = '^(ftp|magnet|thunder|ws):'  # 过滤特殊链接,不走urlJoin
 
@@ -112,11 +113,12 @@ class jsoup:
         :return:
         """
         nparse_rule, nparse_index, excludes = self.getParseInfo(nparse)
-
+        # print('nparse_rule:', nparse_rule)
         if not ret:
             ret = doc(nparse_rule)
         else:
             ret = ret(nparse_rule)
+        # print(ret)
         # print(f'nparse_rule:{nparse_rule},nparse_index:{nparse_index},excludes:{excludes},ret:{ret}')
         if self.contains(nparse, ':eq'):
             ret = ret.eq(nparse_index)
@@ -192,22 +194,31 @@ class jsoup:
             elif option == 'Html':
                 ret = unescape(ret.html())
             else:
-                ret = ret.attr(option) or ''
-                if self.contains(option.lower(), 'style') and self.contains(ret, 'url('):
-                    try:
-                        ret = re.search('url\((.*?)\)', ret, re.M | re.S).groups()[0]
-                        # 2023/07/28新增 style取内部链接自动去除首尾单双引号
-                        ret = re.sub(r"^['\"]|['\"]$", '', ret)
-                    except:
-                        pass
-                if ret and base_url:
-                    # need_add = re.search(URLJOIN_ATTR, option, re.M | re.I)
-                    need_add = self.test(URLJOIN_ATTR, option) and not self.test(SPECIAL_URL, ret)
-                    if need_add:
-                        if 'http' in ret:
-                            ret = ret[ret.find('http'):]
-                        else:
-                            ret = urljoin(base_url, ret)
+                # 保留原来的ret
+                original_ret = ret.clone()
+                options = option.split('||')
+                opt_index = 0
+                for opt in options:
+                    # print(f'opt_index:{opt_index},opt:{opt}')
+                    opt_index += 1
+                    ret = original_ret.attr(opt) or ''
+                    if self.contains(opt.lower(), 'style') and self.contains(ret, 'url('):
+                        try:
+                            ret = re.search('url\((.*?)\)', ret, re.M | re.S).groups()[0]
+                            # 2023/07/28新增 style取内部链接自动去除首尾单双引号
+                            ret = re.sub(r"^['\"]|['\"]$", '', ret)
+                        except:
+                            pass
+                    if ret and base_url:
+                        # need_add = re.search(URLJOIN_ATTR, opt, re.M | re.I)
+                        need_add = self.test(URLJOIN_ATTR, opt) and not self.test(SPECIAL_URL, ret)
+                        if need_add:
+                            if 'http' in ret:
+                                ret = ret[ret.find('http'):]
+                            else:
+                                ret = urljoin(base_url, ret)
+                    if ret:
+                        break
         else:
             ret = ret.outerHtml()
         return ret
@@ -274,24 +285,36 @@ class jsoup:
 
 
 if __name__ == '__main__':
+    jsp = jsoup()
+
     import requests
 
-    r = requests.get('https://api.cnmcom.com/webcloud/nmm.php', headers={
-        'user-agent': 'Mozilla/5.0 (Linux; Android 11; M2007J3SC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045714 Mobile Safari/537.36'})
+    # r = requests.get('https://api.cnmcom.com/webcloud/nmm.php', headers={
+    #     'user-agent': 'Mozilla/5.0 (Linux; Android 11; M2007J3SC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045714 Mobile Safari/537.36'})
+    # html = r.text
+    # # print(html)
+    # v7js1 = jsp.pdfh(html, 'script:eq(-1)&&Html').split('*/')[1].strip()
+    # v7js2 = jsp.pdfh(html, 'script:eq(-1)&&Text').split('*/')[1].strip()
+    # print(v7js1)
+    # print(len(v7js1), '-----', len(v7js2))
+    # print(v7js2)
+    # print(str(v7js1) == str(v7js2))
+    # jsp = jsoup()
+    # a = '<script> if(a>2){log(333)}</script>'
+    # b = jsp.pdfh(a, 'body&&Html')
+    # print(b)
+    # b = jsp.pdfh(a, 'Html')
+    # print(b)
+    # c = jsp.pdfa(a, 'script')
+    # print(c)
+
+    r = requests.get('https://m.yskanba.com/b-ertu.html')
     html = r.text
-    # print(html)
-    jsp = jsoup()
-    v7js1 = jsp.pdfh(html, 'script:eq(-1)&&Html').split('*/')[1].strip()
-    v7js2 = jsp.pdfh(html, 'script:eq(-1)&&Text').split('*/')[1].strip()
-    print(v7js1)
-    print(len(v7js1), '-----', len(v7js2))
-    print(v7js2)
-    print(str(v7js1) == str(v7js2))
-    jsp = jsoup()
-    a = '<script> if(a>2){log(333)}</script>'
-    b = jsp.pdfh(a, 'body&&Html')
+    a = jsp.pdfh(html, '.posterPic&&img&&data-original||src')
+    print(a)
+    # 不兼容的用法
+    b = jsp.pdfa(html, '.tabt3&&span:not(:contains(云播tk))')
     print(b)
-    b = jsp.pdfh(a, 'Html')
+    # 不支持的用法|不影响使用
+    b = jsp.pdfa(html, '.tabt3 span:not(:matches(云播tk))')
     print(b)
-    c = jsp.pdfa(a, 'script')
-    print(c)
