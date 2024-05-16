@@ -28,7 +28,7 @@ var rule = {
         desc: ".module-info-item:eq(1)&&Text;.module-info-item:eq(2)&&Text;.module-info-item:eq(3)&&Text",
         content: ".module-info-introduction-content&&Text",
         tabs: ".module-tab-item.tab-item",
-        lists: "body&&.module-play-list,#id&&a",
+        lists: "body&&.module-play-list:eq(#id)&&a",
         tab_text: "body&&Text",
         list_text: "body&&Text",
         list_url: "a&&href"
