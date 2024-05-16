@@ -19,10 +19,12 @@ var rule = {
         dongman: {cateId: 'dongman'}
     },
     lazy: $js.toString(() => {
+        let init_js = `Object.defineProperties(navigator, {platform: {get: () => 'iPhone'}});`;
         input = {
             parse: 1,
             url: input,
-            js: `Object.defineProperties(navigator, {platform: {get: () => 'iPhone'}});`,
+            js: '',
+            parse_extra: '&init_script=' + encodeURIComponent(base64Encode(init_js)),
         }
     }),
     // searchUrl:'/search.php?page=fypage&searchword=**&searchtype=',

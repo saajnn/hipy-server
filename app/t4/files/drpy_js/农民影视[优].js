@@ -22,9 +22,12 @@ var rule = {
     class_url: '1&2&3&4&26',//静态分类标识拼接
     play_parse: true,
     lazy: $js.toString(() => {
+        let init_js = `Object.defineProperties(navigator, {platform: {get: () => 'iPhone'}});`;
         input = {
-            parse: 1, url: input, js: `Object.defineProperties(navigator, {platform: {get: () => 'iPhone'}});
-    try{location.href = document.querySelectorAll("iframe")[1].src;}catch(err) {}document.querySelector(".line").click()`,
+            parse: 1,
+            url: input,
+            js: `try{location.href = document.querySelectorAll("iframe")[1].src;}catch(err) {}document.querySelector(".line").click()`,
+            parse_extra: '&init_script=' + encodeURIComponent(base64Encode(init_js)),
         }
     }),
     limit: 6,
