@@ -18,6 +18,13 @@ var rule = {
         zongyi: {cateId: 'zongyi'},
         dongman: {cateId: 'dongman'}
     },
+    lazy: $js.toString(() => {
+        input = {
+            parse: 1,
+            url: input,
+            js: `Object.defineProperties(navigator, {platform: {get: () => 'iPhone'}});`,
+        }
+    }),
     // searchUrl:'/search.php?page=fypage&searchword=**&searchtype=',
     searchUrl: '/search.php#searchword=**;post',
     class_parse: '.stui-header__menu li:gt(0):lt(7);a&&Text;a&&href;.*/(.*?)/.*html',
