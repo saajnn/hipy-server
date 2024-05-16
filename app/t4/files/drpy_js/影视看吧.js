@@ -1,25 +1,36 @@
 var rule = {
-    title: '影视看吧',
-    host: 'https://m.yskanba.com',
-    url: 'hot/fyclass/fypage.html',
-    searchUrl: '/search/wd=**/2',
+    title: "影视看吧",
+    host: "https://m.yskanba.com",
+    url: "/fyfilter",
+    searchUrl: '/search/$wd/fypage',
     searchable: 2,
     quickSearch: 0,
     filterable: 1,
-    filter: '',
-    filter_url: '',
-    filter_def: {},
+    filter: "H4sIAAAAAAAAA62XXVPaQBSG/wvXTr33r3R6ESUki2FDIQkfjjNUKiNMK9paPwrjx1SKbUFx7DgWiv4ZNwn/oidx2lHYN2jHCy9g9nE3J+95zrIUizOFFxjXYnMvl2KLaiE2FxNrFe98EJuJcSWl3v/sKIathgs5fe2Vu6Odk+Br+qCb1iz9pUyHqbOJQlrR1Be6lTJiyzP/VrsbzXurLTOdVZXMgh7N7B7eY7iZSxtKcFwMifcXole5vao9RA3FUjNTYW/t3C2vwlMq7DXh8m23m6LahmSeJW0p55Zr7spnyCUZTzL5Udub4tcAgouqbitcftRqO+ohkzZ8SHel421v4oe0gyxJyVF3K+q0KROftnZyO8TBiZtcK9qm/Lg7rdHBN4hmmA72dDtt73odgqadUuWP6V6diXoPgprCNUuRo+K4Pdqr4Oek3kP18bZwZYP6UG3lERrUxepVVPYCOzwO/dv8BGmQGv3YJZlIKE0xE+oY82r51Uyop6xOzfM8frKcJ8oJAOLNpSjX5YBp5+nQ8gbyT0qg9SynoHBsl/qx/wVwml3EzXN6Kfrd299fvQ1ptCwnyRSLdjVsbgDPXK8DsVkOtQHQGvUdpKjrNGTDnRbEMlChsOmoOBEd51704GbEgN2w6C0HWh7L2nIiTI19S3th2WJlWk6UL/FgoJzgqSAqq6IJ6s9VFgeHbAxv++3x9tRscwFamd5zdZLAaZoIYQjQvx9ff6caqkxK4f8lGmCPBTPFFpBxJuSEV7sb+15HmoOQIXuScuTv1GvU3L0+RAusqIP3U/kw2pMOzxBMhXuCF1Vedd8eQDQIkoaENZ6KsSeNisdOy212IJph8+MTZuq0D0E87cXpO2/wEYI5Chq4Z/o3+/5wCEmDKltE1trueZ++QzTPeALf+0Sz71XXIJy0g+pq82jol7v+UQlXmC6A4FoN9ReCEQb0bzbIZji+Ng/aVl6owyPR6EYUSjELULzNvru2i+tEXQMn7lFUmLK6ylGcvNY+XZMjUfrpIjFXkUpQYM8prqxu5h7trSmL3cZPyuxDxE7H6fcYBP3TG78njWmAJMKZ/lT1BGSUeUalqteWhjsgg2mbZ+BGAOdfQOIJiO8tARd5c4Hz4I7E44D8Ko63IWmbObClX+27zTMEFlgW3M2aJXr5ExHgam5KBO5AUd8UV+WHYNqeN1hWElHqheU/vFhpUtEQAAA=",
+    filter_url: "{{fl.分类}}",
+    filter_def: {
+        dianying: {
+            分类: "hot/hotmovie/fypage.html"
+        },
+        dianshiju: {
+            分类: "hot/hottv/fypage.html"
+        },
+        dongman: {
+            分类: "hot/topsearchcomic/fypage.html"
+        },
+        zongyi: {
+            分类: "hot/topsearchshow/fypage.html"
+        }
+    },
     headers: {
-        'User-Agent': 'MOBILE_UA',
+        "User-Agent": "MOBILE_UA"
     },
     timeout: 5000,
-    // class_parse: '#nav_mmenu&&ul&&li;a&&Text;a&&href;.*/(.*?)\.html',
-    class_name: '电影|热门&热搜&热映&即将上映&爱情&喜剧&惊悚&科幻&剧情&悬疑&魔幻&动作&日韩&欧美&港台&大陆&动画&经典&经典&高分&电视剧|热门&热搜&偶像&言情&古装&家庭伦理&美剧&韩剧&日剧&港台&泰剧&喜剧&科幻&悬疑&动作&剧情&内地&国产&港剧&韩剧&动漫|热搜&热门&搞笑&益智&冒险&情感&国产&日本&欧美&完结&连载&新番&剧场版&热血&科幻&运动&校园&机战&审美&神魔&综艺|热搜&热门&热门更新&访谈&情感&选秀&内地&港台&搞笑&国外&艺术&最新更新&最新发布',
-    class_url: 'hotmovie&topsearchmovie&nowplayingmovie&laterplayingmovie&topsearchmovieaiqing&topsearchmoviexiju&topsearchmoviejinji&topsearchmoviekehuan&topsearchmoviejuqing&topsearchmoviexuanyi&topsearchmoviemohuan&topsearchmoviedongzuo&topsearchmovierihan&topsearchmovieoumei&topsearchmoviegangtai&topsearchmoviedalu&topsearchmoviedonghua&topsearchmoviejindian&hotmoviejingdian&hotmoviegaofen&hottv&topsearchtv&topsearchtvouxiang&topsearchtvyanqing&topsearchtvguzhuan&topsearchtvjiatinglunli&topsearchtvmeiju&topsearchtvhangju&topsearchtvriju&topsearchtvgangtai&topsearchtvtaiju&topsearchtvxiju&topsearchtvkehuan&topsearchtvxuanyi&topsearchtvdongzuo&topsearchtvjuqing&topsearchtvneidi&hottvguochan&hottvgangju&hottvhanju&topsearchcomic&hotcomic&topsearchcomicgaoxiao&topsearchcomicyizhi&topsearchcomicmaoxian&topsearchcomicqinggan&topsearchcomicguochan&topsearchcomicriben&topsearchcomicoumei&topsearchcomicwanjie&topsearchcomiclianzai&topsearchcomicxinfan&topsearchcomicjuchangban&topsearchcomicrexue&topsearchcomickehuan&topsearchcomicyundong&topsearchcomicxiaoyuan&topsearchcomicjizhan&topsearchcomicshenmei&topsearchcomicshengmo&topsearchshow&hotshow&hotupdateshow&topsearchshowfangtan&topsearchshowqinggan&topsearchshowxuanxiu&topsearchshowneidi&topsearchshowgangtai&topsearchshowgaoxiao&topsearchshowguowai&topsearchshowyisu&newupdateshow&newpublishshow',
-    cate_exclude: '',
+    class_parse: ".subNav&&a;a&&Text;a&&href;([^\/]+$)",
+    cate_exclude: "推荐",
     play_parse: true,
     lazy: $js.toString(() => {
-        input = {parse: 1, url: input, js: ''};
+        input = {parse: 0, url: input, js: ''};
     }),
     double: true,
     推荐: '.main&&.globalPadding;.picTxtA&&li;*;img&&src;*;*',
@@ -68,23 +79,18 @@ var rule = {
         list_url: 'a&&href'
     },
     搜索: $js.toString(() => {
-
         function encodeWd(t) {
-            var n, r;
+            var n;
             return t.length < 7 && (t = t + "       ".substr(0, 7 - t.length)),
             t.length > 15 && (t = t.substr(0, 15)),
                 n = base64Encode(t),
                 n = n.replace(/\//g, "_").replace(/\+/g, "-").replace(/=/g, ""),
-                n = n.slice(0, 6) + "j" + n.slice(6),
-                r = n;
+                n = n.slice(0, 6) + "j" + n.slice(6);
         }
 
-        // log(input);
-        let wd = input.split('wd=')[1].split('/')[0];
-        let wd1 = encodeWd(wd);
-        // log(wd1);
-        input = urljoin(HOST, '/search/' + wd1 + '/' + MY_PAGE);
-        // log(input);
+        let wd = encodeWd(KEY);
+        input = input.replace('$wd', wd);
+        input = urljoin(HOST, input);
         let html = request(input);
         let d = [];
         let p = rule.一级.split(';');
