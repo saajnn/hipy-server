@@ -19,6 +19,18 @@ var rule = {
         dongman: {cateId: 'dongman'}
     },
     lazy: $js.toString(() => {
+        // 屏蔽图片onerror无限请求问题
+        // let init_js = `
+        // var imgTimer = setInterval(function(){
+        //     if(typeof($)!='undefined'){
+        //         let css = $('.lazyload[alt="成人深夜福利"]');
+        //         if(css.length > 0){
+        //             css.attr('onerror','this.onerror=null');
+        //             clearInterval(imgTimer);
+        //         }
+        //     }
+        // },200);
+        // `;
         let init_js = `Object.defineProperties(navigator, {platform: {get: () => 'iPhone'}});`;
         input = {
             parse: 1,
