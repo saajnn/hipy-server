@@ -284,6 +284,34 @@ class jsoup:
         return ret or []
 
 
+def test_demo():
+    html = """
+    <html>
+        <head>
+            我爱我的祖国
+            <title>China</title>
+        </head>
+        <body>
+            <ul id="container">
+                <li class="li1">五星啊</li>
+                <li class="li2">红旗</li>
+                <li class="li3">迎风飘扬啊</li>
+            </ul>
+        </body>
+    </html>
+    """
+    pseudo_doc = pq(html)
+    # 找到含有Python的li标签 | 已知 not存在bug
+    print(pseudo_doc("li:contains('五星')"))
+    print('----------')
+    print(pseudo_doc("li:not(:contains(五星))"))
+    print('----------')
+    # 找到含有好的li标签
+    print(pseudo_doc("li:contains('红')"))
+    # 找到含有啊的li标签
+    print(pseudo_doc("li:contains('啊')"))
+
+
 if __name__ == '__main__':
     jsp = jsoup()
 
@@ -308,13 +336,15 @@ if __name__ == '__main__':
     # c = jsp.pdfa(a, 'script')
     # print(c)
 
-    r = requests.get('https://m.yskanba.com/b-ertu.html')
-    html = r.text
-    a = jsp.pdfh(html, '.posterPic&&img&&data-original||src')
-    print(a)
-    # 不兼容的用法
-    b = jsp.pdfa(html, '.tabt3&&span:not(:contains(云播tk))')
-    print(b)
-    # 不支持的用法|不影响使用
-    b = jsp.pdfa(html, '.tabt3 span:not(:matches(云播tk))')
-    print(b)
+    # r = requests.get('https://m.yskanba.com/b-ertu.html')
+    # html = r.text
+    # a = jsp.pdfh(html, '.posterPic&&img&&data-original||src')
+    # print(a)
+    # # 不兼容的用法
+    # b = jsp.pdfa(html, '.tabt3&&span:not(:contains(云播tk))')
+    # print(b)
+    # # 不支持的用法|不影响使用
+    # b = jsp.pdfa(html, '.tabt3 span:not(:matches(云播tk))')
+    # print(b)
+
+    test_demo()
