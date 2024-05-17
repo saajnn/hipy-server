@@ -114,10 +114,27 @@ class jsoup:
         """
         nparse_rule, nparse_index, excludes = self.getParseInfo(nparse)
         # print('nparse_rule:', nparse_rule)
+        # print('nparse:', nparse)
+
+        not_prefix = nparse_rule
+        not_regex = ''
+        not_endfix = ''
+        if self.contains(nparse_rule, ':not'):
+            not_prefix = nparse_rule.split(':not')[0]
+            not_reg_array = re.search(r':not\((.*)\)(.*)', nparse_rule, re.M | re.I).groups()
+            not_regex = not_reg_array[0] if len(not_reg_array) > 0 else not_regex
+            not_endfix = not_reg_array[1] if len(not_reg_array) > 1 else not_endfix
+
         if not ret:
-            ret = doc(nparse_rule)
+            ret = doc(not_prefix)
         else:
-            ret = ret(nparse_rule)
+            ret = ret(not_prefix)
+
+        if not_regex:
+            ret = ret.not_(not_regex)
+        if not_endfix:
+            ret = ret(not_endfix)
+
         # print(ret)
         # print(f'nparse_rule:{nparse_rule},nparse_index:{nparse_index},excludes:{excludes},ret:{ret}')
         if self.contains(nparse, ':eq'):
@@ -300,16 +317,22 @@ def test_demo():
         </body>
     </html>
     """
-    pseudo_doc = pq(html)
-    # 找到含有Python的li标签 | 已知 not存在bug
-    print(pseudo_doc("li:contains('五星')"))
-    print('----------')
-    print(pseudo_doc("li:not(:contains(五星))"))
-    print('----------')
-    # 找到含有好的li标签
-    print(pseudo_doc("li:contains('红')"))
-    # 找到含有啊的li标签
-    print(pseudo_doc("li:contains('啊')"))
+    # pseudo_doc = pq(html)
+    # # 找到含有Python的li标签 | 已知 not存在bug
+    # print(pseudo_doc("li:contains('五星')"))
+    # print('----------')
+    # print(pseudo_doc("li:not(:contains(五星))"))
+    # print('----------')
+    # # 找到含有好的li标签
+    # print(pseudo_doc("li:contains('红')"))
+    # # 找到含有啊的li标签
+    # print(pseudo_doc("li:contains('啊')"))
+
+    jsp = jsoup()
+    print(jsp.pdfa(html, "li:contains('五星')"))
+    print(jsp.pdfa(html, "li:not(:contains(五星))"))
+    print(jsp.pdfa(html, "li:contains('红')"))
+    print(jsp.pdfa(html, "li:contains('啊')"))
 
 
 if __name__ == '__main__':
