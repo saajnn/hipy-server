@@ -359,15 +359,15 @@ if __name__ == '__main__':
     # c = jsp.pdfa(a, 'script')
     # print(c)
 
-    # r = requests.get('https://m.yskanba.com/b-ertu.html')
-    # html = r.text
-    # a = jsp.pdfh(html, '.posterPic&&img&&data-original||src')
-    # print(a)
-    # # 不兼容的用法
-    # b = jsp.pdfa(html, '.tabt3&&span:not(:contains(云播tk))')
-    # print(b)
-    # # 不支持的用法|不影响使用
-    # b = jsp.pdfa(html, '.tabt3 span:not(:matches(云播tk))')
-    # print(b)
+    r = requests.get('https://m.yskanba.com/b-ertu.html')
+    html = r.text
+    a = jsp.pdfh(html, '.posterPic&&img&&data-original||src')
+    print(a)
+    # 不兼容的用法
+    b = jsp.pdfa(html, '.tabt3&&span:not(:contains(云播tk))')
+    print(b)
+    # 不支持的用法|不影响使用
+    b = jsp.pdfa(html, '.tabt3 span:not(:matches(云播tk))')
+    print(b)
 
-    test_demo()
+    # test_demo()
