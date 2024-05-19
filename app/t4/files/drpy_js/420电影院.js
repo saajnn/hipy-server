@@ -11,6 +11,7 @@ var rule = {
     filter_def: {},
     headers: {
         'User-Agent': 'MOBILE_UA',
+        'accept-language': 'zh-CN,zh;q=0.8',
     },
     timeout: 5000,
     class_parse: 'ul.nav&&li;a&&Text;a&&href;/sort/(\\d+)/',
