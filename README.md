@@ -10,7 +10,7 @@
 [android tv_box推荐下载](https://wwi.lanzoup.com/igYqY1wazxmj)  
 [android mobile_box推荐下载【tb】](https://wwi.lanzoup.com/ioaM11yjw0li)  
 [android mobile_box推荐下载【eb】](https://wwi.lanzoup.com/i1JTt1yrfuib)  
-[PC Player推荐下载](https://wwi.lanzoup.com/ibLH11zbr25c)  
+[PC Player推荐下载](https://wwi.lanzoup.com/iCpJe1zbtvtc)  
 [PC 嗅探器推荐下载](https://wwi.lanzoup.com/ixQlm1z5kota)  
 
 #### zy佬一键部署
