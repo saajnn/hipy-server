@@ -35,7 +35,7 @@ if __name__ == '__main__':
     # print(drpy.homeContent())
     # print(drpy.homeVideoContent())
     # print(drpy.categoryContent('2', 1, False, {}))
-    print(drpy.detailContent('https://myd02.com/voddetail/21258.html'))
+    # print(drpy.detailContent('https://myd02.com/voddetail/21258.html'))
     # print(drpy.detailContent('https://v.ikanbot.com/play/846474'))
     # print(drpy.detailContent('https://www.baipiaoys.com:9092/detail/2067.html'))
     # print(drpy.detailContent('https://m.emsdn.cn/vod-detail-id-38817.html'))
