@@ -50,9 +50,15 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
     headers = dict(headers)
 
     if body and not data:
-        for p in body.split('&'):
-            k, v = p.split('=')
-            data[k] = v
+        if '&' in body:
+            for p in body.split('&'):
+                k, v = p.split('=')
+                data[k] = v
+            # 修复pythonmonkey没有自动把 JSObjectProxy 转为python的dict导致的后续错误
+            data = dict(data)
+        else:
+            data = body
+
     elif not body and data and method != 'get':
         content_type_keys = [key for key in headers if key.lower() == 'content-type']
         content_type = 'application/json'
@@ -68,8 +74,7 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
     buffer = _object.get('buffer') or 1
     redirect = False if _object.get('redirect') == 0 or _object.get('redirect') == False else True
 
-    # 修复pythonmonkey没有自动把 JSObjectProxy 转为python的dict导致的后续错误
-    data = dict(data)
+
 
     withHeaders = bool(_object.get('withHeaders') or False)
     r = None
