@@ -2848,7 +2848,7 @@ function init(ext) {
         if (typeof ext == 'object'){
             rule = ext;
         } else if (typeof ext == 'string') {
-            if (ext.startsWith('http')) {
+            if (ext.startsWith('http') || ext.startsWith('file://')) {
                 let query = getQuery(ext); // 获取链接传参
                 let js = request(ext,{'method':'GET'});
                 if (js){
