@@ -248,7 +248,7 @@ function pre() {
 
 let rule = {};
 let vercode = typeof (pdfl) === 'function' ? 'drpy2.1' : 'drpy2';
-const VERSION = vercode + ' 3.9.50beta15 202400523';
+const VERSION = vercode + ' 3.9.50beta16 202400523';
 /** 已知问题记录
  * 1.影魔的jinjia2引擎不支持 {{fl}}对象直接渲染 (有能力解决的话尽量解决下，支持对象直接渲染字符串转义,如果加了|safe就不转义)[影魔牛逼，最新的文件发现这问题已经解决了]
  * Array.prototype.append = Array.prototype.push; 这种js执行后有毛病,for in 循环列表会把属性给打印出来 (这个大毛病需要重点排除一下)
@@ -465,72 +465,86 @@ if (typeof String.prototype.endsWith != 'function') {
         return this.indexOf(suffix, this.length - suffix.length) !== -1;
     };
 }
-Object.prototype.myValues = function (obj) {
-    if (obj == null) {
+Object.defineProperty(Array.prototype, 'myValues', {
+        value: function(obj){
+    if(obj ==null) {
         throw new TypeError("Cannot convert undefined or null to object");
     }
-    var res = []
-    for (var k in obj) {
-        if (obj.hasOwnProperty(k)) {//需判断是否是本身的属性
+    var res=[]
+    for(var k in obj){
+        if(obj.hasOwnProperty(k)){//需判断是否是本身的属性
             res.push(obj[k]);
         }
     }
     return res;
-}
+},
+        enumerable:false
+});
 if (typeof Object.prototype.values != 'function') {
-    Object.prototype.values = function (obj) {
-        if (obj == null) {
+    Object.defineProperty(Object.prototype, 'values', {
+        value: function(obj){
+        if(obj ==null) {
             throw new TypeError("Cannot convert undefined or null to object");
         }
-        var res = []
-        for (var k in obj) {
-            if (obj.hasOwnProperty(k)) {//需判断是否是本身的属性
+        var res=[]
+        for(var k in obj){
+            if(obj.hasOwnProperty(k)){//需判断是否是本身的属性
                 res.push(obj[k]);
             }
         }
         return res;
-    }
+    },
+        enumerable:false
+    });
 }
 if (typeof Array.prototype.join != 'function') {
-    Array.prototype.join = function (emoji) {
+    Object.defineProperty(Array.prototype, 'join', {
+        value: function (emoji) {
         // emoji = emoji||',';
-        emoji = emoji || '';
+        emoji = emoji||'';
         let self = this;
         let str = "";
         let i = 0;
-        if (!Array.isArray(self)) {
-            throw String(self) + 'is not Array'
-        }
-        if (self.length === 0) {
-            return ''
-        }
-        if (self.length === 1) {
-            return String(self[0])
-        }
+        if (!Array.isArray(self)) {throw String(self)+'is not Array'}
+        if(self.length===0){return ''}
+        if (self.length === 1){return String(self[0])}
         i = 1;
         str = this[0];
         for (; i < self.length; i++) {
-            str += String(emoji) + String(self[i]);
+            str += String(emoji)+String(self[i]);
         }
         return str;
-    };
+    },
+        enumerable:false
+    });
 }
 if (typeof Array.prototype.toReversed != 'function') {
-    Array.prototype.toReversed = function () {
-        const clonedList = this.slice();
-        // 倒序新数组
-        const reversedList = clonedList.reverse();
-        return reversedList;
-    };
+    Object.defineProperty(Array.prototype, 'toReversed', {
+        value: function () {
+            const clonedList = this.slice();
+            // 倒序新数组
+            const reversedList = clonedList.reverse();
+            return reversedList;
+        },
+        enumerable:false
+    });
 }
 
-String.prototype.rstrip = function (chars) {
-    let regex = new RegExp(chars + "$");
-    return this.replace(regex, "");
-};
-
-Array.prototype.append = Array.prototype.push;
-String.prototype.strip = String.prototype.trim;
+Object.defineProperty(Array.prototype, 'append', {
+        value: Array.prototype.push,
+        enumerable:false
+});
+Object.defineProperty(String.prototype, 'strip', {
+        value: String.prototype.trim,
+        enumerable:false
+});
+Object.defineProperty(String.prototype, 'rstrip', {
+        value: function (chars) {
+            let regex = new RegExp(chars + "$");
+            return this.replace(regex, "");
+        },
+        enumerable:false
+});
 
 function 是否正版(vipUrl) {
     let flag = new RegExp('qq\.com|iqiyi\.com|youku\.com|mgtv\.com|bilibili\.com|sohu\.com|ixigua\.com|pptv\.com|miguvideo\.com|le\.com|1905\.com|fun\.tv');
