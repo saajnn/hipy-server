@@ -479,7 +479,7 @@ if (typeof String.prototype.endsWith != 'function') {
         return this.indexOf(suffix, this.length - suffix.length) !== -1;
     };
 }
-Object.defineProperty(Array.prototype, 'myValues', {
+Object.defineProperty(Object.prototype, 'myValues', {
         value: function(obj){
     if(obj ==null) {
         throw new TypeError("Cannot convert undefined or null to object");
