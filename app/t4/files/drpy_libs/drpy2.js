@@ -264,7 +264,7 @@ function pre(){
 
 let rule = {};
 let vercode = typeof(pdfl) ==='function'?'drpy2.1':'drpy2';
-const VERSION = vercode+' 3.9.50beta13 202400521';
+const VERSION = vercode+' 3.9.50beta15 202400523';
 /** 已知问题记录
  * 1.影魔的jinjia2引擎不支持 {{fl}}对象直接渲染 (有能力解决的话尽量解决下，支持对象直接渲染字符串转义,如果加了|safe就不转义)[影魔牛逼，最新的文件发现这问题已经解决了]
  * Array.prototype.append = Array.prototype.push; 这种js执行后有毛病,for in 循环列表会把属性给打印出来 (这个大毛病需要重点排除一下)
@@ -1611,6 +1611,35 @@ function post(url,obj){
     return request(url,obj);
 }
 
+/**
+ * 快捷获取特殊地址cookie|一般用作搜索过验证
+ * 用法 let {cookie,html} = reqCookie(url);
+ * @param url 能返回cookie的地址
+ * @param obj 常规请求参数
+ * @param all_cookie 返回全部cookie.默认false只返回第一个,一般是PhpSessionId
+ * @returns {{cookie: string, html: (*|string|DocumentFragment)}}
+ */
+function reqCookie(url,obj,all_cookie){
+    obj = obj||{};
+    obj.withHeaders = true;
+    all_cookie = all_cookie||false;
+    let html = request(url, obj);
+    let json = JSON.parse(html);
+    let setCk = Object.keys(json).find(it=>it.toLowerCase()==='set-cookie');
+    let cookie = setCk?json[setCk]:'';
+    if(Array.isArray(cookie)){
+        cookie = cookie.join(';')
+    }
+    if(!all_cookie) {
+        cookie = cookie.split(';')[0];
+    }
+    html = json.body;
+    return {
+        cookie,
+        html
+    }
+}
+
 fetch = request;
 print = function (data){
     data = data||'';
@@ -2918,10 +2947,16 @@ function init(ext) {
         rule.play_json = rule.hasOwnProperty('play_json')?rule.play_json:[];
         rule.pagecount = rule.hasOwnProperty('pagecount')?rule.pagecount:{};
         rule.proxy_rule = rule.hasOwnProperty('proxy_rule')?rule.proxy_rule:'';
+        if(!rule.hasOwnProperty('sniffer')){ // 默认启用辅助嗅探
+            rule.sniffer = true;
+        }
         rule.sniffer = rule.hasOwnProperty('sniffer')?rule.sniffer:'';
         rule.sniffer = !!(rule.sniffer && rule.sniffer!=='0' && rule.sniffer!=='false');
 
         rule.isVideo = rule.hasOwnProperty('isVideo')?rule.isVideo:'';
+        if(rule.sniffer && !rule.isVideo){ // 默认辅助嗅探自动增强嗅探规则
+            rule.isVideo = 'http((?!http).){12,}?\\.(m3u8|mp4|flv|avi|mkv|rm|wmv|mpg|m4a|mp3)\\?.*|http((?!http).){12,}\\.(m3u8|mp4|flv|avi|mkv|rm|wmv|mpg|m4a|mp3)|http((?!http).)*?video/tos*|http((?!http).)*?obj/tos*';
+        }
 
         rule.tab_remove = rule.hasOwnProperty('tab_remove')?rule.tab_remove:[];
         rule.tab_order = rule.hasOwnProperty('tab_order')?rule.tab_order:[];
