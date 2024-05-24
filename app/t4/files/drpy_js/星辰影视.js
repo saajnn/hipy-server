@@ -7,6 +7,7 @@ var rule = {
     title: '星辰影视',
     host: 'https://www.luanren.cc',
     url: '/vodtype/fyclass-fypage.html',
+    cate_exclude: '明星|体育',
     searchUrl: '/vodsearch/**----------fypage---.html',
     headers: {
         'User-Agent': 'PC_UA',
