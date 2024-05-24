@@ -47,6 +47,7 @@ api_url = '/rules'
 async def searchRecords(*,
                         db: Session = Depends(deps.get_db),
                         status: int = Query(None),
+                        is_exist: bool = Query(None),
                         name: str = Query(None),
                         group: str = Query(None),
                         file_type: str = Query(None),
@@ -68,7 +69,7 @@ async def searchRecords(*,
         elif order_by == 'order_num':
             order_bys = order_bys
 
-    res = curd.search(db, status=status, name=name, group=group, file_type=file_type, page=page,
+    res = curd.search(db, status=status, is_exist=is_exist, name=name, group=group, file_type=file_type, page=page,
                       page_size=page_size, order_bys=order_bys)
     res['BASE_DIR'] = Path(BASE_DIR).as_posix() + '/'
     return respSuccessJson(res)

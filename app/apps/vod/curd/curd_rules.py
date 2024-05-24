@@ -40,6 +40,7 @@ class CURDVodRules(CRUDBase):
 
     def search(self, db: Session, *,
                status: int = None,
+               is_exist: bool = None,
                name: str = None,
                group: str = None,
                file_type: str = None,
@@ -48,6 +49,8 @@ class CURDVodRules(CRUDBase):
         filters = []
         if status is not None:
             filters.append(self.model.status == status)
+        if is_exist is not None:
+            filters.append(self.model.is_exist == is_exist)
         if name:
             filters.append(self.model.name.ilike(f"%{name}%"))
         if group:
