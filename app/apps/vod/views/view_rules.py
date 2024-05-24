@@ -303,7 +303,7 @@ async def uploadData(*,
                 'name': base_name,
                 'group': group,
                 # 'path': fpath,
-                'relative_path': relative_path,
+                'path': relative_path,
                 'is_exist': True,
                 'file_type': extension,
                 'searchable': 0,
@@ -337,6 +337,7 @@ async def uploadData(*,
                     })
                 max_order_num = curd.get_max_order_num(db)
                 file_info.update({'order_num': max_order_num + 1})
+                print(file_info)
                 record = curd.create(db, obj_in=file_info, creator_id=u['id'])
             logger.info(f'record: id:{record.id} name:{record.name}{record.file_type}')
 
