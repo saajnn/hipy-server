@@ -27,7 +27,7 @@ if __name__ == '__main__':
     # with open('../files/drpy_js/白嫖影视.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/量子资源.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/美益达.js', encoding='utf-8') as f:
-    with open('../files/drpy_js/一号影院.js', encoding='utf-8') as f:
+    with open('../files/drpy_js/一号影院[搜].js', encoding='utf-8') as f:
         # with open('../files/drpy_js/耐看.js', encoding='utf-8') as f:
         code = f.read()
     code = code.replace('$nmjx_url', 'http://127.0.0.1:5708/nm?all=&url=')
@@ -60,4 +60,8 @@ if __name__ == '__main__':
     # print(drpy.playerContent("索尼", "https://www.cs1369.com/play/790-1-1.html", []))
     # print(drpy.playerContent("量子资源", "https://nkvod.com/play/185851-2-1.html", []))
     # print(drpy.playerContent("优质", "https://yzzy.play-cdn21.com/20240329/13829_b63e7c01/index.m3u8", []))
-    print(drpy.searchContent("斗罗大陆", False, 1))
+    # print(drpy.searchContent("斗罗大陆", False, 1))
+    # print(drpy.detailContent("https://001.pm/index.php/vod/detail/id/118802.html"))
+    # print(drpy.playerContent("1", "push://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
+    print(drpy.playerContent("1", "magnet://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
+    # print(drpy.playerContent("1", "https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))

@@ -1,5 +1,6 @@
 Object.assign(muban.mxpro.二级, {
     tab_text: 'div--small&&Text',
+    // list_url_prefix: 'push://',
 });
 var rule = {
     模板: 'mxpro',
