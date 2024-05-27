@@ -12,6 +12,7 @@
 [android mobile_box推荐下载【eb】](https://wwi.lanzoup.com/i5Rul1ztsy9c)  
 [PC Player推荐下载](https://wwi.lanzoup.com/ifkIz1ztunyd)  
 [PC 嗅探器推荐下载](https://wwi.lanzoup.com/i4h1T1ztt8fi)  
+[gpt-4o免费用](https://www.coze.com/s/Zs8Mqh1pY/)  
 
 #### zy佬一键部署
 ```shell
