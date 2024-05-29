@@ -12,7 +12,7 @@ import os
 import re
 
 
-def main(task_id, mytv_count=300, tv_count=3000):
+def main(task_id, mytv_count=200, tv_count=200):
     print(f'=========task_id:{task_id}')
     proxy = 'https://ghproxy.liuzhicong.com/'
     files = getGitContents('ssili126/tv', '', '')
