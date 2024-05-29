@@ -7,8 +7,9 @@
 import os
 from pathlib import Path
 import shutil
+import re
 from utils.tools import base64Encode, base64Decode, compress_and_encode, decode_and_decompress, rsa_public_encode, \
-    rsa_private_decode
+    rsa_private_decode, rsa_public_key
 
 
 def main():
@@ -47,10 +48,12 @@ def main():
         print('输出加密后的文件:', file_out_path)
         with open(file, encoding='utf-8') as f:
             file_content = f.read()
+        write_content = file_content
         # 只对未加密过的进行加密
-        if 'var rule' in file_content:
-            with open(file_out_path, mode='w+', encoding='utf-8') as f:
-                f.write(encode_func(file_content))
+        if re.search('var rule|[\u4E00-\u9FA5]+|function|let |var |const |\(|\)|"|\'', file_content):
+            write_content = encode_func(file_content)
+        with open(file_out_path, mode='w+', encoding='utf-8') as f:
+            f.write(write_content)
 
 
 if __name__ == '__main__':

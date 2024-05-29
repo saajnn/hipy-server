@@ -446,7 +446,8 @@ async def t4_files(*,
             except Exception as e:
                 logger.info(f'js文件渲染host变量错误:{e}')
         if not raw:
-            js_code = compress_and_encode(js_code)
+            if re.search('var rule|[\u4E00-\u9FA5]+|function|let |var |const |\(|\)|"|\'', js_code):
+                js_code = compress_and_encode(js_code)
         return Response(js_code, media_type=media_type)
     else:
         return FileResponse(file_path, media_type=media_type)
