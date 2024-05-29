@@ -20,6 +20,7 @@ from core.logger import logger
 from utils.web import htmler, render_template_string, remove_comments, parseJson
 from utils.cmd import update_db
 from utils.vod_tool import base64ToImage, get_interval
+from utils.tools import compress_and_encode
 from utils.httpapi import get_location_by_ip, getHotSuggest, getYspContent
 from utils.quickjs_ctx import initContext
 from network.request import Request
@@ -416,30 +417,36 @@ async def t4_files(*,
 
     file_path = resp[0]
     media_type = resp[1] if len(resp) > 1 else None
-    if file_path.endswith('.js') and getParams('render'):
-        try:
-            key = 'vod_hipy_env'
-            if r:
-                vod_configs_obj = await curd_vod_configs.getByKeyWithCache(r, db, key=key)
-            else:
-                vod_configs_obj = curd_vod_configs.getByKey(db, key=key)
-            env = vod_configs_obj.get('value')
-            env = ujson.loads(env)
-        except Exception as e:
-            logger.info(f'获取环境变量发生错误:{e}')
-            env = {}
+    render = getParams('render') or False
+    raw = getParams('raw') or False
+    if file_path.endswith('.js'):
         with open(file_path, encoding='utf-8') as f:
             js_code = f.read()
 
-        for k in env.keys():
-            if f'${k}' in js_code:
-                js_code = js_code.replace(f'${k}', f'{env[k]}')
-        try:
-            # js_code = render_template_string(js_code, host=host) # 可能会受到filter的影响由于没有 fl 导致渲染失败
-            js_code = js_code.replace('{{host}}',host)
-            js_code = js_code.replace('{{ host }}',host)
-        except Exception as e:
-            logger.info(f'js文件渲染host变量错误:{e}')
+        if render:
+            try:
+                key = 'vod_hipy_env'
+                if r:
+                    vod_configs_obj = await curd_vod_configs.getByKeyWithCache(r, db, key=key)
+                else:
+                    vod_configs_obj = curd_vod_configs.getByKey(db, key=key)
+                env = vod_configs_obj.get('value')
+                env = ujson.loads(env)
+            except Exception as e:
+                logger.info(f'获取环境变量发生错误:{e}')
+                env = {}
+
+            for k in env.keys():
+                if f'${k}' in js_code:
+                    js_code = js_code.replace(f'${k}', f'{env[k]}')
+            try:
+                # js_code = render_template_string(js_code, host=host) # 可能会受到filter的影响由于没有 fl 导致渲染失败
+                js_code = js_code.replace('{{host}}', host)
+                js_code = js_code.replace('{{ host }}', host)
+            except Exception as e:
+                logger.info(f'js文件渲染host变量错误:{e}')
+        if not raw:
+            js_code = compress_and_encode(js_code)
         return Response(js_code, media_type=media_type)
     else:
         return FileResponse(file_path, media_type=media_type)
