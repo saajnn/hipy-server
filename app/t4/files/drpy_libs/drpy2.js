@@ -2915,6 +2915,7 @@ function getOriginalJs(js_code){
         (text)=>{try {return ungzip(text)} catch (e) {return ''}},
         (text)=>{try {return base64Decode(text)} catch (e) {return ''}},
         (text)=>{try {return RSA.decode(text,rsa_private_key,null)} catch (e) {return ''}},
+        // (text)=>{try {return NODERSA.decryptRSAWithPrivateKey(text, RSA.getPrivateKey(rsa_private_key).replace(/RSA /g,''), {options: {environment: "browser", encryptionScheme: 'pkcs1',b:'1024'}});} catch (e) {log(e.message);return ''}},
     ]
     let func_index = 0
     while(!current_match.test(decode_content)){

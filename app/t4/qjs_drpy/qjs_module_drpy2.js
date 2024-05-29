@@ -8,6 +8,11 @@ function init_test() {
     console.log(RKEY);
     // ocr_demo_test();
     // rsa_demo_test();
+    // let t1 = new Date().getTime();
+    // let code = 'dMkKUybNbg0y63m/2F2N7RJA7byTPG6sZx2wwDtUva0qhc/0mGl8Y9pIhqQwtwxfXdXSh4zKpLt/p0bjbB/nfkM3UIN/6/tVlIxpWRbfRYDvn6+815eAzgH7W6FPdZgPbNZTOT6miJoetqsOYcNgQO/io+KeeB87Wjr2T6o4LmEWRydYoHSVZrFQwO85yTbyDngef48knpucWavnZGJcFhfNkI+1rKP0DyM9oEAjo6LIEZgjuhktgwWXiW2zSQ0fAOZ20ch+BAbBJ5LIiaDttWiTV7/9NJx6rPQHeW6sxFhMfF0W4lcrh2TlxhnUb4P5jRATN4a2qq0csP+S9Z4vf0353tcCohBRJ+KNCHPEKl4z+8Rzm8/qy4pNCIExKutOQmYDz9bLoV7lCUEM6beuObwMmkaGMgax1+2v3wQnSlasaWKka1v7ApuS7ReCjW2ehdpRFZWnlR5TUXSSxn/lKQtX0Erg54KhKPrNBgO8hJUOnv1XQxBuZPZe/3yqF+423ZRGB1OgemVL3I7n7ZcPe7dx1W9dkZaNhnRGa60EngZ/VCBU4OJcfrDPleDFHOt7hm7lBcglNcMrUexh9in7vdAsOQ8xdlgt0tT4gyYqWzpA4rJa9+MFTsqNYUQaVmI7oseDhmIgajjwUfZ4+ueOBbKMQgKvaD5ZkGizy207pHxr7K244hk7sjkmp+4iIkK/cjw0iuEiyNhgm4MedFb7/DKLMOJBPxj88ChCUk8Ux77ect91a1pdaQBoxhfISXYwGncnmSCgyY3qn8cyNZp2elg7azAwuOLefTuyXW7eNoiLxkkhwZfCJ8o0LsSfSNdbWGzbC9+Bz/DyfqesYs/vL/Lq0/W/TJK+dELovy8RgtMj1+7MxSSevyM0lxq8NOEG5gs6DKQuKhyO8fqnj+e+JOfDUP8uJ3Hk5Lm67Thh4sw/tr4G9HAepVRtx1OCUTTRAXYsIBgwuA7aA2xi/lh84+ZMUDBkvt6Gv3IHg0P0WAJV5b2hNitNoU0kZ+At7VlZ';
+    // log(getOriginalJs(code))
+    // let t2 = new Date().getTime();
+    // log('耗时:'+(t2-t1));
 
     // console.log('Uint8Array:'+typeof(Uint8Array)+' '+'Uint16Array:'+typeof(Uint16Array));
     // console.log('encodeURIComponent:'+typeof(encodeURIComponent)+' '+'decodeURIComponent:'+typeof(decodeURIComponent));
@@ -2920,10 +2925,12 @@ function getOriginalJs(js_code){
     }
     let rsa_private_key = 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqin/jUpqM6+fgYP/oMqj9zcdHMM0mEZXLeTyixIJWP53lzJV2N2E3OP6BBpUmq2O1a9aLnTIbADBaTulTNiOnVGoNG58umBnupnbmmF8iARbDp2mTzdMMeEgLdrfXS6Y3VvazKYALP8EhEQykQVarexR78vRq7ltY3quXx7cgI0ROfZz5Sw3UOLQJ+VoWmwIxu9AMEZLVzFDQN93hzuzs3tNyHK6xspBGB7zGbwCg+TKi0JeqPDrXxYUpAz1cQ/MO+Da0WgvkXnvrry8NQROHejdLVOAslgr6vYthH9bKbsGyNY3H+P12kcxo9RAcVveONnZbcMyxjtF5dWblaernAgMBAAECggEAGdEHlSEPFmAr5PKqKrtoi6tYDHXdyHKHC5tZy4YV+Pp+a6gxxAiUJejx1hRqBcWSPYeKne35BM9dgn5JofgjI5SKzVsuGL6bxl3ayAOu+xXRHWM9f0t8NHoM5fdd0zC3g88dX3fb01geY2QSVtcxSJpEOpNH3twgZe6naT2pgiq1S4okpkpldJPo5GYWGKMCHSLnKGyhwS76gF8bTPLoay9Jxk70uv6BDUMlA4ICENjmsYtd3oirWwLwYMEJbSFMlyJvB7hjOjR/4RpT4FPnlSsIpuRtkCYXD4jdhxGlvpXREw97UF2wwnEUnfgiZJ2FT/MWmvGGoaV/CfboLsLZuQKBgQDTNZdJrs8dbijynHZuuRwvXvwC03GDpEJO6c1tbZ1s9wjRyOZjBbQFRjDgFeWs9/T1aNBLUrgsQL9c9nzgUziXjr1Nmu52I0Mwxi13Km/q3mT+aQfdgNdu6ojsI5apQQHnN/9yMhF6sNHg63YOpH+b+1bGRCtr1XubuLlumKKscwKBgQDOtQ2lQjMtwsqJmyiyRLiUOChtvQ5XI7B2mhKCGi8kZ+WEAbNQcmThPesVzW+puER6D4Ar4hgsh9gCeuTaOzbRfZ+RLn3Aksu2WJEzfs6UrGvm6DU1INn0z/tPYRAwPX7sxoZZGxqML/z+/yQdf2DREoPdClcDa2Lmf1KpHdB+vQKBgBXFCVHz7a8n4pqXG/HvrIMJdEpKRwH9lUQS/zSPPtGzaLpOzchZFyQQBwuh1imM6Te+VPHeldMh3VeUpGxux39/m+160adlnRBS7O7CdgSsZZZ/dusS06HAFNraFDZf1/VgJTk9BeYygX+AZYu+0tReBKSs9BjKSVJUqPBIVUQXAoGBAJcZ7J6oVMcXxHxwqoAeEhtvLcaCU9BJK36XQ/5M67ceJ72mjJC6/plUbNukMAMNyyi62gO6I9exearecRpB/OGIhjNXm99Ar59dAM9228X8gGfryLFMkWcO/fNZzb6lxXmJ6b2LPY3KqpMwqRLTAU/zy+ax30eFoWdDHYa4X6e1AoGAfa8asVGOJ8GL9dlWufEeFkDEDKO9ww5GdnpN+wqLwePWqeJhWCHad7bge6SnlylJp5aZXl1+YaBTtOskC4Whq9TP2J+dNIgxsaF5EFZQJr8Xv+lY9lu0CruYOh9nTNF9x3nubxJgaSid/7yRPfAGnsJRiknB5bsrCvgsFQFjJVs=';
     let decode_content = '';
+    // node-rsa 要 6.8s rsa:1.8s 长文本都没法出来
     let decode_funcs = [
         (text)=>{try {return ungzip(text)} catch (e) {return ''}},
         (text)=>{try {return base64Decode(text)} catch (e) {return ''}},
         (text)=>{try {return RSA.decode(text,rsa_private_key,null)} catch (e) {return ''}},
+        // (text)=>{try {return NODERSA.decryptRSAWithPrivateKey(text, RSA.getPrivateKey(rsa_private_key).replace(/RSA /g,''), {options: {environment: "browser", encryptionScheme: 'pkcs1',b:'1024'}});} catch (e) {log(e.message);return ''}},
     ]
     let func_index = 0
     while(!current_match.test(decode_content)){

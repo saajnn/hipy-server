@@ -63,5 +63,5 @@ if __name__ == '__main__':
     # print(drpy.searchContent("斗罗大陆", False, 1))
     # print(drpy.detailContent("https://001.pm/index.php/vod/detail/id/118802.html"))
     # print(drpy.playerContent("1", "push://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
-    print(drpy.playerContent("1", "magnet://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
+    # print(drpy.playerContent("1", "magnet://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
     # print(drpy.playerContent("1", "https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
