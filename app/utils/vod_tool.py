@@ -70,11 +70,12 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
         else:
             headers['Content-Type'] = content_type
 
+        if isinstance(data, dict):
+            data = ujson.dumps(data, ensure_ascii=False)
+
     encoding = _object.get('encoding') or 'utf-8'
     buffer = _object.get('buffer') or 1
     redirect = False if _object.get('redirect') == 0 or _object.get('redirect') == False else True
-
-
 
     withHeaders = bool(_object.get('withHeaders') or False)
     r = None
