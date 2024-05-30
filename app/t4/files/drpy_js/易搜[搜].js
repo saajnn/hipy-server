@@ -113,6 +113,7 @@ var rule = {
                     title: it.fileInfos[0].fileName,
                     url: u,
                     desc: (it.gmtShare || it.gmtCreate) + "\n" + (u),
+                    content: u,
                 });
             }
         });
