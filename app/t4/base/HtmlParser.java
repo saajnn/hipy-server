@@ -21,7 +21,7 @@ public class HtmlParser {
 	private static final Pattern p = Pattern.compile("url\\((.*?)\\)", Pattern.MULTILINE | Pattern.DOTALL);
 	private static final Pattern NOADD_INDEX = Pattern
 			.compile(":eq|:lt|:gt|:first|:last|:not|:even|:odd|:has|:contains|:matches|:empty|^body$|^#"); // 不自动加eq下标索引
-	private static final Pattern URLJOIN_ATTR = Pattern.compile("(url|src|href|-original|-src|-play|-url|style)$",
+	private static final Pattern URLJOIN_ATTR = Pattern.compile("(url|src|href|-original|-src|-play|-url|style)$|^(data-|url-|src-)",
 			Pattern.MULTILINE | Pattern.CASE_INSENSITIVE); // 需要自动urljoin的属性
 	private static final Pattern SPECIAL_URL = Pattern.compile("^(ftp|magnet|thunder|ws):",
 			Pattern.MULTILINE | Pattern.CASE_INSENSITIVE); // 过滤特殊链接,不走urlJoin

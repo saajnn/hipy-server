@@ -17,7 +17,7 @@ from html import escape, unescape
 
 PARSE_CACHE = True  # 解析缓存
 NOADD_INDEX = ':eq|:lt|:gt|:first|:last|:not|:even|:odd|:has|:contains|:matches|:empty|^body$|^#'  # 不自动加eq下标索引
-URLJOIN_ATTR = '(url|src|href|-original|-src|-play|-url|style)$'  # 需要自动urljoin的属性
+URLJOIN_ATTR = '(url|src|href|-original|-src|-play|-url|style)$|^(data-|url-|src-)'  # 需要自动urljoin的属性
 SPECIAL_URL = '^(ftp|magnet|thunder|ws):'  # 过滤特殊链接,不走urlJoin
 
 
