@@ -79,7 +79,6 @@ var rule = {
     // 一级: '',
     二级: '*',
     搜索: $js.toString(() => {
-        log(MY_URL);
         let cookie = getItem(RULE_CK, '');
         log('储存的cookie:' + cookie);
         let ret = request(MY_URL, {
