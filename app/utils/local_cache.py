@@ -43,6 +43,8 @@ class LocalCache():
             if os.path.exists(self.cacheFile):
                 with open(self.cacheFile, "rb") as f:
                     self.caches = pickle.load(f)
+                # print('self.cacheFile:', self.cacheFile)
+                # print('self.caches:', self.caches)
             else:
                 print("file not found:", self.cacheFile)
         except Exception as e:
@@ -64,6 +66,7 @@ class LocalCache():
     @deferFunc
     def get(self, _id, key, value=None):
         _key = f'{_id}{key}'
+        # print('get_key:', _key)
         if _key in self.caches:
             return self.caches[_key] or value
         else:
@@ -72,6 +75,7 @@ class LocalCache():
     @deferFunc
     def set(self, _id, key, value):
         _key = f'{_id}{key}'
+        # print('set_key:', _key)
         if _key != "":
             self.caches[_key] = value
         else:
@@ -117,7 +121,8 @@ def main() -> None:
 
 
 local = LocalCache()
-local.cacheSetting(queueMaxKeys=512, ageSec=24 * 60 * 60)
+# local.cacheSetting(queueMaxKeys=512, ageSec=24 * 60 * 60)
+local.cacheSetting(queueMaxKeys=64, ageSec=10 * 60)
 
 if __name__ == '__main__':
     main()

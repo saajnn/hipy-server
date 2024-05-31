@@ -35,8 +35,8 @@ function verifyLogin() {
             html = post(submit_url, {
                 headers: {Cookie: cookie},
                 body: {
-                    "userName": 'song2000xin',
-                    "password": 'Sx@123456',
+                    "userName": 'hjdhnx1',
+                    "password": 'Dz@hjdhnx1',
                     "code": code
                 }
             });
@@ -76,7 +76,7 @@ var rule = {
         let url = input.startsWith('push://') ? input : 'push://' + input;
         input = {parse: 0, url: url};
     }),
-    一级: '',
+    // 一级: '',
     二级: '*',
     搜索: $js.toString(() => {
         log(MY_URL);

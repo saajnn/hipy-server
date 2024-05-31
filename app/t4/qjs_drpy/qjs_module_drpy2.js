@@ -253,7 +253,7 @@ function pre() {
 
 let rule = {};
 let vercode = typeof (pdfl) === 'function' ? 'drpy2.1' : 'drpy2';
-const VERSION = vercode + ' 3.9.50beta21 202400529';
+const VERSION = vercode + ' 3.9.50beta22 202400601';
 /** 已知问题记录
  * 1.影魔的jinjia2引擎不支持 {{fl}}对象直接渲染 (有能力解决的话尽量解决下，支持对象直接渲染字符串转义,如果加了|safe就不转义)[影魔牛逼，最新的文件发现这问题已经解决了]
  * Array.prototype.append = Array.prototype.push; 这种js执行后有毛病,for in 循环列表会把属性给打印出来 (这个大毛病需要重点排除一下)
@@ -698,9 +698,29 @@ function maoss(jxurl, ref, key) {
     }
 }
 
-function urlencode(str) {
+/**
+ * 将base64编码进行url编译
+ * @param str
+ * @returns {string}
+ */
+function urlencode (str) {
     str = (str + '').toString();
-    return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+    return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').
+    replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
+}
+
+/**
+ * url编码,同 encodeURI
+ * @param str
+ * @returns {string}
+ */
+function encodeUrl(str){
+    if(typeof(encodeURI) == 'function'){
+        return encodeURI(str)
+    }else{
+        str = (str + '').toString();
+        return encodeURIComponent(str).replace(/%2F/g, '/').replace(/%3F/g, '?').replace(/%3A/g, ':').replace(/%40/g, '@').replace(/%3D/g, '=').replace(/%3A/g, ':').replace(/%2C/g, ',').replace(/%2B/g, '+').replace(/%24/g, '$');
+    }
 }
 
 function base64Encode(text) {
@@ -1095,8 +1115,6 @@ let VODS = [];// 一级或者搜索需要的数据列表
 let VOD = {};// 二级的单个数据
 let TABS = [];// 二级的自定义线路列表 如: TABS=['道长在线','道长在线2']
 let LISTS = [];// 二级的自定义选集播放列表 如: LISTS=[['第1集$http://1.mp4','第2集$http://2.mp4'],['第3集$http://1.mp4','第4集$http://2.mp4']]
-globalThis.encodeUrl = urlencode;
-globalThis.urlencode = urlencode;
 
 /**
  * 获取链接的query请求转为js的object字典对象
@@ -1909,7 +1927,7 @@ function homeVodParse(homeVodObj) {
         return '{}'
     }
     p = p.trim();
-    let pp = rule.一级.split(';');
+    let pp = rule.一级?rule.一级.split(';'):[];
     if (p.startsWith('js:')) {
         const TYPE = 'home';
         var input = MY_URL;
@@ -2266,7 +2284,7 @@ function searchParse(searchObj) {
         return '{}'
     }
     p = p.trim();
-    let pp = rule.一级.split(';');
+    let pp = rule.一级?rule.一级.split(';'):[];
     let url = searchObj.searchUrl.replaceAll('**', searchObj.wd);
     if (searchObj.pg === 1 && url.includes('[') && url.includes(']') && !url.includes('#')) {
         url = url.split('[')[1].split(']')[0];

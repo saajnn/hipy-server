@@ -13,7 +13,7 @@ var rule = {
         let url = input.startsWith('push://') ? input : 'push://' + input;
         input = {parse: 0, url: url};
     }),
-    一级: '',
+    // 一级: '',
     二级: '*',
     搜索: $js.toString(() => {
         var d = [];
