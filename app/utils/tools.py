@@ -14,13 +14,14 @@ from threading import Thread
 import gzip
 import base64
 from Crypto.Cipher import AES, PKCS1_v1_5 as PKCS1_cipher
-# from Crypto.Util.Padding import unpad
+from Crypto.Util.Padding import pad, unpad
 from Crypto.PublicKey import RSA
 
 # https://www.bchrt.com/tools/rsa/
 rsa_public_key = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqop/41KajOvn4GD/6DKo/c3HRzDNJhGVy3k8osSCVj+d5cyVdjdhNzj+gQaVJqtjtWvWi50yGwAwWk7pUzYjp1RqDRufLpgZ7qZ25phfIgEWw6dpk83TDHhIC3a310umN1b2symACz/BIREMpEFWq3sUe/L0au5bWN6rl8e3ICNETn2c+UsN1Di0CflaFpsCMbvQDBGS1cxQ0Dfd4c7s7N7TchyusbKQRge8xm8AoPkyotCXqjw618WFKQM9XEPzDvg2tFoL5F57668vDUETh3o3S1TgLJYK+r2LYR/Wym7BsjWNx/j9dpHMaPUQHFb3jjZ2W3DMsY7ReXVm5Wnq5wIDAQAB'
 rsa_private_key = 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqin/jUpqM6+fgYP/oMqj9zcdHMM0mEZXLeTyixIJWP53lzJV2N2E3OP6BBpUmq2O1a9aLnTIbADBaTulTNiOnVGoNG58umBnupnbmmF8iARbDp2mTzdMMeEgLdrfXS6Y3VvazKYALP8EhEQykQVarexR78vRq7ltY3quXx7cgI0ROfZz5Sw3UOLQJ+VoWmwIxu9AMEZLVzFDQN93hzuzs3tNyHK6xspBGB7zGbwCg+TKi0JeqPDrXxYUpAz1cQ/MO+Da0WgvkXnvrry8NQROHejdLVOAslgr6vYthH9bKbsGyNY3H+P12kcxo9RAcVveONnZbcMyxjtF5dWblaernAgMBAAECggEAGdEHlSEPFmAr5PKqKrtoi6tYDHXdyHKHC5tZy4YV+Pp+a6gxxAiUJejx1hRqBcWSPYeKne35BM9dgn5JofgjI5SKzVsuGL6bxl3ayAOu+xXRHWM9f0t8NHoM5fdd0zC3g88dX3fb01geY2QSVtcxSJpEOpNH3twgZe6naT2pgiq1S4okpkpldJPo5GYWGKMCHSLnKGyhwS76gF8bTPLoay9Jxk70uv6BDUMlA4ICENjmsYtd3oirWwLwYMEJbSFMlyJvB7hjOjR/4RpT4FPnlSsIpuRtkCYXD4jdhxGlvpXREw97UF2wwnEUnfgiZJ2FT/MWmvGGoaV/CfboLsLZuQKBgQDTNZdJrs8dbijynHZuuRwvXvwC03GDpEJO6c1tbZ1s9wjRyOZjBbQFRjDgFeWs9/T1aNBLUrgsQL9c9nzgUziXjr1Nmu52I0Mwxi13Km/q3mT+aQfdgNdu6ojsI5apQQHnN/9yMhF6sNHg63YOpH+b+1bGRCtr1XubuLlumKKscwKBgQDOtQ2lQjMtwsqJmyiyRLiUOChtvQ5XI7B2mhKCGi8kZ+WEAbNQcmThPesVzW+puER6D4Ar4hgsh9gCeuTaOzbRfZ+RLn3Aksu2WJEzfs6UrGvm6DU1INn0z/tPYRAwPX7sxoZZGxqML/z+/yQdf2DREoPdClcDa2Lmf1KpHdB+vQKBgBXFCVHz7a8n4pqXG/HvrIMJdEpKRwH9lUQS/zSPPtGzaLpOzchZFyQQBwuh1imM6Te+VPHeldMh3VeUpGxux39/m+160adlnRBS7O7CdgSsZZZ/dusS06HAFNraFDZf1/VgJTk9BeYygX+AZYu+0tReBKSs9BjKSVJUqPBIVUQXAoGBAJcZ7J6oVMcXxHxwqoAeEhtvLcaCU9BJK36XQ/5M67ceJ72mjJC6/plUbNukMAMNyyi62gO6I9exearecRpB/OGIhjNXm99Ar59dAM9228X8gGfryLFMkWcO/fNZzb6lxXmJ6b2LPY3KqpMwqRLTAU/zy+ax30eFoWdDHYa4X6e1AoGAfa8asVGOJ8GL9dlWufEeFkDEDKO9ww5GdnpN+wqLwePWqeJhWCHad7bge6SnlylJp5aZXl1+YaBTtOskC4Whq9TP2J+dNIgxsaF5EFZQJr8Xv+lY9lu0CruYOh9nTNF9x3nubxJgaSid/7yRPfAGnsJRiknB5bsrCvgsFQFjJVs='
-
+aes_key = 'hjdhnx'
+aes_iv = 'dzyyds'
 # js 如何使用:
 """
 let ret = RSA.decode(data,key,{});
@@ -232,9 +233,79 @@ def rsa_private_decode(ciphertext, private_key, default_length=117):
     return plaintext.decode('utf-8')
 
 
+def bytesToHexString(_bytes, no_space=True):
+    """
+    将byte字节转成hex字符串
+    @param _bytes: byte字节
+    @param no_space: 是否不带空格返回，默认是
+    @return: hex字符串
+    """
+    _str = ''.join(['%02X ' % b for b in _bytes])
+    if no_space:
+        _str = _str.replace(" ", "")
+    return _str
+
+
+def pad_bytes(data):
+    # while len(data) % 16 != 0:
+    #     data += b'\0'
+    # return data
+    data = pad(data, AES.block_size)
+    print(data, '======= hex:', bytesToHexString(data))
+    return data
+
+
+def aes_cbc_encode(plaintext, key, iv):
+    """
+    aes cbc格式加密
+    @param plaintext:待加密的明文字符串
+    @param key: 加密密钥
+    @param iv: 加密偏移量
+    @return:加密后的文本明文
+    """
+    crypter = AES.new(pad_bytes(key.encode()), AES.MODE_CBC, pad_bytes(iv.encode()))
+    # 填充
+    plaintext = pad_bytes(plaintext.encode())
+    # print(plaintext)
+    # 加密
+    ciphertext = crypter.encrypt(plaintext)
+    # 输出密文
+    return base64.b64encode(ciphertext).decode('utf-8')
+
+
+def aes_cbc_decode(ciphertext, key, iv):
+    """
+    aes cbc格式解密
+    @param ciphertext:加密的字符串
+    @param key: 加密密钥
+    @param iv: 加密偏移量
+    @return:解密后的文本明文
+    """
+    # 将密文转换成byte数组
+    ciphertext = base64.b64decode(ciphertext)
+    # 构建AES解密器
+    decrypter = AES.new(pad_bytes(key.encode()), AES.MODE_CBC, pad_bytes(iv.encode()))
+    # 解密
+    plaintext = decrypter.decrypt(ciphertext)
+    # 去除填充
+    plaintext = unpad(plaintext, AES.block_size)
+    # 输出明文
+    return plaintext.decode('utf-8')
+
+
 if __name__ == '__main__':
     # 32位md5
     # 123456 => e10adc3949ba59abbe56e057f20f883e|e10adc3949ba59abbe56e057f20f883e
-    key = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKoR8mX0rGKLqzcWmOzbfj64K8ZIgOdH\n" + "nzkXSOVOZbFu/TJhZ7rFAN+eaGkl3C4buccQd/EjEsj9ir7ijT7h96MCAwEAAQ=="
-    public_key = '-----BEGIN PUBLIC KEY-----\n' + key + '\n-----END PUBLIC KEY-----'
-    print(crack_pwd("123456", public_key))
+    # key = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKoR8mX0rGKLqzcWmOzbfj64K8ZIgOdH\n" + "nzkXSOVOZbFu/TJhZ7rFAN+eaGkl3C4buccQd/EjEsj9ir7ijT7h96MCAwEAAQ=="
+    # public_key = '-----BEGIN PUBLIC KEY-----\n' + key + '\n-----END PUBLIC KEY-----'
+    # print(crack_pwd("123456", public_key))
+    data = '你好drpy'
+    aes_key = 'hjdhnx'  # hex:686A64686E780A0A0A0A0A0A0A0A0A0A
+    aes_iv = 'dzyyds'  # hex:647A797964730A0A0A0A0A0A0A0A0A0A
+    encode_str = aes_cbc_encode(data, aes_key, aes_iv)
+    print(encode_str)
+    decode_str = aes_cbc_decode(encode_str, aes_key, aes_iv)
+    print(decode_str)
+    encode_str = 'h36A5I5KdeB29zb3iwNWVx0m7uwstVbsPzuQmO9TORKWsPcBbNgA54BAedzNiFtNjffUVMDkFoHIjJtHZriiQwB1vzJiLqE/9nip4F5hdJr4AIWcVHBk5nQVnheGoGy4YPvbZ1Ux04WzXu7vSre7/a68/81mjyAjHu6+MbjybWVQdAS9I9PK4k38VSb6oKQJ8YKtSnoG1WMFnLhTSqbNsBBfRAtZ7yJoL2PDtJdhKS6pRVIL0PRQq/woy3aSL+0xo8Vi/8y66kHBHl5YEmYb+MTlYXdTQlID1DZZWXR9AMprvR1GK/PromLTdAR2QhInwkrnBNfXiBF3lF3q6pnUBFU1ZfSWnYVdTT6XveEzuKsN61Von9UcSE61JRisRv0kVYTx6j5JJPC5CltyMMhj/Hoz2MBuwMiT67G66CyVnpzjitdTa1RvM3y0OscVm1KWZ8eQKHRODDytTcTZhBD3ityqlV/BI6Q1pTEGzKmIhWjkGQM0cDQ7nWilKkp6eCKJIuYdMs8g9DM5yafqXOSj4r9kzb6Ol+9YHMk7ttXIABs='
+    decode_str = aes_cbc_decode(encode_str, aes_key, aes_iv)
+    print(decode_str)

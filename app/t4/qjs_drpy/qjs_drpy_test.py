@@ -61,7 +61,7 @@ if __name__ == '__main__':
     # print(drpy.playerContent("量子资源", "https://nkvod.com/play/185851-2-1.html", []))
     # print(drpy.playerContent("优质", "https://yzzy.play-cdn21.com/20240329/13829_b63e7c01/index.m3u8", []))
     # print(drpy.searchContent("斗罗大陆", False, 1))
-    print(drpy.searchContent("完美世界", False, 1))
+    # print(drpy.searchContent("完美世界", False, 1))
     # print(drpy.detailContent("https://001.pm/index
     # print(drpy.detailContent("https://001.pm/index.php/vod/detail/id/118802.html"))
     # print(drpy.playerContent("1", "push://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))

@@ -9,7 +9,8 @@ from pathlib import Path
 import shutil
 import re
 from utils.tools import base64Encode, base64Decode, compress_and_encode, decode_and_decompress, rsa_public_encode, \
-    rsa_private_decode, rsa_public_key
+    rsa_private_decode, rsa_public_key, aes_cbc_encode, aes_cbc_decode, aes_key, aes_iv
+import random
 
 
 def main():
@@ -17,18 +18,30 @@ def main():
         '0': 'gzip',
         '1': 'base64',
         '2': 'rsa',
+        '3': 'aes',
     }
     encode_mode = str(input(f'请选择要加密的模式[q退出]:\n{encode_dict}\n')).strip()
     if encode_mode == 'q':
         exit()
     encode_file = str(input(f'请输入要加密的文件。不输入则全部\n')).strip()
     encode_type = encode_dict.get(encode_mode) or 'gzip'
-    if encode_type == 'base64':
-        encode_func = base64Encode
+    encode_func1 = compress_and_encode
+    encode_func2 = base64Encode
+    encode_func3 = lambda text: rsa_public_encode(text, rsa_public_key)
+    encode_func4 = lambda text: aes_cbc_encode(text, aes_key, aes_iv)
+    encode_funcs = [encode_func1, encode_func2, encode_func3, encode_func4]
+    encode_func_keys = encode_dict.keys()
+
+    if encode_type == 'gzip':
+        encode_func = encode_func1
+    elif encode_type == 'base64':
+        encode_func = encode_func2
     elif encode_type == 'rsa':
-        encode_func = lambda text: rsa_public_encode(text, rsa_public_key)
+        encode_func = encode_func3
+    elif encode_type == 'aes':
+        encode_func = encode_func4
     else:
-        encode_func = compress_and_encode
+        encode_func = encode_func1
 
     base_dir = './t4/files/drpy_js'
     files = [Path(os.path.join(base_dir, file)).as_posix() for file in os.listdir(base_dir)]
@@ -47,6 +60,10 @@ def main():
         files = [file for file in files if encode_file in file]
 
     for file in files:
+        # 判断随机加密
+        if encode_mode not in encode_func_keys:
+            encode_func = random.choice(encode_funcs)
+
         file_out_path = os.path.join(out_dir, os.path.basename(file))
         file_out_path = Path(file_out_path).as_posix()
         print('输出加密后的文件:', file_out_path)

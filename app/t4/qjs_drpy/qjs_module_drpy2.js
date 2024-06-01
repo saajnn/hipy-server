@@ -9,7 +9,8 @@ function init_test() {
     // ocr_demo_test();
     // rsa_demo_test();
     // let t1 = new Date().getTime();
-    // let code = 'dMkKUybNbg0y63m/2F2N7RJA7byTPG6sZx2wwDtUva0qhc/0mGl8Y9pIhqQwtwxfXdXSh4zKpLt/p0bjbB/nfkM3UIN/6/tVlIxpWRbfRYDvn6+815eAzgH7W6FPdZgPbNZTOT6miJoetqsOYcNgQO/io+KeeB87Wjr2T6o4LmEWRydYoHSVZrFQwO85yTbyDngef48knpucWavnZGJcFhfNkI+1rKP0DyM9oEAjo6LIEZgjuhktgwWXiW2zSQ0fAOZ20ch+BAbBJ5LIiaDttWiTV7/9NJx6rPQHeW6sxFhMfF0W4lcrh2TlxhnUb4P5jRATN4a2qq0csP+S9Z4vf0353tcCohBRJ+KNCHPEKl4z+8Rzm8/qy4pNCIExKutOQmYDz9bLoV7lCUEM6beuObwMmkaGMgax1+2v3wQnSlasaWKka1v7ApuS7ReCjW2ehdpRFZWnlR5TUXSSxn/lKQtX0Erg54KhKPrNBgO8hJUOnv1XQxBuZPZe/3yqF+423ZRGB1OgemVL3I7n7ZcPe7dx1W9dkZaNhnRGa60EngZ/VCBU4OJcfrDPleDFHOt7hm7lBcglNcMrUexh9in7vdAsOQ8xdlgt0tT4gyYqWzpA4rJa9+MFTsqNYUQaVmI7oseDhmIgajjwUfZ4+ueOBbKMQgKvaD5ZkGizy207pHxr7K244hk7sjkmp+4iIkK/cjw0iuEiyNhgm4MedFb7/DKLMOJBPxj88ChCUk8Ux77ect91a1pdaQBoxhfISXYwGncnmSCgyY3qn8cyNZp2elg7azAwuOLefTuyXW7eNoiLxkkhwZfCJ8o0LsSfSNdbWGzbC9+Bz/DyfqesYs/vL/Lq0/W/TJK+dELovy8RgtMj1+7MxSSevyM0lxq8NOEG5gs6DKQuKhyO8fqnj+e+JOfDUP8uJ3Hk5Lm67Thh4sw/tr4G9HAepVRtx1OCUTTRAXYsIBgwuA7aA2xi/lh84+ZMUDBkvt6Gv3IHg0P0WAJV5b2hNitNoU0kZ+At7VlZ';
+    // // let code = 'dMkKUybNbg0y63m/2F2N7RJA7byTPG6sZx2wwDtUva0qhc/0mGl8Y9pIhqQwtwxfXdXSh4zKpLt/p0bjbB/nfkM3UIN/6/tVlIxpWRbfRYDvn6+815eAzgH7W6FPdZgPbNZTOT6miJoetqsOYcNgQO/io+KeeB87Wjr2T6o4LmEWRydYoHSVZrFQwO85yTbyDngef48knpucWavnZGJcFhfNkI+1rKP0DyM9oEAjo6LIEZgjuhktgwWXiW2zSQ0fAOZ20ch+BAbBJ5LIiaDttWiTV7/9NJx6rPQHeW6sxFhMfF0W4lcrh2TlxhnUb4P5jRATN4a2qq0csP+S9Z4vf0353tcCohBRJ+KNCHPEKl4z+8Rzm8/qy4pNCIExKutOQmYDz9bLoV7lCUEM6beuObwMmkaGMgax1+2v3wQnSlasaWKka1v7ApuS7ReCjW2ehdpRFZWnlR5TUXSSxn/lKQtX0Erg54KhKPrNBgO8hJUOnv1XQxBuZPZe/3yqF+423ZRGB1OgemVL3I7n7ZcPe7dx1W9dkZaNhnRGa60EngZ/VCBU4OJcfrDPleDFHOt7hm7lBcglNcMrUexh9in7vdAsOQ8xdlgt0tT4gyYqWzpA4rJa9+MFTsqNYUQaVmI7oseDhmIgajjwUfZ4+ueOBbKMQgKvaD5ZkGizy207pHxr7K244hk7sjkmp+4iIkK/cjw0iuEiyNhgm4MedFb7/DKLMOJBPxj88ChCUk8Ux77ect91a1pdaQBoxhfISXYwGncnmSCgyY3qn8cyNZp2elg7azAwuOLefTuyXW7eNoiLxkkhwZfCJ8o0LsSfSNdbWGzbC9+Bz/DyfqesYs/vL/Lq0/W/TJK+dELovy8RgtMj1+7MxSSevyM0lxq8NOEG5gs6DKQuKhyO8fqnj+e+JOfDUP8uJ3Hk5Lm67Thh4sw/tr4G9HAepVRtx1OCUTTRAXYsIBgwuA7aA2xi/lh84+ZMUDBkvt6Gv3IHg0P0WAJV5b2hNitNoU0kZ+At7VlZ';
+    // let code = 'h36A5I5KdeB29zb3iwNWVx0m7uwstVbsPzuQmO9TORKWsPcBbNgA54BAedzNiFtNjffUVMDkFoHIjJtHZriiQwB1vzJiLqE/9nip4F5hdJr4AIWcVHBk5nQVnheGoGy4YPvbZ1Ux04WzXu7vSre7/a68/81mjyAjHu6+MbjybWVQdAS9I9PK4k38VSb6oKQJ8YKtSnoG1WMFnLhTSqbNsBBfRAtZ7yJoL2PDtJdhKS6pRVIL0PRQq/woy3aSL+0xo8Vi/8y66kHBHl5YEmYb+MTlYXdTQlID1DZZWXR9AMprvR1GK/PromLTdAR2QhInwkrnBNfXiBF3lF3q6pnUBFU1ZfSWnYVdTT6XveEzuKsN61Von9UcSE61JRisRv0kVYTx6j5JJPC5CltyMMhj/Hoz2MBuwMiT67G66CyVnpzjitdTa1RvM3y0OscVm1KWZ8eQKHRODDytTcTZhBD3ityqlV/BI6Q1pTEGzKmIhWjkGQM0cDQ7nWilKkp6eCKJIuYdMs8g9DM5yafqXOSj4r9kzb6Ol+9YHMk7ttXIABs=';
     // log(getOriginalJs(code))
     // let t2 = new Date().getTime();
     // log('耗时:'+(t2-t1));
@@ -253,7 +254,7 @@ function pre() {
 
 let rule = {};
 let vercode = typeof (pdfl) === 'function' ? 'drpy2.1' : 'drpy2';
-const VERSION = vercode + ' 3.9.50beta22 20240601';
+const VERSION = vercode + ' 3.9.50beta24 20240601';
 /** 已知问题记录
  * 1.影魔的jinjia2引擎不支持 {{fl}}对象直接渲染 (有能力解决的话尽量解决下，支持对象直接渲染字符串转义,如果加了|safe就不转义)[影魔牛逼，最新的文件发现这问题已经解决了]
  * Array.prototype.append = Array.prototype.push; 这种js执行后有毛病,for in 循环列表会把属性给打印出来 (这个大毛病需要重点排除一下)
@@ -2944,10 +2945,29 @@ function getOriginalJs(js_code){
     let rsa_private_key = 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqin/jUpqM6+fgYP/oMqj9zcdHMM0mEZXLeTyixIJWP53lzJV2N2E3OP6BBpUmq2O1a9aLnTIbADBaTulTNiOnVGoNG58umBnupnbmmF8iARbDp2mTzdMMeEgLdrfXS6Y3VvazKYALP8EhEQykQVarexR78vRq7ltY3quXx7cgI0ROfZz5Sw3UOLQJ+VoWmwIxu9AMEZLVzFDQN93hzuzs3tNyHK6xspBGB7zGbwCg+TKi0JeqPDrXxYUpAz1cQ/MO+Da0WgvkXnvrry8NQROHejdLVOAslgr6vYthH9bKbsGyNY3H+P12kcxo9RAcVveONnZbcMyxjtF5dWblaernAgMBAAECggEAGdEHlSEPFmAr5PKqKrtoi6tYDHXdyHKHC5tZy4YV+Pp+a6gxxAiUJejx1hRqBcWSPYeKne35BM9dgn5JofgjI5SKzVsuGL6bxl3ayAOu+xXRHWM9f0t8NHoM5fdd0zC3g88dX3fb01geY2QSVtcxSJpEOpNH3twgZe6naT2pgiq1S4okpkpldJPo5GYWGKMCHSLnKGyhwS76gF8bTPLoay9Jxk70uv6BDUMlA4ICENjmsYtd3oirWwLwYMEJbSFMlyJvB7hjOjR/4RpT4FPnlSsIpuRtkCYXD4jdhxGlvpXREw97UF2wwnEUnfgiZJ2FT/MWmvGGoaV/CfboLsLZuQKBgQDTNZdJrs8dbijynHZuuRwvXvwC03GDpEJO6c1tbZ1s9wjRyOZjBbQFRjDgFeWs9/T1aNBLUrgsQL9c9nzgUziXjr1Nmu52I0Mwxi13Km/q3mT+aQfdgNdu6ojsI5apQQHnN/9yMhF6sNHg63YOpH+b+1bGRCtr1XubuLlumKKscwKBgQDOtQ2lQjMtwsqJmyiyRLiUOChtvQ5XI7B2mhKCGi8kZ+WEAbNQcmThPesVzW+puER6D4Ar4hgsh9gCeuTaOzbRfZ+RLn3Aksu2WJEzfs6UrGvm6DU1INn0z/tPYRAwPX7sxoZZGxqML/z+/yQdf2DREoPdClcDa2Lmf1KpHdB+vQKBgBXFCVHz7a8n4pqXG/HvrIMJdEpKRwH9lUQS/zSPPtGzaLpOzchZFyQQBwuh1imM6Te+VPHeldMh3VeUpGxux39/m+160adlnRBS7O7CdgSsZZZ/dusS06HAFNraFDZf1/VgJTk9BeYygX+AZYu+0tReBKSs9BjKSVJUqPBIVUQXAoGBAJcZ7J6oVMcXxHxwqoAeEhtvLcaCU9BJK36XQ/5M67ceJ72mjJC6/plUbNukMAMNyyi62gO6I9exearecRpB/OGIhjNXm99Ar59dAM9228X8gGfryLFMkWcO/fNZzb6lxXmJ6b2LPY3KqpMwqRLTAU/zy+ax30eFoWdDHYa4X6e1AoGAfa8asVGOJ8GL9dlWufEeFkDEDKO9ww5GdnpN+wqLwePWqeJhWCHad7bge6SnlylJp5aZXl1+YaBTtOskC4Whq9TP2J+dNIgxsaF5EFZQJr8Xv+lY9lu0CruYOh9nTNF9x3nubxJgaSid/7yRPfAGnsJRiknB5bsrCvgsFQFjJVs=';
     let decode_content = '';
     // node-rsa 要 6.8s rsa:1.8s 长文本都没法出来
+    function aes_decrypt(data) {
+        let key = CryptoJS.enc.Hex.parse("686A64686E780A0A0A0A0A0A0A0A0A0A");
+        let iv = CryptoJS.enc.Hex.parse("647A797964730A0A0A0A0A0A0A0A0A0A");
+        let encrypted = CryptoJS.AES.decrypt({
+            ciphertext: CryptoJS.enc.Base64.parse(data)
+        }, key, {
+            iv: iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        }).toString(CryptoJS.enc.Utf8);
+        return encrypted;
+    }
+    let error_log = false;
+    function logger(text){
+        if(error_log){
+            log(text);
+        }
+    }
     let decode_funcs = [
-        (text)=>{try {return ungzip(text)} catch (e) {return ''}},
-        (text)=>{try {return base64Decode(text)} catch (e) {return ''}},
-        (text)=>{try {return RSA.decode(text,rsa_private_key,null)} catch (e) {return ''}},
+        (text)=>{try {return ungzip(text)} catch (e) {logger('非gzip加密');return ''}},
+        (text)=>{try {return base64Decode(text)} catch (e) {logger('非b64加密');return ''}},
+        (text)=>{try {return aes_decrypt(text)} catch (e) {logger('非aes加密');return ''}},
+        (text)=>{try {return RSA.decode(text,rsa_private_key,null)} catch (e) {logger('非rsa加密');return ''}},
         // (text)=>{try {return NODERSA.decryptRSAWithPrivateKey(text, RSA.getPrivateKey(rsa_private_key).replace(/RSA /g,''), {options: {environment: "browser", encryptionScheme: 'pkcs1',b:'1024'}});} catch (e) {log(e.message);return ''}},
     ]
     let func_index = 0
@@ -3009,7 +3029,9 @@ function init(ext) {
                 let js = request(ext, {'method': 'GET'});
                 if (js) {
                     js = getOriginalJs(js);
-                    eval(js.replace('var rule', 'rule'));
+                    // eval(js.replace('var rule', 'rule'));
+                    // eval("(function(){'use strict';"+js.replace('var rule', 'rule')+"})()");
+                    eval("(function(){"+js.replace('var rule', 'rule')+"})()");
                 }
                 if (query.type === 'url' && query.params) { // 指定type是链接并且传了params支持简写如 ./xx.json
                     rule.params = urljoin(ext, query.params);
@@ -3018,7 +3040,9 @@ function init(ext) {
                 }
             } else {
                 ext = getOriginalJs(ext);
-                eval(ext.replace('var rule', 'rule'));
+                // eval(ext.replace('var rule', 'rule'));
+                // eval("(function(){'use strict';"+ext.replace('var rule', 'rule')+"})()");
+                eval("(function(){"+ext.replace('var rule', 'rule')+"})()");
             }
         }
         if (rule.模板 && muban.hasOwnProperty(rule.模板)) {
