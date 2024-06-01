@@ -29,7 +29,9 @@ def main():
     encode_func2 = base64Encode
     encode_func3 = lambda text: rsa_public_encode(text, rsa_public_key)
     encode_func4 = lambda text: aes_cbc_encode(text, aes_key, aes_iv)
-    encode_funcs = [encode_func1, encode_func2, encode_func3, encode_func4]
+    # encode_funcs = [encode_func1, encode_func2, encode_func3, encode_func4]
+    # 随机加密移除rsa
+    encode_funcs = [encode_func1, encode_func2, encode_func4]
     encode_func_keys = encode_dict.keys()
 
     if encode_type == 'gzip':
