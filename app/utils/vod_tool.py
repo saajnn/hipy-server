@@ -48,6 +48,8 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
     data = _object.get('data') or {}
     headers = _object.get('headers') or {}
     headers = dict(headers)
+    for key, value in headers.items():
+        headers[key] = str(value)
 
     if body and not data:
         if '&' in body:
@@ -91,7 +93,7 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
             r_text = r.text
             r_content = r.content
             r_headers = dict(r.headers)
-            r_headers = {str(key).lower(): value for key, value in r_headers.items()}
+            r_headers = {str(key).lower(): str(value) for key, value in r_headers.items()}
         except Exception as e:
             error = f'base_request {method} 发生了错误:{e}'
             r_headers['error'] = error
@@ -116,7 +118,7 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
                 r_text = r.text
                 r_content = r.content
                 r_headers = dict(r.headers)
-                r_headers = {str(key).lower(): value for key, value in r_headers.items()}
+                r_headers = {str(key).lower(): str(value) for key, value in r_headers.items()}
             except Exception as e:
                 error = f'base_request {method} 发生了错误:{e}'
                 r_headers['error'] = error

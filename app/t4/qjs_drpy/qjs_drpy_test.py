@@ -27,7 +27,8 @@ if __name__ == '__main__':
     # with open('../files/drpy_js/白嫖影视.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/量子资源.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/美益达.js', encoding='utf-8') as f:
-    with open('../files/drpy_js/易搜[搜].js', encoding='utf-8') as f:
+    # with open('../files/drpy_js/易搜[搜].js', encoding='utf-8') as f:
+    with open('../files/drpy_js/29片库.js', encoding='utf-8') as f:
         # with open('../files/drpy_js/耐看.js', encoding='utf-8') as f:
         code = f.read()
     code = code.replace('$nmjx_url', 'http://127.0.0.1:5708/nm?all=&url=')
@@ -35,7 +36,7 @@ if __name__ == '__main__':
     drpy.setDebug(1)
     # print(drpy.homeContent())
     # print(drpy.homeVideoContent())
-    # print(drpy.categoryContent('2', 1, False, {}))
+    print(drpy.categoryContent('1', 1, False, {}))
     # print(drpy.detailContent('https://myd02.com/voddetail/21258.html'))
     # print(drpy.detailContent('https://v.ikanbot.com/play/846474'))
     # print(drpy.detailContent('https://www.baipiaoys.com:9092/detail/2067.html'))
