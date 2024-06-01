@@ -1645,6 +1645,7 @@ function request(url,obj,ocr_flag){
  * @returns {string|DocumentFragment|*}
  */
 function post(url,obj){
+    obj = obj||{};
     obj.method = 'POST';
     return request(url,obj);
 }

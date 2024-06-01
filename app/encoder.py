@@ -21,6 +21,7 @@ def main():
     encode_mode = str(input(f'请选择要加密的模式[q退出]:\n{encode_dict}\n')).strip()
     if encode_mode == 'q':
         exit()
+    encode_file = str(input(f'请输入要加密的文件。不输入则全部\n')).strip()
     encode_type = encode_dict.get(encode_mode) or 'gzip'
     if encode_type == 'base64':
         encode_func = base64Encode
@@ -42,6 +43,9 @@ def main():
     print(f'=================创建目录: {out_dir}=========================')
     os.makedirs(out_dir, exist_ok=True)
     print(f'=================开始执行{encode_type}加密=========================')
+    if encode_file:
+        files = [file for file in files if encode_file in file]
+
     for file in files:
         file_out_path = os.path.join(out_dir, os.path.basename(file))
         file_out_path = Path(file_out_path).as_posix()
