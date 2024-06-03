@@ -17,7 +17,7 @@ var rule = {
     cate_exclude: "",
     play_parse: true,
     lazy: $js.toString(() => {
-        input = {parse: 1, url: input, js: '', parse_extra: '&is_pc=1'};
+        input = {parse: 1, url: input, js: '', header: rule.headers, parse_extra: '&is_pc=1'};
     }),
     double: false,
     推荐: "*;.video-name&&Text;*;.video-time&&Text;*",
