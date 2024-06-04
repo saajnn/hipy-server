@@ -10,7 +10,7 @@
 [android tv_box推荐下载](https://wwi.lanzoup.com/igYqY1wazxmj)  
 [android mobile_box推荐下载【tb】](https://wwi.lanzoup.com/ioaM11yjw0li)  
 [android mobile_box推荐下载【eb】](https://wwi.lanzoup.com/io6GH20tbimd)  
-[PC Player推荐下载](https://wwi.lanzoup.com/iGO4L20takah)  
+[PC Player推荐下载](https://wwi.lanzoup.com/iB5x120u1dpc)  
 [PC 嗅探器推荐下载](https://wwi.lanzoup.com/i4h1T1ztt8fi)  
 [gpt-4o免费用](https://www.coze.com/s/Zs8Mqh1pY/)  
 [gpt-4o写筛选](https://www.coze.com/s/Zs8MqmrBF/)  
