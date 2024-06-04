@@ -20,7 +20,7 @@ def main():
         '2': 'rsa',
         '3': 'aes',
     }
-    encode_mode = str(input(f'请选择要加密的模式[q退出]:\n{encode_dict}\n')).strip()
+    encode_mode = str(input(f'请选择要加密的模式[q退出,其他rsa之外随机加密]:\n{encode_dict}\n')).strip()
     if encode_mode == 'q':
         exit()
     encode_file = str(input(f'请输入要加密的文件。不输入则全部\n')).strip()
