@@ -21,7 +21,8 @@ var rule = {
     lazy: $js.toString(() => {
         let html = request(input);
         let title = pdfh(html, '.content&&h1&&Text');
-        let content = pdfh(html, '#chaptercontent&&Html').replace(/<br>/g, '\n').replace(/\n\n/g, '\n');
+        // let content = pdfh(html, '#chaptercontent&&Html').replace(/<br>/g, '\n').replace(/\n\n/g, '\n');
+        let content = pdfh(html, '#chaptercontent&&Html').replace(/\n/g,"").split("<br>").filter(v=>v).slice(0,-2).join("\n");
         let ret = JSON.stringify({
             title,
             content
