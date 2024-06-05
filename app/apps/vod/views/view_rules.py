@@ -218,6 +218,10 @@ def update_file_info(file_info, group_label, extension, fpath, prefix_js_code, e
             })
         except Exception as e:
             logger.info(f'解析js源{fpath}发生错误:{e}')
+            file_info.update({
+                'searchable': 1,
+                'filterable': 1,
+            })
 
 
 def get_prefix_end_js(group_label, group_value, files):
