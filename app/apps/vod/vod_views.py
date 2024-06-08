@@ -256,8 +256,15 @@ def vod_generate(*, api: str = "", request: Request,
             media_type = back_resp_list[1]
             content = back_resp_list[2]
             headers = back_resp_list[3] if len(back_resp_list) > 3 else None
+            to_bytes = back_resp_list[4] if len(back_resp_list) > 4 else None
             # if isinstance(content, str):
             #     content = content.encode('utf-8')
+            if to_bytes:
+                try:
+                    content = unquote(content.split(",")[1])
+                    content = base64.b64decode(content)
+                except Exception as e:
+                    logger.error(f'本地代理to_bytes发生了错误:{e}')
             return Response(status_code=status_code, media_type=media_type, content=content, headers=headers)
         except Exception as e:
             error_msg = f"localProxy执行发生内部服务器错误:{e}"
