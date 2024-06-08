@@ -261,7 +261,8 @@ def vod_generate(*, api: str = "", request: Request,
             #     content = content.encode('utf-8')
             if to_bytes:
                 try:
-                    content = unquote(content.split(",")[1])
+                    if 'base64,' in content:
+                        content = unquote(content.split("base64,")[1])
                     content = base64.b64decode(content)
                 except Exception as e:
                     logger.error(f'本地代理to_bytes发生了错误:{e}')
