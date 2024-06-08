@@ -61,7 +61,8 @@ var rule = {
                 padding: CryptoJS.pad.Pkcs7
             }).toString(CryptoJS.enc.Base64);
             let img_base64 = 'data:image/' + _type + ';base64,' + encrypted;
-            // input = [200, 'text/plain', img_base64, true];
+            // input = [200, 'text/plain', img_base64];
+            // input = [302, 'text/html', '', {Location:'https://www.baidu.com'}];
             input = [200, 'image/' + _type, img_base64, null, 1];
         }
     }),
