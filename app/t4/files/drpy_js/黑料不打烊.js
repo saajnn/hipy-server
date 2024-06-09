@@ -53,7 +53,9 @@ var rule = {
             let data = request(input.url, {toBase64: true});
             //log(data);
             let t2 = new Date().getTime();
-            log(`网络请求获取图片耗时:${t2-t1}ms`);
+            log(`网络请求获取图片耗时:${t2 - t1}ms`);
+            log(`当前线程:${java.lang.Thread.currentThread().getName()}`);
+
             let key = CryptoJS.enc.Utf8.parse("f5d965df75336270");
             let iv = CryptoJS.enc.Utf8.parse("97b60394abc2fbe1");
             let encrypted = CryptoJS.AES.decrypt({
@@ -65,10 +67,11 @@ var rule = {
             }).toString(CryptoJS.enc.Base64);
             let img_base64 = 'data:image/' + _type + ';base64,' + encrypted;
             let t3 = new Date().getTime();
-            log(`已获取图片${input.url}解密耗时:${t3-t2}ms`);
-            // input = [200, 'text/plain', img_base64];
+            log(`已获取图片${input.url}解密耗时:${t3 - t2}ms`);
+            // // input = [200, 'text/plain', img_base64];
             // input = [302, 'text/html', '', {Location:'https://www.baidu.com'}];
             input = [200, 'image/' + _type, img_base64, null, 1];
+            // input = [200, 'text/plain', data];
         }
     }),
     预处理: $js.toString(() => {
