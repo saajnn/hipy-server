@@ -47,12 +47,12 @@ var rule = {
         content: 'p.text-medium&&Text',
         tabs: 'h2.text-medium',
         lists: $js.toString(() => {
-            log(input);
+            //log(input);
             let data_id = pdfh(html, '#allchapters&&data-mid');
-            log(data_id);
+            //log(data_id);
             let html1 = request(`https://api-get.mgsearcher.com/api/manga/get?mid=${data_id}&mode=all`, {headers: {Referer: 'https://m.baozimh.one/'}});
             let json = JSON.parse(html1);
-            log(json);
+            //log(json);
             let list1 = [];
             let url_prefix = input.replace('chapterlist', 'manga');
             json.data.chapters.forEach(it => {
