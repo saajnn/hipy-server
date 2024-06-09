@@ -1,4 +1,5 @@
 var rule = {
+    类型: '听书',
     title: '博看听书',
     host: 'https://api.bookan.com.cn',
     homeUrl: '/voice/book/list?instance_id=25304&page=1&category_id=1305&num=24',
