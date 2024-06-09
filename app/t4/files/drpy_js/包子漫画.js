@@ -28,7 +28,7 @@ var rule = {
         let json = JSON.parse(html);
         let imgs = json.data.info.images.map(it => it.url);
         //log(imgs);
-        input = {parse: 0, url: 'pics://' + imgs.join('&&')};
+        input = {url: 'pics://' + imgs.join('&&')};
     }),
     double: true,
     推荐: '.cardlist;.pb-2;*;*;*;*',
