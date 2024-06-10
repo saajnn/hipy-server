@@ -25,7 +25,7 @@ var rule = {
     var html = JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1]);
     var url = html.url;
     if (url.includes("www.alipan.com") || input.includes("www.aliyundrive.com")){
-    input = 'push://'+url;
+    input = 'push://'+url.trim();
     }
   `,
     limit: 6,
