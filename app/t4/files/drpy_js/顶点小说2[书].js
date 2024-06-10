@@ -16,6 +16,8 @@ var rule = {
         'User-Agent': 'MOBILE_UA',
     },
     timeout: 5000,
+    hikerListCol: "text_1",
+    hikerClassListCol: "text_1",
     //class_name: '全本',
     //class_url: '0',
     class_parse: '.nav&&ul&&li;a&&Text;a&&href;.*/(.*?)/',
