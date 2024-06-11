@@ -23,7 +23,9 @@ var rule = {
         log(input);
         let _id = input.split('@@')[0];
         let _url = input.split('@@')[1];
-        let mid = _url.split('/').slice(-1)[0].split('-')[0];
+        //let mid = _url.split('/').slice(-1)[0].split('-')[0];
+        let html1 = request(_url, {headers: {Referer: 'https://godamh.com/'}});
+        let mid = pdfh(html1, '#chapterContent&&data-ms');
         let html = request(`https://api-get.mgsearcher.com/api/chapter/getinfo?m=${mid}&c=${_id}`, {headers: {Referer: 'https://godamh.com/'}});
         let json = JSON.parse(html);
         let re = '@Referer=https://godamh.com/';
