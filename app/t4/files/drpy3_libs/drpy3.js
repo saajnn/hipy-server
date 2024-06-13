@@ -7,6 +7,7 @@ const 模板 = require('./模板')
 const gbkTool = require('./gbk')
 
 function init_test() {
+    // console.log(typeof(CryptoJS));
     console.log("init_test_start");
     // print(模板);
     // print(typeof(模板.getMubans));
@@ -33,6 +34,7 @@ function init_test() {
     console.log(JSON.stringify(rule));
     console.log("init_test_end");
 
+
     // log('typeof (JSEncrypt):'+typeof (JSEncrypt));
     // let publicKey = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwEc7wBMtYKkxvrQNI3+ITBZwAkPkGvsv4TsAHFskKGZWz9eYl3scivhmlEfWHlEkdyb0m82CmB1qAgef+pD4cZu+Cdmm2e9lnExhLwm8cBgpkAen9QRNdjojZgxM0W+JcReH4W6pw+uFXiLRn4AIQkDftWGNLg6wlNS+39Z/RvP9zyATJLZ9AKDdHp62XMxEK1KZvWBuIg+Oa5UzgA9jy+2XyIqwhBtO8tPbUl21t2pvTzHoLUjSkPNm2LurcUk6+jQ2r6aiS2CN1NXIucPJU6mkuIQ821SjvkYPtIdRMntW4y2u4cyiqVEEQwlzWVMHh+/vfrWAQr9fgjDuYYtvPQIDAQAB';
     // let privateKey  = 'MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDARzvAEy1gqTG+tA0jf4hMFnACQ+Qa+y/hOwAcWyQoZlbP15iXexyK+GaUR9YeUSR3JvSbzYKYHWoCB5/6kPhxm74J2abZ72WcTGEvCbxwGCmQB6f1BE12OiNmDEzRb4lxF4fhbqnD64VeItGfgAhCQN+1YY0uDrCU1L7f1n9G8/3PIBMktn0AoN0enrZczEQrUpm9YG4iD45rlTOAD2PL7ZfIirCEG07y09tSXbW3am9PMegtSNKQ82bYu6txSTr6NDavpqJLYI3U1ci5w8lTqaS4hDzbVKO+Rg+0h1Eye1bjLa7hzKKpUQRDCXNZUweH7+9+tYBCv1+CMO5hi289AgMBAAECggEBAIRbRJUWXmEwdq64kGbELlV6CIZ2p3mvOSlIjO34Cy7IK7AMz9xOgbpj/XDK9miOIJTouu7ZC7GcZdGZ4BUCYBMMS0fKjGFuurpZlXhkslNTPqEHtCUkXhIpOR7RDrwIlErGEOIsZC4aXQcM3tF1t7mroJLh4OY4dHMu82lv5NM4hhFMNvHzXVvrPXeTzw26gddHVG/ke0WUYOcB5j3cPp8xaVp7JV8bdxtGtkqIfBLY/dIczzJu/3F3cBpU2nNwt8uVUF/w/HKlr7j8FqqFHXWh182beU0n5AIdRyRJBrRUAEhdtsUnvJOVBDqzZa+9DJ5395F7V8KRlQptxETdhCECgYEA4x/2HM9fnVIhG6wTbEt1LhGTKYb/igMAHLqquEMfRsB44tobI8gVNwR3qJQY/nKXxcQemQV29PcdqpENCKyXUXGD8SI1UPg15rHFBI8CIqlCXfzJybdHjmzlhaA9I5lofIVh+5MW7WkvHZoRy7NeDMhHUuaiveuqC4OJ8n+dD2kCgYEA2LkmUVef3WkBBwUBRdkyoog3DMwR+/ubb0ncJVYy3ItYVJltQ4HqmrRiJc8xBAoFnG8rbiqDnmTnDR3WbuxU1G2hml09fqId+rQds2UfESswCXHU43A4f77m1XyA6PprBxpozVIcmK69N4rR9jOXflLWo3O+p2ipUbmNpId7+rUCgYBSpcbBJRT+AmzZzPwkZDD32p1ady114zGfQq3s7z/qVw+mPQezNZPCuXVxerK9pKVl6b/Ynwxyh5nb/3xms6c8k7oXfQM5u5ihof63cfKs+jqUSPCE3pTDVw0OWwjkc2Z6KW9GRHgLXEMw2mevYE3RCPArUpHV2nO+TNddzuIwQQKBgQDOZwdnUNygMfEYjlu3+jOPN8u2FGTMZ8SRKPbRWFb4VH27lKPLN2AIFuOivsEf56uQYRAry7GumMq0Y0ZmPg5Mglz2dvaqNBv5OLFQuW3tHAST+iWWtroYb+fISts7B8QG79AAO8OgZksvKrbslBYj6SEiaomZRsR7YQzVNXOOQQKBgQCovElZ50c8ZJ6m9D9fw3Nes7u9vshpyyac5tt4tZ7yfU4l5pWGrIUqCE703qZp4NAqEvlZUCJbj9kkysaj/2MfFb2b9jSvdNB+V/YW9Cwg+5TziYoOcQzN1z2u4p4goTAv0S+pTNSr3qWaTUI4TXUXQajif45Fexv+MrP5AAXQyw=='
@@ -51,6 +53,16 @@ function init_test() {
     // log('解密数据2:'+uncrypted);
     // uncrypted = RSA.decode(str3, privateKey);
     // log('解密数据3:'+uncrypted);
+
+    // log('rsax:'+typeof(rsax));
+    // log('rsaX:'+typeof(rsaX));
+    // let data = base64Encode('你好');
+    // let publicKey = 'dzyyds';
+    // console.log(typeof (RSA.encode));
+    // let encryptBase64Data = RSA.encode(data,publicKey);
+    // log('encryptBase64Data:'+encryptBase64Data);
+    // let str = RSA.decode(data,publicKey);
+    // log('str:'+str);
 }
 
 /**
@@ -246,7 +258,7 @@ function pre() {
 
 let rule = {};
 let vercode = typeof (pdfl) === 'function' ? 'drpy3.1' : 'drpy3';
-const VERSION = vercode + ' 3.9.50beta28 20240610';
+const VERSION = vercode + ' 3.9.50beta29 20240613';
 /** 已知问题记录
  * 1.影魔的jinjia2引擎不支持 {{fl}}对象直接渲染 (有能力解决的话尽量解决下，支持对象直接渲染字符串转义,如果加了|safe就不转义)[影魔牛逼，最新的文件发现这问题已经解决了]
  * Array.prototype.append = Array.prototype.push; 这种js执行后有毛病,for in 循环列表会把属性给打印出来 (这个大毛病需要重点排除一下)
@@ -271,7 +283,7 @@ const VERSION = vercode + ' 3.9.50beta28 20240610';
 
 
 /*** 以下是内置变量和解析方法 **/
-var MOBILE_UA = 'Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36';
+const MOBILE_UA = 'Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.91 Mobile Safari/537.36';
 const PC_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36';
 const UA = 'Mozilla/5.0';
 const UC_UA = 'Mozilla/5.0 (Linux; U; Android 9; zh-CN; MI 9 Build/PKQ1.181121.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.5.5.1035 Mobile Safari/537.36';
@@ -1068,6 +1080,7 @@ function fixAdM3u8Ai(m3u8_url, headers) {
     return m3u8
 }
 
+
 /**
  * 强制正序算法
  * @param lists  待正序列表
@@ -1824,7 +1837,7 @@ function homeParse(homeObj) {
             if (is_json) {
                 try {
                     let cms_cate_url = homeObj.MY_URL.replace('ac=detail', 'ac=list');
-                    let html = getHtml(cms_cate_url);
+                    let html = homeObj.home_html || getHtml(cms_cate_url);
                     if (html) {
                         if (cms_cate_url === homeObj.MY_URL) {
                             homeHtmlCache = html;
@@ -1839,7 +1852,7 @@ function homeParse(homeObj) {
                 }
             } else if (p.length >= 3 && !is_json) { // 可以不写正则
                 try {
-                    let html = getHtml(homeObj.MY_URL);
+                    let html = homeObj.home_html || getHtml(homeObj.MY_URL);
                     if (html) {
                         homeHtmlCache = html;
                         let list = _pdfa(html, p0);
@@ -1852,7 +1865,7 @@ function homeParse(homeObj) {
                                     }
                                     // let url = pdfh(it, p[2]);
                                     let url = _pd(it, p[2]);
-                                    if (p.length > 3 && p[3]) {
+                                    if (p.length > 3 && p[3] && !homeObj.home_html) {
                                         let exp = new RegExp(p[3]);
                                         url = url.match(exp)[1];
                                     }
@@ -3111,6 +3124,52 @@ function init(ext) {
                 // eval("(function(){'use strict';"+ext.replace('var rule', 'rule')+"})()");
                 eval("(function(){" + ext.replace('var rule', 'rule') + "})()");
             }
+        } else {
+            console.log(`规则加载失败,不支持的规则类型:${typeof ext}`);
+            return
+        }
+        rule.host = (rule.host || '').rstrip('/');
+        HOST = rule.host;
+        if (rule.hostJs) {
+            console.log(`检测到hostJs,准备执行...`);
+            try {
+                eval(rule.hostJs);
+                rule.host = HOST.rstrip('/');
+            } catch (e) {
+                console.log(`执行${rule.hostJs}获取host发生错误:` + e.message);
+            }
+        }
+        if (rule['模板'] === '自动') {
+            try {
+                let host_headers = rule['headers'] || {};
+                let host_html = getCode(HOST, {headers: host_headers});
+                let match_muban = '';
+                let muban_keys = Object.keys(muban).filter(it => !/默认|短视2|采集1/.test(it));
+                for (let muban_key of muban_keys) {
+                    try {
+                        let host_data = JSON.parse(home({}, host_html, muban[muban_key].class_parse));
+                        if (host_data.class && host_data.class.length > 0) {
+                            match_muban = muban_key;
+                            console.log(`自动匹配模板:【${muban_key}】`);
+                            break;
+                        }
+                    } catch (e) {
+                        // @ts-ignore
+                        console.log(`自动匹配模板:【${muban_key}】错误:${e.message}`);
+                    }
+                }
+                if (match_muban) {
+                    muban['自动'] = muban[match_muban];
+                    if (rule['模板修改'] && rule['模板修改'].startsWith('js:')) {
+                        // 模板修改:$js.toString(()=>{ muban.自动.class_parse = ''});
+                        eval(rule['模板修改'].replace('js:', '').trim());
+                    }
+                } else {
+                    delete rule['模板']
+                }
+            } catch (e) {
+                delete rule['模板']
+            }
         }
         if (rule.模板 && muban.hasOwnProperty(rule.模板)) {
             print('继承模板:' + rule.模板);
@@ -3124,17 +3183,7 @@ function init(ext) {
 
         rule.cate_exclude = rule_cate_excludes.join('|');
         rule.tab_exclude = rule_tab_excludes.join('|');
-        rule.host = (rule.host || '').rstrip('/');
-        HOST = rule.host;
-        if (rule.hostJs) {
-            console.log(`检测到hostJs,准备执行...`);
-            try {
-                eval(rule.hostJs);
-                rule.host = HOST.rstrip('/');
-            } catch (e) {
-                console.log(`执行${rule.hostJs}获取host发生错误:` + e.message);
-            }
-        }
+
         rule.类型 = rule.类型 || '影视'; // 影视|听书|漫画|小说
         rule.url = rule.url || '';
         rule.double = rule.double || false;
@@ -3227,10 +3276,14 @@ let homeHtmlCache = undefined;
 /**
  * js源获取首页分类和筛选特定返回对象中的函数
  * @param filter 筛选条件字典对象
+ * @param home_html 指定了源码。无需内部再请求
+ * @param class_parse 自动匹配传入的模板的动态分类
  * @returns {string}
  */
-function home(filter) {
+function home(filter, home_html, class_parse) {
     console.log("home");
+    home_html = home_html || '';
+    class_parse = class_parse || '';
     if (typeof (rule.filter) === 'string' && rule.filter.trim().length > 0) {
         try {
             let filter_json = ungzip(rule.filter.trim());
@@ -3244,8 +3297,9 @@ function home(filter) {
         MY_URL: rule.homeUrl,
         class_name: rule.class_name || '',
         class_url: rule.class_url || '',
-        class_parse: rule.class_parse || '',
+        class_parse: class_parse || rule.class_parse || '',
         cate_exclude: rule.cate_exclude,
+        home_html: home_html,
     };
     return homeParse(homeObj);
 }
@@ -3436,8 +3490,8 @@ function getRule(key) {
 
 function DRPY() {//导出函数
     return {
-        getRule: getRule,
         runMain: runMain,
+        getRule: getRule,
         init: init,
         home: home,
         homeVod: homeVod,
