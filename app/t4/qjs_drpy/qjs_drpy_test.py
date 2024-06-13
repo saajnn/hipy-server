@@ -30,7 +30,8 @@ if __name__ == '__main__':
     # with open('../files/drpy_js/易搜[搜].js', encoding='utf-8') as f:
     # with open('../files/drpy_js/29片库.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/笔趣阁[书].js', encoding='utf-8') as f:
-    with open('../files/drpy_js/热片网.js', encoding='utf-8') as f:
+    # with open('../files/drpy_js/热片网.js', encoding='utf-8') as f:
+    with open('../files/drpy_js/剧圈圈[自动].js', encoding='utf-8') as f:
         # with open('../files/drpy_js/耐看.js', encoding='utf-8') as f:
         code = f.read()
     code = code.replace('$nmjx_url', 'http://127.0.0.1:5708/nm?all=&url=')
