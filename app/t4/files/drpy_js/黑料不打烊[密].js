@@ -1,5 +1,5 @@
 var rule = {
-    title: '黑料不打烊',
+    title: '黑料不打烊[密]',
     host: 'https://hl49.co',
     url: '/category/fyclass/fypage.html',
     searchUrl: '/index/search_article?word=**&page=fypage',
@@ -9,8 +9,7 @@ var rule = {
     headers: {
         'User-Agent': 'Mozilla/5.0',
     },
-    class_name: '首页&热点&明星&奇葩&真实',
-    class_url: '0&1&2&3&4',
+    class_parse: '.slider-content&&a;span&&Text;a&&href;.*/(\\d+)\.html',
     hostJs: $js.toString(() => {
         HOST = 'https://mgj.uzrpy.com';
         try {
@@ -77,6 +76,7 @@ var rule = {
     预处理: $js.toString(() => {
         rule.cate_exclude = '';
     }),
+    推荐: '*',
     一级: $js.toString(() => {
         let d = [];
         let html = request(input);
