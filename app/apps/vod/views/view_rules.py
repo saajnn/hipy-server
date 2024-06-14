@@ -246,7 +246,7 @@ const $js = {
 };      
         """.strip()
         prefix_js_code = utils_js_code + '\n' + before + '\n' + 'var muban = JSON.parse(JSON.stringify(mubanDict));\n'
-        endfix_js_code = '\n' + 'if(rule.模板){rule = Object.assign(muban[rule.模板],rule)}'
+        endfix_js_code = '\n' + 'if(rule.模板){rule = Object.assign(muban[rule.模板]||{searchable:1,quickSearch:0,filterable:1},rule)}'
         return prefix_js_code, endfix_js_code
     else:
         return "", ""
