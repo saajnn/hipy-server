@@ -13,5 +13,5 @@ var rule = {
         zongyi: {cateId: 'zongyi'},
         dongman: {cateId: 'dongman'}
     },
-    class_parse: '.nav-menu-items&&li:lt(5);a&&Text;a&&href;.*/(.*?)/',
+    class_parse: '.nav-menu-items li.nav-menu-item:lt(5);a&&Text;a&&href;.*/(.*?)/',
 }
