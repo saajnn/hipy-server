@@ -53,7 +53,7 @@ var rule = {
             //log(data);
             let t2 = new Date().getTime();
             log(`网络请求获取图片耗时:${t2 - t1}ms`);
-            log(`当前线程:${java.lang.Thread.currentThread().getName()}`);
+            // log(`当前线程:${java.lang.Thread.currentThread().getName()}`);
 
             let key = CryptoJS.enc.Utf8.parse("f5d965df75336270");
             let iv = CryptoJS.enc.Utf8.parse("97b60394abc2fbe1");

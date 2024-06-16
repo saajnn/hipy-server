@@ -818,15 +818,27 @@ class Spider(BaseSpider):  # 元类 默认的元类 type
 
     # 取m3u8
     def get_m3u8(self, urlTxt):
+        """
+        https://blog.csdn.net/panwang666/article/details/135347859
+
+        JavaScript:jQuery.getJSON("https://vdn.apps.cntv.cn/api/getHttpVideoInfo.do?pid="+guid,function(result){document.writeln(result.hls_url.link(result.hls_url));});
+
+        https://newcntv.qcloudcdn.com/asp/hls/main/0303000a/3/default/3628bb15af644f588dc91ec68425b9ac/main.m3u8?maxbr=2048
+        @param urlTxt:
+        @return:
+        """
         url = "https://vdn.apps.cntv.cn/api/getHttpVideoInfo.do?pid={0}".format(urlTxt)
         # htmlTxt = self.webReadFile(urlStr=url, header=self.header)
         htmlTxt = self.fetch(url).text
         jo = json.loads(htmlTxt)
         link = jo['hls_url'].strip()
+        # print('hls_url:',link)
         # 获取域名前缀
         urlPrefix = self.get_RegexGetText(Text=link, RegexText='(http[s]?://[a-zA-z0-9.]+)/', Index=1)
         # 域名前缀指定替换,然后可以获取到更高质量的视频列表
+        # /asp/h5e/hls/2000/0303000a/3/default/3628bb15af644f588dc91ec68425b9ac/2000.m3u8
         new_link = link.replace(f'{urlPrefix}/asp/hls/', 'https://dh5.cntv.qcloudcdn.com/asp/h5e/hls/').split('?')[0]
+        # print('new_link:',new_link)
         html = self.webReadFile(urlStr=new_link, header=self.header)
         content = html.strip()
         arr = content.split('\n')
@@ -1006,22 +1018,22 @@ if __name__ == '__main__':
     # print(r.text)
     # home_content = spider.homeContent(None)
     # print(home_content)
-    # cate_content = spider.categoryContent('栏目大全', 1, {'cid': 'n'}, {})
-    cate_content = spider.categoryContent('频道直播', 1, None, None)
+    cate_content = spider.categoryContent('栏目大全', 1, {'cid': 'n'}, {})
+    # cate_content = spider.categoryContent('频道直播', 1, None, None)
     print(cate_content)
-    # vid = cate_content['list'][0]['vod_id']
-    # print(vid)
-    # detail_content = spider.detailContent([vid])
-    # print(detail_content)
+    vid = cate_content['list'][0]['vod_id']
+    print(vid)
+    detail_content = spider.detailContent([vid])
+    print(detail_content)
     # #
-    # vod_play_from = detail_content['list'][0]['vod_play_from']
-    # vod_play_url = detail_content['list'][0]['vod_play_url']
-    # print(vod_play_from, vod_play_url)
-    # _url = vod_play_url.split('#')[0].split('$')[1]
-    # print(_url)
-    # print('vod_play_from:',vod_play_from,' vod_play_url:',_url)
-    # play = spider.playerContent(vod_play_from, _url, None)
-    # print(play)
-
-    play = spider.playerContent('道长在线直播', 'cctv1||https://tv.cctv.com/live/cctv1/', None)
+    vod_play_from = detail_content['list'][0]['vod_play_from']
+    vod_play_url = detail_content['list'][0]['vod_play_url']
+    print(vod_play_from, vod_play_url)
+    _url = vod_play_url.split('#')[0].split('$')[1]
+    print(_url)
+    print('vod_play_from:',vod_play_from,' vod_play_url:',_url)
+    play = spider.playerContent(vod_play_from, _url, None)
     print(play)
+
+    # play = spider.playerContent('道长在线直播', 'cctv1||https://tv.cctv.com/live/cctv1/', None)
+    # print(play)
