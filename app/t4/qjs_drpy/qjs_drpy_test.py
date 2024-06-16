@@ -32,14 +32,15 @@ if __name__ == '__main__':
     # with open('../files/drpy_js/笔趣阁[书].js', encoding='utf-8') as f:
     # with open('../files/drpy_js/热片网.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/剧圈圈[自动].js', encoding='utf-8') as f:
-    with open('../files/drpy_js/bilfun(自动).js', encoding='utf-8') as f:
+    # with open('../files/drpy_js/bilfun(自动).js', encoding='utf-8') as f:
+    with open('../files/drpy_js/无插件直播.js', encoding='utf-8') as f:
         # with open('../files/drpy_js/耐看.js', encoding='utf-8') as f:
         code = f.read()
     code = code.replace('$nmjx_url', 'http://127.0.0.1:5708/nm?all=&url=')
     drpy.init(code)
     drpy.setDebug(1)
-    print(drpy.homeContent())
-    # print(drpy.homeVideoContent())
+    # print(drpy.homeContent())
+    print(drpy.homeVideoContent())
     # print(drpy.categoryContent('1', 1, False, {}))
     # print(drpy.detailContent('https://myd02.com/voddetail/21258.html'))
     # print(drpy.detailContent('https://v.ikanbot.com/play/846474'))

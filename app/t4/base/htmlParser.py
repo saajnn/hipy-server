@@ -186,7 +186,8 @@ class jsoup:
         else:
             doc = pq(html)
         if parse == 'body&&Text' or parse == 'Text':
-            return doc.text()
+            # Get the text value, without squashing newlines: squash_space=False 这样会有很多\t \n之类的
+            return doc.text(squash_space=True).replace('\n', ' ')
         elif parse == 'body&&Html' or parse == 'Html':
             return unescape(doc.html())
 
@@ -207,7 +208,8 @@ class jsoup:
 
         if option:
             if option == 'Text':
-                ret = ret.text()
+                # Get the text value, without squashing newlines: squash_space=False 这样会有很多\t \n之类的
+                ret = ret.text(squash_space=True).replace('\n', ' ')
             elif option == 'Html':
                 ret = unescape(ret.html())
             else:
