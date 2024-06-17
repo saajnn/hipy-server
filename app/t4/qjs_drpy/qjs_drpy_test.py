@@ -33,14 +33,15 @@ if __name__ == '__main__':
     # with open('../files/drpy_js/热片网.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/剧圈圈[自动].js', encoding='utf-8') as f:
     # with open('../files/drpy_js/bilfun(自动).js', encoding='utf-8') as f:
-    with open('../files/drpy_js/无插件直播.js', encoding='utf-8') as f:
+    # with open('../files/drpy_js/无插件直播.js', encoding='utf-8') as f:
+    with open('../files/drpy_js/最新4K.js', encoding='utf-8') as f:
         # with open('../files/drpy_js/耐看.js', encoding='utf-8') as f:
         code = f.read()
     code = code.replace('$nmjx_url', 'http://127.0.0.1:5708/nm?all=&url=')
     drpy.init(code)
     drpy.setDebug(1)
     # print(drpy.homeContent())
-    print(drpy.homeVideoContent())
+    # print(drpy.homeVideoContent())
     # print(drpy.categoryContent('1', 1, False, {}))
     # print(drpy.detailContent('https://myd02.com/voddetail/21258.html'))
     # print(drpy.detailContent('https://v.ikanbot.com/play/846474'))
@@ -70,6 +71,8 @@ if __name__ == '__main__':
     # print(drpy.searchContent("完美世界", False, 1))
     # print(drpy.detailContent("https://001.pm/index
     # print(drpy.detailContent("https://001.pm/index.php/vod/detail/id/118802.html"))
+    print(drpy.detailContent("https://www.1080.ee/voddetail/124404.html"))
     # print(drpy.playerContent("1", "push://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
     # print(drpy.playerContent("1", "magnet://https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
     # print(drpy.playerContent("1", "https://001.pm/index.php/vod/play/id/118802/sid/1/nid/14.html", []))
+    print(drpy.playerContent("1", "https://www.1080.ee/vodplay/124404-2-5.html", []))

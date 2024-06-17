@@ -8,12 +8,6 @@ function init_test() {
     console.log(RKEY);
     // ocr_demo_test();
     // rsa_demo_test();
-    // let t1 = new Date().getTime();
-    // // let code = 'dMkKUybNbg0y63m/2F2N7RJA7byTPG6sZx2wwDtUva0qhc/0mGl8Y9pIhqQwtwxfXdXSh4zKpLt/p0bjbB/nfkM3UIN/6/tVlIxpWRbfRYDvn6+815eAzgH7W6FPdZgPbNZTOT6miJoetqsOYcNgQO/io+KeeB87Wjr2T6o4LmEWRydYoHSVZrFQwO85yTbyDngef48knpucWavnZGJcFhfNkI+1rKP0DyM9oEAjo6LIEZgjuhktgwWXiW2zSQ0fAOZ20ch+BAbBJ5LIiaDttWiTV7/9NJx6rPQHeW6sxFhMfF0W4lcrh2TlxhnUb4P5jRATN4a2qq0csP+S9Z4vf0353tcCohBRJ+KNCHPEKl4z+8Rzm8/qy4pNCIExKutOQmYDz9bLoV7lCUEM6beuObwMmkaGMgax1+2v3wQnSlasaWKka1v7ApuS7ReCjW2ehdpRFZWnlR5TUXSSxn/lKQtX0Erg54KhKPrNBgO8hJUOnv1XQxBuZPZe/3yqF+423ZRGB1OgemVL3I7n7ZcPe7dx1W9dkZaNhnRGa60EngZ/VCBU4OJcfrDPleDFHOt7hm7lBcglNcMrUexh9in7vdAsOQ8xdlgt0tT4gyYqWzpA4rJa9+MFTsqNYUQaVmI7oseDhmIgajjwUfZ4+ueOBbKMQgKvaD5ZkGizy207pHxr7K244hk7sjkmp+4iIkK/cjw0iuEiyNhgm4MedFb7/DKLMOJBPxj88ChCUk8Ux77ect91a1pdaQBoxhfISXYwGncnmSCgyY3qn8cyNZp2elg7azAwuOLefTuyXW7eNoiLxkkhwZfCJ8o0LsSfSNdbWGzbC9+Bz/DyfqesYs/vL/Lq0/W/TJK+dELovy8RgtMj1+7MxSSevyM0lxq8NOEG5gs6DKQuKhyO8fqnj+e+JOfDUP8uJ3Hk5Lm67Thh4sw/tr4G9HAepVRtx1OCUTTRAXYsIBgwuA7aA2xi/lh84+ZMUDBkvt6Gv3IHg0P0WAJV5b2hNitNoU0kZ+At7VlZ';
-    // let code = 'h36A5I5KdeB29zb3iwNWVx0m7uwstVbsPzuQmO9TORKWsPcBbNgA54BAedzNiFtNjffUVMDkFoHIjJtHZriiQwB1vzJiLqE/9nip4F5hdJr4AIWcVHBk5nQVnheGoGy4YPvbZ1Ux04WzXu7vSre7/a68/81mjyAjHu6+MbjybWVQdAS9I9PK4k38VSb6oKQJ8YKtSnoG1WMFnLhTSqbNsBBfRAtZ7yJoL2PDtJdhKS6pRVIL0PRQq/woy3aSL+0xo8Vi/8y66kHBHl5YEmYb+MTlYXdTQlID1DZZWXR9AMprvR1GK/PromLTdAR2QhInwkrnBNfXiBF3lF3q6pnUBFU1ZfSWnYVdTT6XveEzuKsN61Von9UcSE61JRisRv0kVYTx6j5JJPC5CltyMMhj/Hoz2MBuwMiT67G66CyVnpzjitdTa1RvM3y0OscVm1KWZ8eQKHRODDytTcTZhBD3ityqlV/BI6Q1pTEGzKmIhWjkGQM0cDQ7nWilKkp6eCKJIuYdMs8g9DM5yafqXOSj4r9kzb6Ol+9YHMk7ttXIABs=';
-    // log(getOriginalJs(code))
-    // let t2 = new Date().getTime();
-    // log('耗时:'+(t2-t1));
 
     // console.log('Uint8Array:'+typeof(Uint8Array)+' '+'Uint16Array:'+typeof(Uint16Array));
     // console.log('encodeURIComponent:'+typeof(encodeURIComponent)+' '+'decodeURIComponent:'+typeof(decodeURIComponent));
@@ -28,8 +22,10 @@ function init_test() {
     // console.log(`gzip加密文本:${gzip_str},长度:${gzip_str.length},ungzip解密文本:${ungzip_str},长度:${ungzip_str.length}`);
     // let a = {"1":[{"key":"类型","name":"类型","value":[{"n":"全部","v":""},{"n":"Netflix","v":"NETFLIX"},{"n":"剧情","v":"剧情"},{"n":"喜剧","v":"喜剧"},{"n":"动作","v":"动作"},{"n":"爱情","v":"爱情"},{"n":"恐怖","v":"恐怖"},{"n":"惊悚","v":"惊悚"},{"n":"犯罪","v":"犯罪"},{"n":"科幻","v":"科幻"},{"n":"悬疑","v":"悬疑"},{"n":"奇幻","v":"奇幻"},{"n":"冒险","v":"冒险"},{"n":"战争","v":"战争"},{"n":"历史","v":"历史"},{"n":"古装","v":"古装"},{"n":"家庭","v":"家庭"},{"n":"传记","v":"传记"},{"n":"武侠","v":"武侠"},{"n":"歌舞","v":"歌舞"},{"n":"短片","v":"短片"},{"n":"动画","v":"动画"},{"n":"儿童","v":"儿童"},{"n":"职场","v":"职场"}]},{"key":"地区","name":"地区","value":[{"n":"全部","v":""},{"n":"大陆","v":"中国大陆"},{"n":"香港","v":"中国香港"},{"n":"台湾","v":"中国台湾"},{"n":"美国","v":"美国"},{"n":"日本","v":"日本"},{"n":"韩国","v":"韩国"},{"n":"英国","v":"英国"},{"n":"法国","v":"法国"},{"n":"德国","v":"德国"},{"n":"印度","v":"印度"},{"n":"泰国","v":"泰国"},{"n":"丹麦","v":"丹麦"},{"n":"瑞典","v":"瑞典"},{"n":"巴西","v":"巴西"},{"n":"加拿大","v":"加拿大"},{"n":"俄罗斯","v":"俄罗斯"},{"n":"意大利","v":"意大利"},{"n":"比利时","v":"比利时"},{"n":"爱尔兰","v":"爱尔兰"},{"n":"西班牙","v":"西班牙"},{"n":"澳大利亚","v":"澳大利亚"},{"n":"其他","v":"其他"}]},{"key":"语言","name":"语言","value":[{"n":"全部","v":""},{"n":"国语","v":"国语"},{"n":"粤语","v":"粤语"},{"n":"英语","v":"英语"},{"n":"日语","v":"日语"},{"n":"韩语","v":"韩语"},{"n":"法语","v":"法语"},{"n":"其他","v":"其他"}]},{"key":"年份","name":"年份","value":[{"n":"全部","v":""},{"n":"2024","v":"2024"},{"n":"2023","v":"2023"},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"10年代","v":"2010_2019"},{"n":"00年代","v":"2000_2009"},{"n":"90年代","v":"1990_1999"},{"n":"80年代","v":"1980_1989"},{"n":"更早","v":"0_1979"}]},{"key":"排序","name":"排序","value":[{"n":"综合","v":""},{"n":"最新","v":"2"},{"n":"最热","v":"3"},{"n":"评分","v":"4"}]}],"2":[{"key":"类型","name":"类型","value":[{"n":"全部","v":""},{"n":"Netflix","v":"Netflix"},{"n":"剧情","v":"剧情"},{"n":"爱情","v":"爱情"},{"n":"喜剧","v":"喜剧"},{"n":"犯罪","v":"犯罪"},{"n":"悬疑","v":"悬疑"},{"n":"古装","v":"古装"},{"n":"动作","v":"动作"},{"n":"家庭","v":"家庭"},{"n":"惊悚","v":"惊悚"},{"n":"奇幻","v":"奇幻"},{"n":"美剧","v":"美剧"},{"n":"科幻","v":"科幻"},{"n":"历史","v":"历史"},{"n":"战争","v":"战争"},{"n":"韩剧","v":"韩剧"},{"n":"武侠","v":"武侠"},{"n":"言情","v":"言情"},{"n":"恐怖","v":"恐怖"},{"n":"冒险","v":"冒险"},{"n":"都市","v":"都市"},{"n":"职场","v":"职场"}]},{"key":"地区","name":"地区","value":[{"n":"地区","v":""},{"n":"大陆","v":"中国大陆"},{"n":"香港","v":"中国香港"},{"n":"韩国","v":"韩国"},{"n":"美国","v":"美国"},{"n":"日本","v":"日本"},{"n":"法国","v":"法国"},{"n":"英国","v":"英国"},{"n":"德国","v":"德国"},{"n":"台湾","v":"中国台湾"},{"n":"泰国","v":"泰国"},{"n":"印度","v":"印度"},{"n":"其他","v":"其他"}]},{"key":"语言","name":"语言","value":[{"n":"全部","v":""},{"n":"国语","v":"国语"},{"n":"粤语","v":"粤语"},{"n":"英语","v":"英语"},{"n":"日语","v":"日语"},{"n":"韩语","v":"韩语"},{"n":"法语","v":"法语"},{"n":"其他","v":"其他"}]},{"key":"年份","name":"年份","value":[{"n":"全部","v":""},{"n":"2024","v":"2024"},{"n":"2023","v":"2023"},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"10年代","v":"2010_2019"},{"n":"00年代","v":"2000_2009"},{"n":"90年代","v":"1990_1999"},{"n":"80年代","v":"1980_1989"},{"n":"更早","v":"0_1979"}]},{"key":"排序","name":"排序","value":[{"n":"综合","v":""},{"n":"最新","v":"2"},{"n":"最热","v":"3"},{"n":"评分","v":"4"}]}],"3":[{"key":"类型","name":"类型","value":[{"n":"全部","v":""},{"n":"Netflix","v":"Netflix"},{"n":"动态漫画","v":"动态漫画"},{"n":"剧情","v":"剧情"},{"n":"动画","v":"动画"},{"n":"喜剧","v":"喜剧"},{"n":"冒险","v":"冒险"},{"n":"动作","v":"动作"},{"n":"奇幻","v":"奇幻"},{"n":"科幻","v":"科幻"},{"n":"儿童","v":"儿童"},{"n":"搞笑","v":"搞笑"},{"n":"爱情","v":"爱情"},{"n":"家庭","v":"家庭"},{"n":"短片","v":"短片"},{"n":"热血","v":"热血"},{"n":"益智","v":"益智"},{"n":"悬疑","v":"悬疑"},{"n":"经典","v":"经典"},{"n":"校园","v":"校园"},{"n":"Anime","v":"Anime"},{"n":"运动","v":"运动"},{"n":"亲子","v":"亲子"},{"n":"青春","v":"青春"},{"n":"恋爱","v":"恋爱"},{"n":"武侠","v":"武侠"},{"n":"惊悚","v":"惊悚"}]},{"key":"地区","name":"地区","value":[{"n":"全部","v":""},{"n":"日本","v":"日本"},{"n":"大陆","v":"中国大陆"},{"n":"台湾","v":"中国台湾"},{"n":"美国","v":"美国"},{"n":"香港","v":"中国香港"},{"n":"韩国","v":"韩国"},{"n":"英国","v":"英国"},{"n":"法国","v":"法国"},{"n":"德国","v":"德国"},{"n":"印度","v":"印度"},{"n":"泰国","v":"泰国"},{"n":"丹麦","v":"丹麦"},{"n":"瑞典","v":"瑞典"},{"n":"巴西","v":"巴西"},{"n":"加拿大","v":"加拿大"},{"n":"俄罗斯","v":"俄罗斯"},{"n":"意大利","v":"意大利"},{"n":"比利时","v":"比利时"},{"n":"爱尔兰","v":"爱尔兰"},{"n":"西班牙","v":"西班牙"},{"n":"澳大利亚","v":"澳大利亚"},{"n":"其他","v":"其他"}]},{"key":"语言","name":"语言","value":[{"n":"全部","v":""},{"n":"国语","v":"国语"},{"n":"粤语","v":"粤语"},{"n":"英语","v":"英语"},{"n":"日语","v":"日语"},{"n":"韩语","v":"韩语"},{"n":"法语","v":"法语"},{"n":"其他","v":"其他"}]},{"key":"年份","name":"年份","value":[{"n":"全部","v":""},{"n":"2024","v":"2024"},{"n":"2023","v":"2023"},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"10年代","v":"2010_2019"},{"n":"00年代","v":"2000_2009"},{"n":"90年代","v":"1990_1999"},{"n":"80年代","v":"1980_1989"},{"n":"更早","v":"0_1979"}]},{"key":"排序","name":"排序","value":[{"n":"综合","v":""},{"n":"最新","v":"2"},{"n":"最热","v":"3"},{"n":"评分","v":"4"}]}],"4":[{"key":"类型","name":"类型","value":[{"n":"全部","v":""},{"n":"纪录","v":"纪录"},{"n":"真人秀","v":"真人秀"},{"n":"记录","v":"记录"},{"n":"脱口秀","v":"脱口秀"},{"n":"剧情","v":"剧情"},{"n":"历史","v":"历史"},{"n":"喜剧","v":"喜剧"},{"n":"传记","v":"传记"},{"n":"相声","v":"相声"},{"n":"节目","v":"节目"},{"n":"歌舞","v":"歌舞"},{"n":"冒险","v":"冒险"},{"n":"运动","v":"运动"},{"n":"Season","v":"Season"},{"n":"犯罪","v":"犯罪"},{"n":"短片","v":"短片"},{"n":"搞笑","v":"搞笑"},{"n":"晚会","v":"晚会"}]},{"key":"地区","name":"地区","value":[{"n":"全部","v":""},{"n":"大陆","v":"中国大陆"},{"n":"香港","v":"中国香港"},{"n":"台湾","v":"中国台湾"},{"n":"美国","v":"美国"},{"n":"日本","v":"日本"},{"n":"韩国","v":"韩国"},{"n":"其他","v":"其他"}]},{"key":"语言","name":"语言","value":[{"n":"全部","v":""},{"n":"国语","v":"国语"},{"n":"粤语","v":"粤语"},{"n":"英语","v":"英语"},{"n":"日语","v":"日语"},{"n":"韩语","v":"韩语"},{"n":"法语","v":"法语"},{"n":"其他","v":"其他"}]},{"key":"年份","name":"年份","value":[{"n":"全部","v":""},{"n":"2024","v":"2024"},{"n":"2023","v":"2023"},{"n":"2022","v":"2022"},{"n":"2021","v":"2021"},{"n":"2020","v":"2020"},{"n":"10年代","v":"2010_2019"},{"n":"00年代","v":"2000_2009"},{"n":"90年代","v":"1990_1999"},{"n":"80年代","v":"1980_1989"},{"n":"更早","v":"0_1979"}]},{"key":"排序","name":"排序","value":[{"n":"综合","v":""},{"n":"最新","v":"2"},{"n":"最热","v":"3"},{"n":"评分","v":"4"}]}],"6":[{"key":"类型","name":"类型","value":[{"n":"类型","v":""},{"n":"逆袭","v":"逆袭"},{"n":"甜宠","v":"甜宠"},{"n":"虐恋","v":"虐恋"},{"n":"穿越","v":"穿越"},{"n":"重生","v":"重生"},{"n":"剧情","v":"剧情"},{"n":"科幻","v":"科幻"},{"n":"武侠","v":"武侠"},{"n":"爱情","v":"爱情"},{"n":"动作","v":"动作"},{"n":"战争","v":"战争"},{"n":"冒险","v":"冒险"},{"n":"其它","v":"其它"}]},{"key":"排序","name":"排序","value":[{"n":"综合","v":""},{"n":"最新","v":"2"},{"n":"最热","v":"3"}]}]};
     // log(gzip(JSON.stringify(a)));
+
     console.log(JSON.stringify(rule));
     console.log("init_test_end");
+
 
     // log('typeof (JSEncrypt):'+typeof (JSEncrypt));
     // let publicKey = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwEc7wBMtYKkxvrQNI3+ITBZwAkPkGvsv4TsAHFskKGZWz9eYl3scivhmlEfWHlEkdyb0m82CmB1qAgef+pD4cZu+Cdmm2e9lnExhLwm8cBgpkAen9QRNdjojZgxM0W+JcReH4W6pw+uFXiLRn4AIQkDftWGNLg6wlNS+39Z/RvP9zyATJLZ9AKDdHp62XMxEK1KZvWBuIg+Oa5UzgA9jy+2XyIqwhBtO8tPbUl21t2pvTzHoLUjSkPNm2LurcUk6+jQ2r6aiS2CN1NXIucPJU6mkuIQ821SjvkYPtIdRMntW4y2u4cyiqVEEQwlzWVMHh+/vfrWAQr9fgjDuYYtvPQIDAQAB';
@@ -247,14 +243,14 @@ function pre() {
             //  直接操作 rule_fetch_params 这个变量 .headers.Cookie
             eval(code);
         } catch (e) {
-            console.log('预处理执行失败:' + e.message);
+            console.log(`预处理执行失败:${e.message}`);
         }
     }
 }
 
 let rule = {};
 let vercode = typeof (pdfl) === 'function' ? 'drpy2.1' : 'drpy2';
-const VERSION = vercode + ' 3.9.50beta30 20240616';
+const VERSION = vercode + ' 3.9.50beta31 20240617';
 /** 已知问题记录
  * 1.影魔的jinjia2引擎不支持 {{fl}}对象直接渲染 (有能力解决的话尽量解决下，支持对象直接渲染字符串转义,如果加了|safe就不转义)[影魔牛逼，最新的文件发现这问题已经解决了]
  * Array.prototype.append = Array.prototype.push; 这种js执行后有毛病,for in 循环列表会把属性给打印出来 (这个大毛病需要重点排除一下)
@@ -458,7 +454,8 @@ if (!Array.prototype.includes) {
                 k++;
             }
             return false;//未找到，返回false
-        }
+        },
+        enumerable: false
     });
 }
 if (typeof String.prototype.startsWith != 'function') {
@@ -1075,6 +1072,7 @@ function fixAdM3u8Ai(m3u8_url, headers) {
     return m3u8
 }
 
+
 /**
  * 强制正序算法
  * @param lists  待正序列表
@@ -1142,7 +1140,7 @@ function getQuery(url) {
         });
         return resObj;
     } catch (err) {
-        log('getQuery发生错误:' + e.message)
+        log(`getQuery发生错误:${e.message}`)
         return {};
     }
 }
@@ -1203,7 +1201,7 @@ function pdfh2(html, parse) {
             html2 = html.rr(html.ele).toString();
         }
     } catch (e) {
-        print('html对象转文本发生了错误:' + e.message);
+        print(`html对象转文本发生了错误:${e.message}`);
     }
     let result = defaultParser.pdfh(html2, parse);
     let option = parse.includes('&&') ? parse.split('&&').slice(-1)[0] : parse.split(' ').slice(-1)[0];
@@ -1231,7 +1229,7 @@ function pdfa2(html, parse) {
             html2 = html.rr(html.ele).toString();
         }
     } catch (e) {
-        print('html对象转文本发生了错误:' + e.message);
+        print(`html对象转文本发生了错误:${e.message}`);
     }
     return defaultParser.pdfa(html2, parse);
 }
@@ -1817,7 +1815,7 @@ function homeParse(homeObj) {
                     classes = input;
                 }
             } catch (e) {
-                log('通过js动态获取分类发生了错误:' + e.message);
+                log(`通过js动态获取分类发生了错误:${e.message}`);
             }
         } else {
             let p = homeObj.class_parse.split(';');
@@ -2014,7 +2012,7 @@ function homeVodParse(homeVodObj) {
                             // print(vod);
                             d.push(vod);
                         } catch (e) {
-                            console.log('首页列表双层定位处理发生错误:' + e.message);
+                            console.log(`首页列表双层定位处理发生错误:${e.message}`);
                         }
 
                     }
@@ -2069,7 +2067,7 @@ function homeVodParse(homeVodObj) {
                         d.push(vod);
 
                     } catch (e) {
-                        console.log('首页列表单层定位处理发生错误:' + e.message);
+                        console.log(`首页列表单层定位处理发生错误:${e.message}`);
                     }
 
                 }
@@ -2163,7 +2161,7 @@ function categoryParse(cateObj) {
                     }
                 }
             } catch (e) {
-                print('合并不同分类对应的默认筛选出错:' + e.message);
+                print(`合并不同分类对应的默认筛选出错:${e.message}`);
             }
         }
         let new_url;
@@ -2455,7 +2453,7 @@ function searchParse(searchObj) {
 
             }
         } catch (e) {
-            print('搜索发生错误:' + e.message);
+            print(`搜索发生错误:${e.message}`);
             return '{}'
         }
     }
@@ -2684,13 +2682,13 @@ function detailParse(detailObj) {
                             try {
                                 LISTS[i] = LISTS[i].map(it => it.split('$').slice(0, 2).join('$'));
                             } catch (e) {
-                                print('格式化LISTS发生错误:' + e.message);
+                                print(`格式化LISTS发生错误:${e.message}`);
                             }
                         }
                     }
                     vod_play_url = LISTS.map(it => it.join('#')).join(vod_play_url);
                 } catch (e) {
-                    print('js执行lists: 发生错误:' + e.message);
+                    print(`js执行lists: 发生错误:${e.message}`);
                 }
 
             } else {
@@ -2886,7 +2884,7 @@ function playParse(playObj) {
                 url: input
             };
         } catch (e) {
-            print('js免嗅错误:' + e.message);
+            print(`js免嗅错误:${e.message}`);
             lazy_play = common_play;
         }
     } else {
@@ -2968,7 +2966,7 @@ function isVideoParse(isVideoObj) {
                 return false
             }
         } catch (e) {
-            log('执行嗅探规则发生错误:' + e.message);
+            log(`执行嗅探规则发生错误:${e.message}`);
             return false
         }
     }
@@ -2986,7 +2984,6 @@ function getOriginalJs(js_code) {
     let rsa_private_key = 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqin/jUpqM6+fgYP/oMqj9zcdHMM0mEZXLeTyixIJWP53lzJV2N2E3OP6BBpUmq2O1a9aLnTIbADBaTulTNiOnVGoNG58umBnupnbmmF8iARbDp2mTzdMMeEgLdrfXS6Y3VvazKYALP8EhEQykQVarexR78vRq7ltY3quXx7cgI0ROfZz5Sw3UOLQJ+VoWmwIxu9AMEZLVzFDQN93hzuzs3tNyHK6xspBGB7zGbwCg+TKi0JeqPDrXxYUpAz1cQ/MO+Da0WgvkXnvrry8NQROHejdLVOAslgr6vYthH9bKbsGyNY3H+P12kcxo9RAcVveONnZbcMyxjtF5dWblaernAgMBAAECggEAGdEHlSEPFmAr5PKqKrtoi6tYDHXdyHKHC5tZy4YV+Pp+a6gxxAiUJejx1hRqBcWSPYeKne35BM9dgn5JofgjI5SKzVsuGL6bxl3ayAOu+xXRHWM9f0t8NHoM5fdd0zC3g88dX3fb01geY2QSVtcxSJpEOpNH3twgZe6naT2pgiq1S4okpkpldJPo5GYWGKMCHSLnKGyhwS76gF8bTPLoay9Jxk70uv6BDUMlA4ICENjmsYtd3oirWwLwYMEJbSFMlyJvB7hjOjR/4RpT4FPnlSsIpuRtkCYXD4jdhxGlvpXREw97UF2wwnEUnfgiZJ2FT/MWmvGGoaV/CfboLsLZuQKBgQDTNZdJrs8dbijynHZuuRwvXvwC03GDpEJO6c1tbZ1s9wjRyOZjBbQFRjDgFeWs9/T1aNBLUrgsQL9c9nzgUziXjr1Nmu52I0Mwxi13Km/q3mT+aQfdgNdu6ojsI5apQQHnN/9yMhF6sNHg63YOpH+b+1bGRCtr1XubuLlumKKscwKBgQDOtQ2lQjMtwsqJmyiyRLiUOChtvQ5XI7B2mhKCGi8kZ+WEAbNQcmThPesVzW+puER6D4Ar4hgsh9gCeuTaOzbRfZ+RLn3Aksu2WJEzfs6UrGvm6DU1INn0z/tPYRAwPX7sxoZZGxqML/z+/yQdf2DREoPdClcDa2Lmf1KpHdB+vQKBgBXFCVHz7a8n4pqXG/HvrIMJdEpKRwH9lUQS/zSPPtGzaLpOzchZFyQQBwuh1imM6Te+VPHeldMh3VeUpGxux39/m+160adlnRBS7O7CdgSsZZZ/dusS06HAFNraFDZf1/VgJTk9BeYygX+AZYu+0tReBKSs9BjKSVJUqPBIVUQXAoGBAJcZ7J6oVMcXxHxwqoAeEhtvLcaCU9BJK36XQ/5M67ceJ72mjJC6/plUbNukMAMNyyi62gO6I9exearecRpB/OGIhjNXm99Ar59dAM9228X8gGfryLFMkWcO/fNZzb6lxXmJ6b2LPY3KqpMwqRLTAU/zy+ax30eFoWdDHYa4X6e1AoGAfa8asVGOJ8GL9dlWufEeFkDEDKO9ww5GdnpN+wqLwePWqeJhWCHad7bge6SnlylJp5aZXl1+YaBTtOskC4Whq9TP2J+dNIgxsaF5EFZQJr8Xv+lY9lu0CruYOh9nTNF9x3nubxJgaSid/7yRPfAGnsJRiknB5bsrCvgsFQFjJVs=';
     let decode_content = '';
 
-    // node-rsa 要 6.8s rsa:1.8s 长文本都没法出来
     function aes_decrypt(data) {
         let key = CryptoJS.enc.Hex.parse("686A64686E780A0A0A0A0A0A0A0A0A0A");
         let iv = CryptoJS.enc.Hex.parse("647A797964730A0A0A0A0A0A0A0A0A0A");
@@ -3131,7 +3128,7 @@ function init(ext) {
                 eval(rule.hostJs);
                 rule.host = HOST.rstrip('/');
             } catch (e) {
-                console.log(`执行${rule.hostJs}获取host发生错误:` + e.message);
+                console.log(`执行${rule.hostJs}获取host发生错误:${e.message}`);
             }
         }
         if (rule['模板'] === '自动') {
@@ -3246,13 +3243,13 @@ function init(ext) {
                                 console.log(v);
                                 rule.headers[k] = v;
                             } catch (e) {
-                                console.log(`从${v}获取cookie发生错误:` + e.message);
+                                console.log(`从${v}获取cookie发生错误:${e.message}`);
                             }
                         }
                     }
                 }
             } catch (e) {
-                console.log('处理headers发生错误:' + e.message);
+                console.log(`处理headers发生错误:${e.message}`);
             }
         }
         // print(rule.headers);
@@ -3262,7 +3259,7 @@ function init(ext) {
         pre(); // 预处理
         init_test();
     } catch (e) {
-        console.log('init_test发生错误:' + e.message);
+        console.log(`init_test发生错误:${e.message}`);
     }
 }
 
