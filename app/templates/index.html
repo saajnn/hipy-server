@@ -63,6 +63,9 @@
     });
     const appendButton = `
     <div class="hipy-center">
+        <div class="btn opblock opblock-get">
+            <a class="opblock-summary-method hipy-config btn-refresh" href="javascript:void(0)">刷新源列表</a>
+        </div>
         <div class="btn opblock opblock-post">
             <a class="opblock-summary-method hipy-config" href="/config/1" target="_blank">T3配置</a>
         </div>
@@ -77,6 +80,28 @@
             if (pos.length > 0) {
                 clearInterval(timer);
                 pos.append(appendButton);
+                $(".btn-refresh").click(function () {
+                    let auth_code = prompt('请输入刷新接口密码');
+                    // console.log(auth_code);
+                    $.ajax({
+                        url: '/rules_refresh', // 目标URL
+                        type: 'PUT', // 请求类型
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            auth_code
+                        }),
+                        success: function (response) {
+                            // 成功回调
+                            console.log('PUT请求成功', response);
+                            alert(`执行完毕,结果为:${response.data.error || response.msg}`);
+                        },
+                        error: function (xhr, status, error) {
+                            // 失败回调
+                            console.error('PUT请求失败', status, error);
+                            alert(`请求失败:${error}`);
+                        }
+                    });
+                });
             }
         }, 500);
     });

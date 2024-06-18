@@ -353,11 +353,9 @@ async def uploadData(*,
         return respErrorJson(error_code.ERROR_PARAMETER_ERROR.set_msg(f'上传失败:未知的group:{group}'))
 
 
-@router.post(api_url + "/refresh", summary="刷新源")
-async def refreshRules(*,
-                       db: Session = Depends(deps.get_db),
-                       r: asyncRedis = Depends(deps.get_redis),
-                       u: Users = Depends(deps.user_perm([f"{access_name}:post"])), ):
+async def doRefresh(db: Session,
+                    r: asyncRedis,
+                    u: any):
     # 获取项目根目录
     project_dir = os.getcwd()
     groups = {}
@@ -437,6 +435,14 @@ async def refreshRules(*,
     logger.info(files_data)
     logger.info(f'将{len(records)}条记录设置为不存在')
     return respSuccessJson(data={'spiders_dirs': spiders_dirs, 'project_dir': project_dir}, msg='刷新成功')
+
+
+@router.post(api_url + "/refresh", summary="刷新源")
+async def refreshRules(*,
+                       db: Session = Depends(deps.get_db),
+                       r: asyncRedis = Depends(deps.get_redis),
+                       u: Users = Depends(deps.user_perm([f"{access_name}:post"])), ):
+    return await doRefresh(db, r, u)
 
 
 @router.put(api_url + "/{_id}/active", summary="修改源是否显示")

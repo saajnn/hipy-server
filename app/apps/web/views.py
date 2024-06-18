@@ -31,6 +31,8 @@ from fastapi.responses import FileResponse
 from apps.system.curd.curd_dict_data import curd_dict_data
 from apps.vod.curd.curd_rules import curd_vod_rules
 from apps.vod.curd.curd_configs import curd_vod_configs
+from apps.vod.views.view_rules import doRefresh
+from apps.permission.curd.curd_user import curd_user
 from pathlib import Path
 import ast
 import requests
@@ -673,6 +675,22 @@ async def database_update(obj: database_schemas.updateSchema):
     else:
         # return respErrorJson(error=error_code.ERROR_DATABASE_AUTH_ERROR)
         return respSuccessJson(data={"error": error_code.ERROR_DATABASE_AUTH_ERROR.msg})
+
+
+@router.put('/rules_refresh', summary="刷新源列表")
+async def rules_refresh(*,
+                        db: Session = Depends(deps.get_db),
+                        r: asyncRedis = Depends(deps.get_redis),
+                        obj: database_schemas.updateSchema):
+    u = {'id': 1, 'name': 'admin'}
+    user_admin = curd_user.getByUserName(db, 'admin')
+    if user_admin:
+        u = user_admin.dict()
+    if obj.auth_code == settings.DATABASE_UPDATE_AUTH:
+        resp = await doRefresh(db, r, u)
+        return resp
+    else:
+        return respSuccessJson(data={"error": error_code.ERROR_RULES_REFRESH_AUTH_ERROR.msg})
 
 
 @router.websocket("/ws")
