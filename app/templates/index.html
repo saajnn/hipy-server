@@ -82,6 +82,12 @@
                 pos.append(appendButton);
                 $(".btn-refresh").click(function () {
                     let auth_code = prompt('请输入刷新接口密码');
+                    if (!auth_code) {
+                        return
+                    }
+                    if (auth_code.trim().length < 5) {
+                        return alert('执行码应该不低于5位长度');
+                    }
                     // console.log(auth_code);
                     $.ajax({
                         url: '/rules_refresh', // 目标URL
