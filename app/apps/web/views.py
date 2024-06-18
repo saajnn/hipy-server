@@ -31,7 +31,7 @@ from fastapi.responses import FileResponse
 from apps.system.curd.curd_dict_data import curd_dict_data
 from apps.vod.curd.curd_rules import curd_vod_rules
 from apps.vod.curd.curd_configs import curd_vod_configs
-from apps.vod.views.view_rules import doRefresh
+from apps.vod.views.views_rules import doRefresh
 from apps.permission.curd.curd_user import curd_user
 from pathlib import Path
 import ast

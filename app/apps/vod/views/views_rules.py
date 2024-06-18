@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# File  : view_rules.py
+# File  : views_rules.py
 # Author: DaShenHan&道长-----先苦后甜，任凭晚风拂柳颜------
 # Author's Blog: https://blog.csdn.net/qq_32394351
 # Date  : 2024/1/14
