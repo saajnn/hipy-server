@@ -10,6 +10,9 @@ from pydantic import BaseModel, Field, ValidationError, validator
 
 
 class SubsSchema(BaseModel):
+    name: str
+    code: str
+    reg: Optional[str] = '.*'
     status: int = 1
     mode: int = 0
-    reg: Optional[str] = '.*'
+    due_time: Optional[str] = None

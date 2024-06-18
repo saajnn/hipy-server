@@ -28,6 +28,7 @@ class CURDVodSubs(CRUDBase):
 
     def search(self, db: Session, *,
                status: int = None,
+               mode: int = None,
                name: str = None,
                code: str = None,
                reg: str = None,
@@ -36,6 +37,8 @@ class CURDVodSubs(CRUDBase):
         filters = []
         if status is not None:
             filters.append(self.model.status == status)
+        if mode is not None:
+            filters.append(self.model.mode == mode)
         if name:
             filters.append(self.model.name.ilike(f"%{name}%"))
         if code:
