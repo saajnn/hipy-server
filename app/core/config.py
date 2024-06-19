@@ -57,7 +57,8 @@ class Settings(BaseSettings):
             if 'postgresql' in self.SQLALCHEMY_ENGINE:
                 end_fix = '?client_encoding=utf-8'
             elif 'mysql' in self.SQLALCHEMY_ENGINE:
-                end_fix = '?charset=utf8mb4&server_default_time_zone=UTC'
+                # end_fix = '?charset=utf8mb4&server_default_time_zone=UTC'
+                end_fix = '?charset=utf8mb4'
             return f"{self.SQLALCHEMY_ENGINE}://{user}@{self.SQL_HOST}:{self.SQL_PORT}/{self.SQL_DATABASE}{end_fix}"
 
     # redis
