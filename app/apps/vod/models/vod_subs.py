@@ -15,5 +15,5 @@ class VodSubs(Base):
     code = fields.Char(string='订阅代码')
     reg = fields.Text(string='正则表达式')
     status = fields.Integer(string='状态')
-    mode = fields.Integer(string='匹配方式:0包含 1排除')
+    mode = fields.Integer(string='匹配模式:0正向匹配 1逆向排除')
     due_time = fields.Datetime(string='到期时间')

@@ -7,6 +7,7 @@
 
 
 from time import time
+from datetime import datetime
 import ujson
 from urllib.parse import urlparse, parse_qs, urljoin
 from fastapi import APIRouter, Depends, Query, WebSocket, Request as Req, HTTPException
@@ -31,6 +32,7 @@ from fastapi.responses import FileResponse
 from apps.system.curd.curd_dict_data import curd_dict_data
 from apps.vod.curd.curd_rules import curd_vod_rules
 from apps.vod.curd.curd_configs import curd_vod_configs
+from apps.vod.curd.curd_subs import curd_vod_subs
 from apps.vod.views.views_rules import doRefresh
 from apps.permission.curd.curd_user import curd_user
 from pathlib import Path
@@ -145,6 +147,28 @@ async def hipy_configs(*,
                        request: Req,
                        mode: int = Query(..., title="模式 0:t4 1:t3"),
                        ):
+    def getParams(key=None, value=''):
+        return request.query_params.get(key) or value
+
+    sub_info = None
+    sub = getParams('sub')
+    has_sub = curd_vod_subs.isExists(db)
+    if has_sub:
+        if not sub or len(sub) < 6:
+            return respErrorJson(error_code.ERROR_PARAMETER_ERROR.set_msg(f'参数【sub】不正确'))
+        sub_record = curd_vod_subs.getByCode(db, sub)
+        if not sub_record:
+            return respErrorJson(error_code.ERROR_PARAMETER_ERROR.set_msg(f'不存在此订阅码:【{sub}】'))
+        if sub_record.status == 0:
+            return respErrorJson(error_code.ERROR_PARAMETER_ERROR.set_msg(f'此订阅码:【{sub}】已禁用'))
+        if sub_record.due_time:
+            current_time = datetime.now()
+            if current_time > sub_record.due_time:
+                return respErrorJson(error_code.ERROR_NOT_FOUND.set_msg(
+                    f'此订阅码【{sub}】已过期。到期时间为:{sub_record.due_time},当前时间为:{current_time.strftime("%Y-%m-%d %H:%M:%S")}'))
+
+        sub_info = sub_record.dict()
+    print('sub_info:', sub_info)
     t1 = time()
     # 检测是否内网ip，如果是内网环境，不使用api_domain
     private_ip = re.compile(
@@ -330,15 +354,22 @@ async def hipy_configs(*,
             render_dict = ast.literal_eval(render_text)
             if custom_content and custom_dict:
                 merge_config(render_dict, custom_dict)
-                render_dict['cost_time'] = get_interval(t1)
-                render_text = ujson.dumps(render_dict, ensure_ascii=False, indent=4)
-            else:
-                render_dict['cost_time'] = get_interval(t1)
+                # render_text = ujson.dumps(render_dict, ensure_ascii=False, indent=4)
+
             # print(render_dict)
             # return HTMLResponse(render_text)
             # rules经过{{host}}渲染后这里不需要二次渲染
             # render_text = render_template_string(render_text, **context)
             # return Response(status_code=200, media_type='text/plain', content=render_text)
+            if sub_info:
+                if sub_info.get('mode') == 0:
+                    render_dict['sites'] = [site for site in render_dict['sites'] if
+                                            re.search(sub_info.get('reg') or '.*', site['name'], re.I)]
+                elif sub_info.get('mode') == 1:
+                    render_dict['sites'] = [site for site in render_dict['sites'] if
+                                            not re.search(sub_info.get('reg') or '.*', site['name'], re.I)]
+
+            render_dict['cost_time'] = get_interval(t1)
             return respVodJson(render_dict)
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"{e}")

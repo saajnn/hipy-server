@@ -26,13 +26,14 @@ api_url = '/subs'
 async def searchRecords(*,
                         db: Session = Depends(deps.get_db),
                         status: int = Query(None),
+                        mode: int = Query(None),
                         name: str = Query(None),
                         code: str = Query(None),
                         reg: str = Query(None),
                         page: int = Query(1, gt=0),
                         page_size: int = Query(20, gt=0),
                         ):
-    res = curd.search(db, name=name, code=code, status=status, reg=reg, page=page, page_size=page_size)
+    res = curd.search(db, name=name, code=code, status=status, mode=mode, reg=reg, page=page, page_size=page_size)
     return respSuccessJson(res)
 
 
@@ -54,6 +55,30 @@ async def addRecord(*,
     if res:
         return respSuccessJson()
     return respErrorJson(error=error_code.ERROR_HIKER_DEVELOPER_ADD_ERROR)
+
+
+@router.put(api_url + "/enable/{_ids}", summary="启用订阅")
+async def enableRecords(*,
+                        db: Session = Depends(deps.get_db),
+                        u: Users = Depends(deps.user_perm([f"{access_name}:delete"])),
+                        _ids: str,
+                        ):
+    _ids = list(map(lambda x: int(x), _ids.split(',')))
+    for _id in _ids:
+        curd.setStatus(db=db, _id=_id, status=1, modifier_id=u['id'])
+    return respSuccessJson()
+
+
+@router.put(api_url + "/disable/{_ids}", summary="禁用订阅")
+async def disableRecords(*,
+                         db: Session = Depends(deps.get_db),
+                         u: Users = Depends(deps.user_perm([f"{access_name}:delete"])),
+                         _ids: str,
+                         ):
+    _ids = list(map(lambda x: int(x), _ids.split(',')))
+    for _id in _ids:
+        curd.setStatus(db=db, _id=_id, status=0, modifier_id=u['id'])
+    return respSuccessJson()
 
 
 @router.put(api_url + "/{_id}", summary="修改订阅")

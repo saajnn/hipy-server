@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 from common.curd_base import CRUDBase
 from ..models.vod_subs import VodSubs
 from typing import Optional, List
-from sqlalchemy import asc, desc, func
+from sqlalchemy import asc, desc, func, exists
 
 
 class CURDVodSubs(CRUDBase):
@@ -19,11 +19,16 @@ class CURDVodSubs(CRUDBase):
         return super().create(db, obj_in=obj_in, creator_id=creator_id)
 
     def getByName(self, db: Session, name: str):
-        record = db.query(self.model).filter(self.model.name == name).first()
+        record = db.query(self.model).filter(self.model.name == name, self.model.is_deleted == 0).first()
         return record
 
     def getByCode(self, db: Session, code: str):
-        record = db.query(self.model).filter(self.model.code == code).first()
+        record = db.query(self.model).filter(self.model.code == code, self.model.is_deleted == 0).first()
+        return record
+
+    def isExists(self, db: Session):
+        exists_query = db.query(exists().where(self.model.status == 1, self.model.is_deleted == 0))
+        record = exists_query.scalar()
         return record
 
     def search(self, db: Session, *,

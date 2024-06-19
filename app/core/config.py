@@ -53,7 +53,12 @@ class Settings(BaseSettings):
             return f'{self.SQLALCHEMY_ENGINE}:///{db_path}?charset=utf8&check_same_thread=False'
         else:
             user = f"{self.SQL_USERNAME}:{self.SQL_PASSWORD}" if self.SQL_PASSWORD else self.SQL_USERNAME
-            return f"{self.SQLALCHEMY_ENGINE}://{user}@{self.SQL_HOST}:{self.SQL_PORT}/{self.SQL_DATABASE}"
+            end_fix = ''
+            if 'postgresql' in self.SQLALCHEMY_ENGINE:
+                end_fix = '?client_encoding=utf-8'
+            elif 'mysql' in self.SQLALCHEMY_ENGINE:
+                end_fix = '?charset=utf8mb4&server_default_time_zone=UTC'
+            return f"{self.SQLALCHEMY_ENGINE}://{user}@{self.SQL_HOST}:{self.SQL_PORT}/{self.SQL_DATABASE}{end_fix}"
 
     # redis
     REDIS_HOST: str  # Redis Host地址
