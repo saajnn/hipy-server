@@ -15,6 +15,12 @@ var rule = {
     filter_url: '{{fl.类型}}',
     headers: {'User-Agent': 'MOBILE_UA'},
     timeout: 5000, // class_name: '电影&电视剧&综艺&动漫',
+    limit: 20,
+    searchable: 1,//是否启用全局搜索,
+    quickSearch: 0,//是否启用快速搜索,
+    filterable: 1,//是否启用分类筛选,
+    play_parse: true,
+    parse_url: '', // 这个参数暂时不起作用。聚合类的每个资源应该有自己独立的解析口
     // params: 'http://127.0.0.1:5707/files/json/%E9%87%87%E9%9B%86.json',
     class_parse: $js.toString(() => {
         let _url = rule.params;
@@ -53,27 +59,7 @@ var rule = {
             rule.classes = input;
         }
     }),
-    limit: 20,
-    multi: 1,
-    searchable: 2,//是否启用全局搜索,
-    quickSearch: 1,//是否启用快速搜索,
-    filterable: 0,//是否启用分类筛选,
-    play_parse: true,
-    parse_url: '',
-    lazy: $js.toString(() => {
-        // lazy想办法用对应的parse_url，但是有难度，暂未实现
-        if (/\.(m3u8|mp4)/.test(input)) {
-            input = {parse: 0, url: input}
-        } else {
-            if (rule.parse_url.startsWith('json:')) {
-                let purl = rule.parse_url.replace('json:', '') + input;
-                let html = request(purl);
-                input = {parse: 0, url: JSON.parse(html).url}
-            } else {
-                input = rule.parse_url + input;
-            }
-        }
-    }),
+
     推荐: $js.toString(() => {
         if (rule.classes) {
             let _url = urljoin(rule.classes[0].type_id, input);
@@ -128,6 +114,20 @@ var rule = {
                 }
 
             });
+        }
+    }),
+    lazy: $js.toString(() => {
+        // lazy想办法用对应的parse_url，但是有难度，暂未实现
+        if (/\.(m3u8|mp4)/.test(input)) {
+            input = {parse: 0, url: input}
+        } else {
+            if (rule.parse_url.startsWith('json:')) {
+                let purl = rule.parse_url.replace('json:', '') + input;
+                let html = request(purl);
+                input = {parse: 0, url: JSON.parse(html).url}
+            } else {
+                input = rule.parse_url + input;
+            }
         }
     }),
 }
