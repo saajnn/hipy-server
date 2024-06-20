@@ -5,7 +5,7 @@ import sys
 sys.path.append('..')
 
 import pandas as pd
-from session import SessionLocal, engine, insp
+from db.session import SessionLocal, engine, insp
 from core.config import settings
 
 db = SessionLocal()
