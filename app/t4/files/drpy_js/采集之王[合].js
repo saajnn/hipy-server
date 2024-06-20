@@ -22,13 +22,13 @@ var rule = {
     play_parse: true,
     parse_url: '', // 这个参数暂时不起作用。聚合类的每个资源应该有自己独立的解析口
     // params: 'http://127.0.0.1:5707/files/json/%E9%87%87%E9%9B%86.json',
-    class_parse: $js.toString(() => {
+    预处理: $js.toString(() => {
         let _url = rule.params;
         if (_url && typeof (_url) === 'string' && _url.startsWith('http')) {
             let html = request(_url);
             let json = JSON.parse(html);
             let _classes = [];
-            homeObj.filter = {};
+            rule.filter = {};
             rule.filter_def = {};
             json.forEach(it => {
                 let _obj = {
@@ -43,7 +43,7 @@ var rule = {
                     if (_obj.cate_exclude) {
                         json1 = json1.filter(cl => !new RegExp(_obj.cate_exclude, 'i').test(cl.type_name));
                     }
-                    homeObj.filter[_obj.type_id] = [{
+                    rule.filter[_obj.type_id] = [{
                         "key": "类型", "name": "类型", "value": json1.map(i => {
                             return {"n": i.type_name, 'v': i.type_id}
                         })
@@ -52,14 +52,52 @@ var rule = {
                         rule.filter_def[it.url] = {"类型": json1[0].type_id};
                     }
                 } catch (e) {
-                    homeObj.filter[it.url] = [{"key": "类型", "name": "类型", "value": [{"n": "全部", "v": ""}]}];
+                    rule.filter[it.url] = [{"key": "类型", "name": "类型", "value": [{"n": "全部", "v": ""}]}];
                 }
             });
-            input = _classes;
-            rule.classes = input;
+            rule.classes = _classes;
         }
     }),
-
+    // class_parse: $js.toString(() => {
+    //     let _url = rule.params;
+    //     if (_url && typeof (_url) === 'string' && _url.startsWith('http')) {
+    //         let html = request(_url);
+    //         let json = JSON.parse(html);
+    //         let _classes = [];
+    //         homeObj.filter = {};
+    //         rule.filter_def = {};
+    //         json.forEach(it => {
+    //             let _obj = {
+    //                 type_name: it.name,
+    //                 type_id: it.url,
+    //                 parse_url: it.parse_url || '',
+    //                 cate_exclude: it.cate_exclude || '',
+    //             };
+    //             _classes.push(_obj);
+    //             try {
+    //                 let json1 = JSON.parse(request(urljoin(_obj.type_id, rule.classUrl))).class;
+    //                 if (_obj.cate_exclude) {
+    //                     json1 = json1.filter(cl => !new RegExp(_obj.cate_exclude, 'i').test(cl.type_name));
+    //                 }
+    //                 homeObj.filter[_obj.type_id] = [{
+    //                     "key": "类型", "name": "类型", "value": json1.map(i => {
+    //                         return {"n": i.type_name, 'v': i.type_id}
+    //                     })
+    //                 }];
+    //                 if (json1.length > 0) {
+    //                     rule.filter_def[it.url] = {"类型": json1[0].type_id};
+    //                 }
+    //             } catch (e) {
+    //                 homeObj.filter[it.url] = [{"key": "类型", "name": "类型", "value": [{"n": "全部", "v": ""}]}];
+    //             }
+    //         });
+    //         rule.classes = _classes;
+    //         input = _classes;
+    //     }
+    // }),
+    class_parse: $js.toString(() => {
+        input = rule.classes;
+    }),
     推荐: $js.toString(() => {
         if (rule.classes) {
             let _url = urljoin(rule.classes[0].type_id, input);
