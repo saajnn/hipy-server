@@ -25,19 +25,26 @@ var rule = {
             homeObj.filter = {};
             rule.filter_def = {};
             json.forEach(it => {
-                _classes.push({
+                let _obj = {
                     type_name: it.name,
                     type_id: it.url,
                     parse_url: it.parse_url || '',
-                });
+                    cate_exclude: it.cate_exclude || '',
+                };
+                _classes.push(_obj);
                 try {
-                    let json1 = JSON.parse(request(urljoin(it.url, rule.classUrl))).class;
-                    homeObj.filter[it.url] = [{
+                    let json1 = JSON.parse(request(urljoin(_obj.type_id, rule.classUrl))).class;
+                    if (_obj.cate_exclude) {
+                        json1 = json1.filter(cl => !new RegExp(_obj.cate_exclude, 'i').test(cl.type_name));
+                    }
+                    homeObj.filter[_obj.type_id] = [{
                         "key": "类型", "name": "类型", "value": json1.map(i => {
                             return {"n": i.type_name, 'v': i.type_id}
                         })
                     }];
-                    rule.filter_def[it.url] = {"类型": json1[0].type_id};
+                    if (json1.length > 0) {
+                        rule.filter_def[it.url] = {"类型": json1[0].type_id};
+                    }
                 } catch (e) {
                     homeObj.filter[it.url] = [{"key": "类型", "name": "类型", "value": [{"n": "全部", "v": ""}]}];
                 }
