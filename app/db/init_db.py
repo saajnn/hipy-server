@@ -131,11 +131,22 @@ def init_table_data_form_csv(db: Session) -> None:
     # converters = get_converters()
     converters = get_converters_auto()
     init_data_path = os.path.join(os.path.dirname(__file__), "init_data")
+    # 这样可以读取目录下所有的待初始化数据文件，但是由于postgresql有外键约束强校验，不按顺序插入表的数据会各种报错。所以还是得手动构造列表(mysql不会报错)
+    all_files = os.listdir(init_data_path)
     files = ['config_settings.csv', 'dict_data.csv', 'dict_details.csv', 'hiker_rule_type.csv', 'hiker_developer.csv',
              'hiker_rule.csv',
              'menus.csv', 'roles.csv', 'role_menu.csv', 'perm_label.csv', 'perm_label_role.csv',
              'users.csv', 'user_role.csv', 'login_infor.csv', 'job.csv', 'job_log.csv', 'vod_configs.csv',
-             'vod_rules.csv']
+             'vod_rules.csv', 'vod_subs.csv',
+             ]
+    if len(all_files) != len(files):
+        print(f'目录：{init_data_path} 下共存在{len(all_files)}个表文件,待初始化的表文件只有{len(files)}个')
+        # 使用集合的差集操作
+        difference = set(files) ^ set(all_files)
+        # 将结果转换回列表
+        difference_list = list(difference)
+        print('初始化文件缺少的表:', difference_list)
+
     for file in files:
         file_path = os.path.join(init_data_path, file)
         df = pd.read_csv(file_path, sep=",", converters=converters)

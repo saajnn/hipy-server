@@ -1,6 +1,11 @@
-import pandas as pd
 import os
-from db.session import SessionLocal, engine, insp
+import sys
+
+# 解决linux运行此脚本找不到文件的问题
+sys.path.append('..')
+
+import pandas as pd
+from session import SessionLocal, engine, insp
 from core.config import settings
 
 db = SessionLocal()

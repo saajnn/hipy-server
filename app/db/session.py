@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine,inspect
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import sessionmaker
 
 from core.config import settings
