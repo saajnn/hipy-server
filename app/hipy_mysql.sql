@@ -11,7 +11,7 @@
  Target Server Version : 100318
  File Encoding         : 65001
 
- Date: 20/06/2024 11:26:03
+ Date: 20/06/2024 13:42:47
 */
 
 SET NAMES utf8mb4;
@@ -130,8 +130,6 @@ INSERT INTO `t_dict_details` VALUES (16, '2023-12-10 16:22:10', 1, '2023-12-10 1
 INSERT INTO `t_dict_details` VALUES (17, '2023-12-10 16:22:31', 1, '2023-12-10 16:22:58', 1, 0, '循环', 0, 'setInterval', NULL, 1, 0, 2, 5);
 INSERT INTO `t_dict_details` VALUES (18, '2024-01-06 12:05:43', 1, '2024-01-06 12:05:43', 0, 0, '失败', 0, '0', NULL, 0, 0, 1, 7);
 INSERT INTO `t_dict_details` VALUES (19, '2024-01-06 12:05:52', 1, '2024-01-06 12:05:52', 0, 0, '正常', 0, '1', NULL, 1, 0, 2, 7);
-INSERT INTO `t_dict_details` VALUES (22, '2024-01-15 15:50:29', 1, '2024-01-15 15:50:29', 0, 0, 'drpy_js', 0, 't4/files/drpy_js', 'drpy的js源放这个分组', 0, 0, 2, 9);
-INSERT INTO `t_dict_details` VALUES (21, '2024-01-15 15:49:54', 1, '2024-01-15 15:50:43', 1, 0, 'hipy', 0, 't4/spiders', 'hipy的py源放这个分组。可以放同名的json配置文件', 1, 0, 1, 9);
 INSERT INTO `t_dict_details` VALUES (25, '2024-01-15 15:52:54', 1, '2024-01-15 15:52:54', 0, 0, 'txt', 0, 't4/files/txt', '一些静态文本文件', 0, 0, 5, 9);
 INSERT INTO `t_dict_details` VALUES (26, '2024-01-15 16:23:54', 1, '2024-01-15 16:23:54', 0, 0, '正常', 0, '1', NULL, 0, 0, 1, 10);
 INSERT INTO `t_dict_details` VALUES (28, '2024-01-25 12:15:39', 1, '2024-01-25 12:16:21', 1, 0, 'drpy_libs', 0, 't4/files/drpy_libs', 'drpy的依赖库放这个分组', 0, 0, 3, 9);
@@ -147,6 +145,8 @@ INSERT INTO `t_dict_details` VALUES (35, '2024-02-04 17:14:42', 1, '2024-02-05 0
 INSERT INTO `t_dict_details` VALUES (34, '2024-02-04 17:14:13', 1, '2024-02-05 09:55:21', 1, 0, 'jar', 0, 't4/files/jar', 'drpy2及tvbox配置需要的外挂jar', 0, 0, 7, 9);
 INSERT INTO `t_dict_details` VALUES (36, '2024-03-08 15:50:48', 1, '2024-03-08 15:50:48', 0, 0, 'drpy3_libs', 0, 't4/files/drpy3_libs', 'drpy3的t4源需要的js依赖文件及模块,commonJS格式', 0, 0, 9, 9);
 INSERT INTO `t_dict_details` VALUES (37, '2024-03-08 15:51:32', 1, '2024-03-08 15:51:32', 0, 0, 'drpy3_js', 0, 't4/files/drpy3_js', 'drpy3的t4源在运行过程中自动缓存线上文件到此目录', 0, 0, 10, 9);
+INSERT INTO `t_dict_details` VALUES (21, '2024-01-15 15:49:54', 1, '2024-06-20 13:37:12', 1, 0, 'hipy', 0, 't4/spiders', 'hipy的py源放这个分组。可以放同名的json配置文件', 0, 0, 1, 9);
+INSERT INTO `t_dict_details` VALUES (22, '2024-01-15 15:50:29', 1, '2024-06-20 13:37:17', 1, 0, 'drpy_js', 0, 't4/files/drpy_js', 'drpy的js源放这个分组', 1, 0, 2, 9);
 
 -- ----------------------------
 -- Table structure for t_hiker_developer
@@ -284,7 +284,7 @@ CREATE TABLE `t_job`  (
 INSERT INTO `t_job` VALUES (1, '2023-12-10 21:31:19', 1, '2024-02-20 15:51:14', 1, 0, 'demo', '测试', 'setInterval', 'tasks.demo_task.demo', '[\'hello world\']', '{\'a\':\'1\',\'b\':\'2\'}', 'cron', 0, '2024-02-20 15:50:44', '30 20 * * * ?', 0, 1, 0);
 INSERT INTO `t_job` VALUES (15, '2023-12-13 00:53:05', 1, '2024-02-20 15:51:14', 1, 0, 'kzz', '可转债打新查询', 'setInterval', 'tasks.kzz_spider.get_now_kzz', NULL, '{\'dayeExtra\':8}', 'cron', 0, '2024-02-20 15:50:44', '0 0 8 1/1 * ?', 0, 1, 0);
 INSERT INTO `t_job` VALUES (14, '2023-12-13 00:26:59', 1, '2024-02-20 15:51:14', 1, 0, 'demo2', '测试2', 'setInterval', 'tasks.demo_task.demo', '[\'哈哈哈哈哈\']', '{\'key\':\'你好吗\'}', 'cron', 0, '2024-02-20 15:50:44', '30 10 * * * ?', 0, 1, 0);
-INSERT INTO `t_job` VALUES (16, '2024-02-20 16:23:34', 1, '2024-06-20 11:19:15', 0, 0, 'tv_spider', 'tv源爬虫', 'setInterval', 'tasks.tv_spider.main', '[]', '{}', 'cron', 0, '2024-06-20 11:19:25', '0 0 0/4 * * ?', 1, 1, 1);
+INSERT INTO `t_job` VALUES (16, '2024-02-20 16:23:34', 1, '2024-06-20 13:34:51', 0, 0, 'tv_spider', 'tv源爬虫', 'setInterval', 'tasks.tv_spider.main', '[]', '{}', 'cron', 0, '2024-06-20 13:35:01', '0 0 0/4 * * ?', 1, 1, 1);
 
 -- ----------------------------
 -- Table structure for t_job_log
@@ -309,11 +309,13 @@ CREATE TABLE `t_job_log`  (
   `run_time` datetime(0) NULL DEFAULT NULL COMMENT '执行时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `ix_t_job_log_id`(`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_job_log
 -- ----------------------------
+INSERT INTO `t_job_log` VALUES (1, '2024-06-20 13:35:01', 0, '2024-06-20 13:35:01', 0, 0, NULL, 'active_sniffer_after_run', NULL, NULL, NULL, NULL, '----------------task_id:active_sniffer_after_run,args:(),kwargs:{}----------------\"嗅探器激活成功,当前使用的嗅探器为:http://127.0.0.1:5708\"', NULL, 1, '2024-06-20 13:35:01');
+INSERT INTO `t_job_log` VALUES (2, '2024-06-20 13:35:02', 0, '2024-06-20 13:35:02', 0, 0, 'tv_spider', 'tv源爬虫', 'setInterval', 'tasks.tv_spider.main', '[]', '{}', '爬取直播文件行数:272本次成功写入本地文件tv.txt 本次成功写入本地文件mytv.txt', NULL, 1, '2024-06-20 13:35:01');
 
 -- ----------------------------
 -- Table structure for t_login_infor
@@ -336,11 +338,12 @@ CREATE TABLE `t_login_infor`  (
   `login_time` datetime(0) NULL DEFAULT current_timestamp(0) COMMENT '登录日期',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `ix_t_login_infor_id`(`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_login_infor
 -- ----------------------------
+INSERT INTO `t_login_infor` VALUES (1, '2024-06-20 13:35:00', 0, '2024-06-20 13:35:00', 0, 0, 'admin', '127.0.0.1', NULL, 'Chrome 125.0.0', 'Windows 10', 0, '登录成功', '2024-06-20 13:35:00');
 
 -- ----------------------------
 -- Table structure for t_menus
@@ -1123,7 +1126,6 @@ INSERT INTO `t_vod_rules` VALUES (278, '2024-05-15 14:55:44', 1, '2024-06-20 02:
 INSERT INTO `t_vod_rules` VALUES (427, '2024-06-17 15:02:35', 1, '2024-06-20 02:37:49', 1, 0, '无插件直播', 't4/files/drpy_js', 't4/files/drpy_js/无插件直播.js', 1, 421, '.js', NULL, 1, 1, 0, 0, 1);
 INSERT INTO `t_vod_rules` VALUES (312, '2024-05-24 11:27:11', 1, '2024-06-20 02:37:49', 1, 0, '一号影院[搜]', 't4/files/drpy_js', 't4/files/drpy_js/一号影院[搜].js', 1, 306, '.js', NULL, 1, 1, 0, 0, 1);
 INSERT INTO `t_vod_rules` VALUES (461, '2024-06-17 16:45:34', 1, '2024-06-20 02:37:50', 1, 0, '飞刀资源[资]', 't4/files/drpy_js', 't4/files/drpy_js/飞刀资源[资].js', 1, 455, '.js', NULL, 1, 1, 0, 1, 1);
-INSERT INTO `t_vod_rules` VALUES (462, '2024-06-17 16:45:34', 1, '2024-06-20 02:37:50', 1, 0, '我的哔哩传参[官]', 't4/files/drpy_js', 't4/files/drpy_js/我的哔哩传参[官].js', 1, 456, '.js', NULL, 1, 1, 1, 0, 1);
 INSERT INTO `t_vod_rules` VALUES (266, '2024-05-15 01:58:31', 1, '2024-06-20 02:37:50', 1, 0, '荐片[优]', 't4/files/drpy_js', 't4/files/drpy_js/荐片[优].js', 1, 260, '.js', NULL, 1, 1, 1, 0, 1);
 INSERT INTO `t_vod_rules` VALUES (351, '2024-06-04 16:02:34', 1, '2024-06-20 02:37:48', 1, 0, '短剧在线', 't4/files/drpy_js', 't4/files/drpy_js/短剧在线.js', 1, 345, '.js', NULL, 1, 1, 0, 0, 1);
 INSERT INTO `t_vod_rules` VALUES (302, '2024-05-22 15:37:30', 1, '2024-06-20 02:37:50', 1, 0, '鸭奈飞影视', 't4/files/drpy_js', 't4/files/drpy_js/鸭奈飞影视.js', 1, 296, '.js', NULL, 1, 1, 1, 0, 1);
@@ -1143,6 +1145,7 @@ INSERT INTO `t_vod_rules` VALUES (342, '2024-05-29 16:32:00', 1, '2024-06-20 02:
 INSERT INTO `t_vod_rules` VALUES (316, '2024-05-24 15:02:59', 1, '2024-06-20 02:37:50', 1, 0, '剧圈圈', 't4/files/drpy_js', 't4/files/drpy_js/剧圈圈.js', 1, 310, '.js', NULL, 1, 1, 0, 0, 1);
 INSERT INTO `t_vod_rules` VALUES (317, '2024-05-24 15:02:59', 1, '2024-06-20 02:37:50', 1, 0, '短剧TV网', 't4/files/drpy_js', 't4/files/drpy_js/短剧TV网.js', 1, 311, '.js', NULL, 1, 1, 0, 0, 1);
 INSERT INTO `t_vod_rules` VALUES (463, '2024-06-18 16:03:22', 1, '2024-06-20 02:37:49', 1, 0, '七新电影网', 't4/files/drpy_js', 't4/files/drpy_js/七新电影网.js', 1, 457, '.js', NULL, 1, 1, 1, 0, 1);
+INSERT INTO `t_vod_rules` VALUES (462, '2024-06-17 16:45:34', 1, '2024-06-20 13:35:31', 1, 0, '我的哔哩传参[官]', 't4/files/drpy_js', 't4/files/drpy_js/我的哔哩传参[官].js', 1, 456, '.js', '?render=1', 1, 1, 1, 0, 1);
 
 -- ----------------------------
 -- Table structure for t_vod_subs

@@ -5,14 +5,14 @@
  Source Server Type    : PostgreSQL
  Source Server Version : 120000
  Source Host           : localhost:5432
- Source Catalog        : hipy5
+ Source Catalog        : hipy6
  Source Schema         : public
 
  Target Server Type    : PostgreSQL
  Target Server Version : 120000
  File Encoding         : 65001
 
- Date: 20/06/2024 11:27:54
+ Date: 20/06/2024 13:44:31
 */
 
 
@@ -371,8 +371,6 @@ INSERT INTO "public"."t_dict_details" VALUES (16, '2023-12-10 16:22:10', 1, '202
 INSERT INTO "public"."t_dict_details" VALUES (17, '2023-12-10 16:22:31', 1, '2023-12-10 16:22:58', 1, 0, '循环', 'f', 'setInterval', NULL, 't', 0, 2, 5);
 INSERT INTO "public"."t_dict_details" VALUES (18, '2024-01-06 12:05:43', 1, '2024-01-06 12:05:43', 0, 0, '失败', 'f', '0', NULL, 'f', 0, 1, 7);
 INSERT INTO "public"."t_dict_details" VALUES (19, '2024-01-06 12:05:52', 1, '2024-01-06 12:05:52', 0, 0, '正常', 'f', '1', NULL, 't', 0, 2, 7);
-INSERT INTO "public"."t_dict_details" VALUES (22, '2024-01-15 15:50:29.696713', 1, '2024-01-15 15:50:29.696713', 0, 0, 'drpy_js', 'f', 't4/files/drpy_js', 'drpy的js源放这个分组', 'f', 0, 2, 9);
-INSERT INTO "public"."t_dict_details" VALUES (21, '2024-01-15 15:49:54.323147', 1, '2024-01-15 15:50:43.873742', 1, 0, 'hipy', 'f', 't4/spiders', 'hipy的py源放这个分组。可以放同名的json配置文件', 't', 0, 1, 9);
 INSERT INTO "public"."t_dict_details" VALUES (25, '2024-01-15 15:52:54.626462', 1, '2024-01-15 15:52:54.626462', 0, 0, 'txt', 'f', 't4/files/txt', '一些静态文本文件', 'f', 0, 5, 9);
 INSERT INTO "public"."t_dict_details" VALUES (26, '2024-01-15 16:23:54.150693', 1, '2024-01-15 16:23:54.150693', 0, 0, '正常', 'f', '1', NULL, 'f', 0, 1, 10);
 INSERT INTO "public"."t_dict_details" VALUES (28, '2024-01-25 12:15:39.034565', 1, '2024-01-25 12:16:21.187196', 1, 0, 'drpy_libs', 'f', 't4/files/drpy_libs', 'drpy的依赖库放这个分组', 'f', 0, 3, 9);
@@ -388,6 +386,8 @@ INSERT INTO "public"."t_dict_details" VALUES (35, '2024-02-04 17:14:42.75294', 1
 INSERT INTO "public"."t_dict_details" VALUES (34, '2024-02-04 17:14:13.807944', 1, '2024-02-05 09:55:21.063489', 1, 0, 'jar', 'f', 't4/files/jar', 'drpy2及tvbox配置需要的外挂jar', 'f', 0, 7, 9);
 INSERT INTO "public"."t_dict_details" VALUES (36, '2024-03-08 15:50:48.583918', 1, '2024-03-08 15:50:48.583918', 0, 0, 'drpy3_libs', 'f', 't4/files/drpy3_libs', 'drpy3的t4源需要的js依赖文件及模块,commonJS格式', 'f', 0, 9, 9);
 INSERT INTO "public"."t_dict_details" VALUES (37, '2024-03-08 15:51:32.506584', 1, '2024-03-08 15:51:32.506584', 0, 0, 'drpy3_js', 'f', 't4/files/drpy3_js', 'drpy3的t4源在运行过程中自动缓存线上文件到此目录', 'f', 0, 10, 9);
+INSERT INTO "public"."t_dict_details" VALUES (21, '2024-01-15 15:49:54.323147', 1, '2024-06-20 13:37:12.597597', 1, 0, 'hipy', 'f', 't4/spiders', 'hipy的py源放这个分组。可以放同名的json配置文件', 'f', 0, 1, 9);
+INSERT INTO "public"."t_dict_details" VALUES (22, '2024-01-15 15:50:29.696713', 1, '2024-06-20 13:37:17.284295', 1, 0, 'drpy_js', 'f', 't4/files/drpy_js', 'drpy的js源放这个分组', 't', 0, 2, 9);
 
 -- ----------------------------
 -- Table structure for t_hiker_developer
@@ -591,7 +591,7 @@ COMMENT ON COLUMN "public"."t_job"."active" IS '是否启用';
 INSERT INTO "public"."t_job" VALUES (1, '2023-12-10 21:31:19', 1, '2024-02-20 15:51:14.280557', 1, 0, 'demo', '测试', 'setInterval', 'tasks.demo_task.demo', '[''hello world'']', '{''a'':''1'',''b'':''2''}', 'cron', 0, '2024-02-20 15:50:44.656558', '30 20 * * * ?', 0, 1, 'f');
 INSERT INTO "public"."t_job" VALUES (15, '2023-12-13 00:53:05', 1, '2024-02-20 15:51:14.280557', 1, 0, 'kzz', '可转债打新查询', 'setInterval', 'tasks.kzz_spider.get_now_kzz', NULL, '{''dayeExtra'':8}', 'cron', 0, '2024-02-20 15:50:44.660541', '0 0 8 1/1 * ?', 0, 1, 'f');
 INSERT INTO "public"."t_job" VALUES (14, '2023-12-13 00:26:59', 1, '2024-02-20 15:51:14.280557', 1, 0, 'demo2', '测试2', 'setInterval', 'tasks.demo_task.demo', '[''哈哈哈哈哈'']', '{''key'':''你好吗''}', 'cron', 0, '2024-02-20 15:50:44.660541', '30 10 * * * ?', 0, 1, 'f');
-INSERT INTO "public"."t_job" VALUES (16, '2024-02-20 16:23:34.633837', 1, '2024-06-20 11:19:15.329669', 0, 0, 'tv_spider', 'tv源爬虫', 'setInterval', 'tasks.tv_spider.main', '[]', '{}', 'cron', 0, '2024-06-20 11:19:25.329269', '0 0 0/4 * * ?', 1, 1, 't');
+INSERT INTO "public"."t_job" VALUES (16, '2024-02-20 16:23:34.633837', 1, '2024-06-20 13:34:51.550377', 0, 0, 'tv_spider', 'tv源爬虫', 'setInterval', 'tasks.tv_spider.main', '[]', '{}', 'cron', 0, '2024-06-20 13:35:01.550011', '0 0 0/4 * * ?', 1, 1, 't');
 
 -- ----------------------------
 -- Table structure for t_job_log
@@ -635,6 +635,8 @@ COMMENT ON COLUMN "public"."t_job_log"."run_time" IS '执行时间';
 -- ----------------------------
 -- Records of t_job_log
 -- ----------------------------
+INSERT INTO "public"."t_job_log" VALUES (1, '2024-06-20 13:35:01.560084', 0, '2024-06-20 13:35:01.560084', 0, 0, NULL, 'active_sniffer_after_run', NULL, NULL, NULL, NULL, '----------------task_id:active_sniffer_after_run,args:(),kwargs:{}----------------"嗅探器激活成功,当前使用的嗅探器为:http://127.0.0.1:5708"', NULL, 1, '2024-06-20 13:35:01.536005');
+INSERT INTO "public"."t_job_log" VALUES (2, '2024-06-20 13:35:02.79436', 0, '2024-06-20 13:35:02.79436', 0, 0, 'tv_spider', 'tv源爬虫', 'setInterval', 'tasks.tv_spider.main', '[]', '{}', '爬取直播文件行数:272本次成功写入本地文件tv.txt 本次成功写入本地文件mytv.txt', NULL, 1, '2024-06-20 13:35:01');
 
 -- ----------------------------
 -- Table structure for t_login_infor
@@ -674,6 +676,7 @@ COMMENT ON COLUMN "public"."t_login_infor"."login_time" IS '登录日期';
 -- ----------------------------
 -- Records of t_login_infor
 -- ----------------------------
+INSERT INTO "public"."t_login_infor" VALUES (1, '2024-06-20 13:35:00.274853', 0, '2024-06-20 13:35:00.274853', 0, 0, 'admin', '127.0.0.1', NULL, 'Chrome 125.0.0', 'Windows 10', 0, '登录成功', '2024-06-20 13:35:00.274853');
 
 -- ----------------------------
 -- Table structure for t_menus
@@ -1531,7 +1534,6 @@ INSERT INTO "public"."t_vod_rules" VALUES (278, '2024-05-15 14:55:44.720454', 1,
 INSERT INTO "public"."t_vod_rules" VALUES (427, '2024-06-17 15:02:35.132518', 1, '2024-06-20 02:37:49.717022', 1, 0, '无插件直播', 't4/files/drpy_js', 't4/files/drpy_js/无插件直播.js', 't', 421, '.js', NULL, 1, 1, 0, 0, 't');
 INSERT INTO "public"."t_vod_rules" VALUES (312, '2024-05-24 11:27:11.56854', 1, '2024-06-20 02:37:49.800064', 1, 0, '一号影院[搜]', 't4/files/drpy_js', 't4/files/drpy_js/一号影院[搜].js', 't', 306, '.js', NULL, 1, 1, 0, 0, 't');
 INSERT INTO "public"."t_vod_rules" VALUES (461, '2024-06-17 16:45:34.704071', 1, '2024-06-20 02:37:50.054466', 1, 0, '飞刀资源[资]', 't4/files/drpy_js', 't4/files/drpy_js/飞刀资源[资].js', 't', 455, '.js', NULL, 1, 1, 0, 1, 't');
-INSERT INTO "public"."t_vod_rules" VALUES (462, '2024-06-17 16:45:34.76714', 1, '2024-06-20 02:37:50.114733', 1, 0, '我的哔哩传参[官]', 't4/files/drpy_js', 't4/files/drpy_js/我的哔哩传参[官].js', 't', 456, '.js', NULL, 1, 1, 1, 0, 't');
 INSERT INTO "public"."t_vod_rules" VALUES (266, '2024-05-15 01:58:31.798737', 1, '2024-06-20 02:37:50.325112', 1, 0, '荐片[优]', 't4/files/drpy_js', 't4/files/drpy_js/荐片[优].js', 't', 260, '.js', NULL, 1, 1, 1, 0, 't');
 INSERT INTO "public"."t_vod_rules" VALUES (351, '2024-06-04 16:02:34.463798', 1, '2024-06-20 02:37:48.963432', 1, 0, '短剧在线', 't4/files/drpy_js', 't4/files/drpy_js/短剧在线.js', 't', 345, '.js', NULL, 1, 1, 0, 0, 't');
 INSERT INTO "public"."t_vod_rules" VALUES (302, '2024-05-22 15:37:30.839785', 1, '2024-06-20 02:37:50.333791', 1, 0, '鸭奈飞影视', 't4/files/drpy_js', 't4/files/drpy_js/鸭奈飞影视.js', 't', 296, '.js', NULL, 1, 1, 1, 0, 't');
@@ -1551,6 +1553,7 @@ INSERT INTO "public"."t_vod_rules" VALUES (342, '2024-05-29 16:32:00.072648', 1,
 INSERT INTO "public"."t_vod_rules" VALUES (316, '2024-05-24 15:02:59.295906', 1, '2024-06-20 02:37:50.358703', 1, 0, '剧圈圈', 't4/files/drpy_js', 't4/files/drpy_js/剧圈圈.js', 't', 310, '.js', NULL, 1, 1, 0, 0, 't');
 INSERT INTO "public"."t_vod_rules" VALUES (317, '2024-05-24 15:02:59.308858', 1, '2024-06-20 02:37:50.423967', 1, 0, '短剧TV网', 't4/files/drpy_js', 't4/files/drpy_js/短剧TV网.js', 't', 311, '.js', NULL, 1, 1, 0, 0, 't');
 INSERT INTO "public"."t_vod_rules" VALUES (463, '2024-06-18 16:03:22.235527', 1, '2024-06-20 02:37:49.01792', 1, 0, '七新电影网', 't4/files/drpy_js', 't4/files/drpy_js/七新电影网.js', 't', 457, '.js', NULL, 1, 1, 1, 0, 't');
+INSERT INTO "public"."t_vod_rules" VALUES (462, '2024-06-17 16:45:34.76714', 1, '2024-06-20 13:35:31.630168', 1, 0, '我的哔哩传参[官]', 't4/files/drpy_js', 't4/files/drpy_js/我的哔哩传参[官].js', 't', 456, '.js', '?render=1', 1, 1, 1, 0, 't');
 
 -- ----------------------------
 -- Table structure for t_vod_subs
@@ -1645,14 +1648,14 @@ SELECT setval('"public"."t_job_id_seq"', 18, false);
 -- ----------------------------
 ALTER SEQUENCE "public"."t_job_log_id_seq"
 OWNED BY "public"."t_job_log"."id";
-SELECT setval('"public"."t_job_log_id_seq"', 2, false);
+SELECT setval('"public"."t_job_log_id_seq"', 4, false);
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
 ALTER SEQUENCE "public"."t_login_infor_id_seq"
 OWNED BY "public"."t_login_infor"."id";
-SELECT setval('"public"."t_login_infor_id_seq"', 2, false);
+SELECT setval('"public"."t_login_infor_id_seq"', 3, false);
 
 -- ----------------------------
 -- Alter sequences owned by

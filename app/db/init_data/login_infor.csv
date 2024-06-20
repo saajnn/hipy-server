@@ -1,1 +1,2 @@
 id,created_time,creator_id,modified_time,modifier_id,is_deleted,user_name,ipaddr,login_location,browser,os,status,msg,login_time
+1,2024-06-20 13:35:00.274853,0,2024-06-20 13:35:00.274853,0,0,admin,127.0.0.1,,Chrome 125.0.0,Windows 10,0,登录成功,2024-06-20 13:35:00.274853

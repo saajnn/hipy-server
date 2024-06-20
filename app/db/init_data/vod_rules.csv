@@ -349,7 +349,6 @@ id,created_time,creator_id,modified_time,modifier_id,is_deleted,name,group,path,
 427,2024-06-17 15:02:35.132518,1,2024-06-20 02:37:49.717022,1,0,无插件直播,t4/files/drpy_js,t4/files/drpy_js/无插件直播.js,True,421,.js,,1,1,0,0,True
 312,2024-05-24 11:27:11.568540,1,2024-06-20 02:37:49.800064,1,0,一号影院[搜],t4/files/drpy_js,t4/files/drpy_js/一号影院[搜].js,True,306,.js,,1,1,0,0,True
 461,2024-06-17 16:45:34.704071,1,2024-06-20 02:37:50.054466,1,0,飞刀资源[资],t4/files/drpy_js,t4/files/drpy_js/飞刀资源[资].js,True,455,.js,,1,1,0,1,True
-462,2024-06-17 16:45:34.767140,1,2024-06-20 02:37:50.114733,1,0,我的哔哩传参[官],t4/files/drpy_js,t4/files/drpy_js/我的哔哩传参[官].js,True,456,.js,,1,1,1,0,True
 266,2024-05-15 01:58:31.798737,1,2024-06-20 02:37:50.325112,1,0,荐片[优],t4/files/drpy_js,t4/files/drpy_js/荐片[优].js,True,260,.js,,1,1,1,0,True
 351,2024-06-04 16:02:34.463798,1,2024-06-20 02:37:48.963432,1,0,短剧在线,t4/files/drpy_js,t4/files/drpy_js/短剧在线.js,True,345,.js,,1,1,0,0,True
 302,2024-05-22 15:37:30.839785,1,2024-06-20 02:37:50.333791,1,0,鸭奈飞影视,t4/files/drpy_js,t4/files/drpy_js/鸭奈飞影视.js,True,296,.js,,1,1,1,0,True
@@ -369,3 +368,4 @@ id,created_time,creator_id,modified_time,modifier_id,is_deleted,name,group,path,
 316,2024-05-24 15:02:59.295906,1,2024-06-20 02:37:50.358703,1,0,剧圈圈,t4/files/drpy_js,t4/files/drpy_js/剧圈圈.js,True,310,.js,,1,1,0,0,True
 317,2024-05-24 15:02:59.308858,1,2024-06-20 02:37:50.423967,1,0,短剧TV网,t4/files/drpy_js,t4/files/drpy_js/短剧TV网.js,True,311,.js,,1,1,0,0,True
 463,2024-06-18 16:03:22.235527,1,2024-06-20 02:37:49.017920,1,0,七新电影网,t4/files/drpy_js,t4/files/drpy_js/七新电影网.js,True,457,.js,,1,1,1,0,True
+462,2024-06-17 16:45:34.767140,1,2024-06-20 13:35:31.630168,1,0,我的哔哩传参[官],t4/files/drpy_js,t4/files/drpy_js/我的哔哩传参[官].js,True,456,.js,?render=1,1,1,1,0,True

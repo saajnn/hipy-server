@@ -19,3 +19,5 @@
 **/.env.*.local
 /app/configs/.env.jiumu
 /app/t4/spiders/log/
+/app/t4/files/txt/mytv.txt
+/app/t4/files/txt/tv.txt

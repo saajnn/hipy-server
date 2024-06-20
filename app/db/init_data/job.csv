@@ -2,4 +2,4 @@ id,created_time,creator_id,modified_time,modifier_id,is_deleted,job_id,job_name,
 1,2023-12-10 21:31:19.000000,1,2024-02-20 15:51:14.280557,1,0,demo,测试,setInterval,tasks.demo_task.demo,['hello world'],"{'a':'1','b':'2'}",cron,0,2024-02-20 15:50:44.656558,30 20 * * * ?,0,1,False
 15,2023-12-13 00:53:05.000000,1,2024-02-20 15:51:14.280557,1,0,kzz,可转债打新查询,setInterval,tasks.kzz_spider.get_now_kzz,,{'dayeExtra':8},cron,0,2024-02-20 15:50:44.660541,0 0 8 1/1 * ?,0,1,False
 14,2023-12-13 00:26:59.000000,1,2024-02-20 15:51:14.280557,1,0,demo2,测试2,setInterval,tasks.demo_task.demo,['哈哈哈哈哈'],{'key':'你好吗'},cron,0,2024-02-20 15:50:44.660541,30 10 * * * ?,0,1,False
-16,2024-02-20 16:23:34.633837,1,2024-06-20 11:19:15.329669,0,0,tv_spider,tv源爬虫,setInterval,tasks.tv_spider.main,[],{},cron,0,2024-06-20 11:19:25.329269,0 0 0/4 * * ?,1,1,True
+16,2024-02-20 16:23:34.633837,1,2024-06-20 13:34:51.550377,0,0,tv_spider,tv源爬虫,setInterval,tasks.tv_spider.main,[],{},cron,0,2024-06-20 13:35:01.550011,0 0 0/4 * * ?,1,1,True
