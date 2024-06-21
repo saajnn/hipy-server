@@ -1,10 +1,13 @@
 /**
+ * 强烈推荐静态分类。可以加快速度!!!
  * 传参 ?type=url&params=../json/采集.json
+ * 传参 ?type=url&params=../json/采集静态.json
  * [{"name":"暴风资源","url":"https://bfzyapi.com","parse_url":""},{"name":"飞刀资源","url":"http://www.feidaozy.com","parse_url":""},{"name":"黑木耳资源","url":"https://www.heimuer.tv","parse_url":""}]
  */
 var rule = {
     title: '采集之王[合]',
     author: '道长',
+    version: '20240621 beta2',
     host: '',
     homeTid: '', // 首页推荐。一般填写第一个资源站的想要的推荐分类的id.可以空
     homeUrl: '/api.php/provide/vod/?ac=detail&t={{rule.homeTid}}',
@@ -16,13 +19,31 @@ var rule = {
     headers: {'User-Agent': 'MOBILE_UA'},
     timeout: 5000, // class_name: '电影&电视剧&综艺&动漫',
     limit: 20,
+    search_limit: 5, // 搜索限制取前5个，可以注释掉，就不限制搜索
     searchable: 1,//是否启用全局搜索,
     quickSearch: 0,//是否启用快速搜索,
     filterable: 1,//是否启用分类筛选,
     play_parse: true,
     parse_url: '', // 这个参数暂时不起作用。聚合类的每个资源应该有自己独立的解析口
     // params: 'http://127.0.0.1:5707/files/json/%E9%87%87%E9%9B%86.json',
+    // params: 'http://127.0.0.1:5707/files/json/采集静态.json',
     预处理: $js.toString(() => {
+        function getClasses(homeObj) {
+            let classes = [];
+            if (homeObj.class_name && homeObj.class_url) {
+                let names = homeObj.class_name.split('&');
+                let urls = homeObj.class_url.split('&');
+                let cnt = Math.min(names.length, urls.length);
+                for (let i = 0; i < cnt; i++) {
+                    classes.push({
+                        'type_id': urls[i],
+                        'type_name': names[i]
+                    });
+                }
+            }
+            return classes
+        }
+
         let _url = rule.params;
         if (_url && typeof (_url) === 'string' && /^(http|file)/.test(_url)) {
             let html = request(_url);
@@ -36,10 +57,17 @@ var rule = {
                     type_id: it.url,
                     parse_url: it.parse_url || '',
                     cate_exclude: it.cate_exclude || '',
+                    // class_name: it.class_name || '',
+                    // class_url: it.class_url || '',
                 };
                 _classes.push(_obj);
                 try {
-                    let json1 = JSON.parse(request(urljoin(_obj.type_id, rule.classUrl))).class;
+                    let json1 = [];
+                    if (it.class_name && it.class_url) {
+                        json1 = getClasses(it);
+                    } else {
+                        json1 = JSON.parse(request(urljoin(_obj.type_id, rule.classUrl))).class;
+                    }
                     if (_obj.cate_exclude) {
                         json1 = json1.filter(cl => !new RegExp(_obj.cate_exclude, 'i').test(cl.type_name));
                     }
@@ -140,6 +168,9 @@ var rule = {
     搜索: $js.toString(() => {
         VODS = [];
         if (rule.classes) {
+            if (rule.search_limit) {
+                rule.classes = rule.classes.slice(0, rule.search_limit);
+            }
             rule.classes.forEach(it => {
                 let _url = urljoin(it.type_id, input);
                 // log(_url);
@@ -148,7 +179,8 @@ var rule = {
                     let json = JSON.parse(html);
                     let data = json.list;
                     data.forEach(i => {
-                        i.vod_id = it.type_id + '$' + i.vod_id
+                        i.vod_id = it.type_id + '$' + i.vod_id;
+                        i.vod_remarks = i.vod_remarks + '|' + it.type_name;
                     });
                     VODS = VODS.concat(data);
                 } catch (e) {
