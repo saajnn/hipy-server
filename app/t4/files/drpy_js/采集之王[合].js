@@ -7,7 +7,7 @@
 var rule = {
     title: '采集之王[合]',
     author: '道长',
-    version: '20240621 beta4',
+    version: '20240621 beta5',
     host: '',
     homeTid: '', // 首页推荐。一般填写第一个资源站的想要的推荐分类的id.可以空
     homeUrl: '/api.php/provide/vod/?ac=detail&t={{rule.homeTid}}',
@@ -24,9 +24,12 @@ var rule = {
     quickSearch: 0,//是否启用快速搜索,
     filterable: 1,//是否启用分类筛选,
     play_parse: true,
-    parse_url: '', // 这个参数暂时不起作用。聚合类的每个资源应该有自己独立的解析口
+    parse_url: '', // 这个参数暂时不起作用。聚合类的每个资源应该有自己独立的解析口。单独配置在采集.json里的parse_url有效
     // params: 'http://127.0.0.1:5707/files/json/%E9%87%87%E9%9B%86.json',
     // params: 'http://127.0.0.1:5707/files/json/采集静态.json',
+    // hostJs:$js.toString(()=>{
+    //
+    // }),
     预处理: $js.toString(() => {
         function getClasses(homeObj) {
             let classes = [];
@@ -64,6 +67,7 @@ var rule = {
                     type_name: it.name,
                     type_id: it.url,
                     parse_url: it.parse_url || '',
+                    api: it.api || '',
                     cate_exclude: it.cate_exclude || '',
                     // class_name: it.class_name || '',
                     // class_url: it.class_url || '',
@@ -74,7 +78,7 @@ var rule = {
                     if (it.class_name && it.class_url) {
                         json1 = getClasses(it);
                     } else {
-                        json1 = JSON.parse(request(urljoin(_obj.type_id, rule.classUrl))).class;
+                        json1 = JSON.parse(request(urljoin(_obj.type_id, _obj.api || rule.classUrl))).class;
                     }
                     if (_obj.cate_exclude) {
                         json1 = json1.filter(cl => !new RegExp(_obj.cate_exclude, 'i').test(cl.type_name));
@@ -138,6 +142,9 @@ var rule = {
         VODS = [];
         if (rule.classes) {
             let _url = urljoin(rule.classes[0].type_id, input);
+            if (rule.classes[0].api) {
+                _url = _url.replace('/api.php/provide/vod/', rule.classes[0].api)
+            }
             try {
                 let html = request(_url);
                 let json = JSON.parse(html);
@@ -154,6 +161,10 @@ var rule = {
         if (rule.classes) {
             // log(input);
             let _url = urljoin(MY_CATE, input);
+            let current_vod = rule.classes.find(item => item.type_id === MY_CATE);
+            if (current_vod && current_vod.api) {
+                _url = _url.replace('/api.php/provide/vod/', current_vod.api)
+            }
             let html = request(_url);
             let json = JSON.parse(html);
             VODS = json.list;
@@ -167,10 +178,17 @@ var rule = {
         VOD = [];
         if (rule.classes) {
             let _url = urljoin(fyclass, input);
+            let current_vod = rule.classes.find(item => item.type_id === fyclass);
+            if (current_vod && current_vod.api) {
+                _url = _url.replace('/api.php/provide/vod/', current_vod.api)
+            }
             let html = request(_url);
             let json = JSON.parse(html);
             let data = json.list;
             VOD = data[0];
+            if (current_vod && current_vod.type_name) {
+                VOD.vod_play_from = VOD.vod_play_from.split('$$$').map(it => current_vod.type_name + '|' + it).join('$$$')
+            }
         }
     }),
     搜索: $js.toString(() => {
@@ -181,6 +199,9 @@ var rule = {
             }
             rule.classes.forEach(it => {
                 let _url = urljoin(it.type_id, input);
+                if (it.api) {
+                    _url = _url.replace('/api.php/provide/vod/', it.api)
+                }
                 // log(_url);
                 try {
                     let html = request(_url);
@@ -200,15 +221,23 @@ var rule = {
     }),
     lazy: $js.toString(() => {
         // lazy想办法用对应的parse_url，但是有难度，暂未实现
+        let parse_url = '';
+        if (flag && flag.includes('|')) {
+            let type_name = flag.split('|')[0];
+            let current_vod = rule.classes.find(item => item.type_name === type_name);
+            if (current_vod && current_vod.parse_url) {
+                parse_url = current_vod.parse_url
+            }
+        }
         if (/\.(m3u8|mp4)/.test(input)) {
             input = {parse: 0, url: input}
         } else {
-            if (rule.parse_url.startsWith('json:')) {
-                let purl = rule.parse_url.replace('json:', '') + input;
+            if (parse_url.startsWith('json:')) {
+                let purl = parse_url.replace('json:', '') + input;
                 let html = request(purl);
                 input = {parse: 0, url: JSON.parse(html).url}
             } else {
-                input = rule.parse_url + input;
+                input = parse_url + input;
             }
         }
     }),

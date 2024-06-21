@@ -15,10 +15,17 @@ from pprint import pprint
 
 import requests
 
+import warnings
+
+# 关闭警告
+warnings.filterwarnings("ignore")
+requests.packages.urllib3.disable_warnings()
+
 pool = ThreadPoolExecutor(max_workers=20)  # 初始化线程池内线程数量为20
 
 headers = {
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',
+    'Connection': 'close'  # 设置为关闭长连接
 }
 
 timeout = 5  # 5秒
@@ -37,11 +44,16 @@ def compress_and_encode(data: str):
 def get_classes(rec):
     classes = None
     if rec.get('url') and str(rec['url']).startswith('http'):
-        _api = urljoin(rec['url'], '/api.php/provide/vod/')
+        _class_api = rec.get('api') or '/api.php/provide/vod/'
+        _api = urljoin(str(rec['url']).rstrip('/'), _class_api)
+        # _api = urljoin(rec['url'], '/api.php/provide/vod/at/json')
         print(_api)
         try:
-            r = requests.get(_api, headers=headers, timeout=5)
+            r = requests.get(_api, headers=headers, timeout=timeout, verify=False)
             ret = r.json()
+            if rec.get('name') == '乐视资源':
+                print('=======乐视=========')
+                print(ret)
             # print(ret)
             classes = ret.get('class')
         except Exception as e:
