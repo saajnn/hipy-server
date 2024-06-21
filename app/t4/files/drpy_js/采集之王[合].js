@@ -7,12 +7,12 @@
 var rule = {
     title: '采集之王[合]',
     author: '道长',
-    version: '20240621 beta6',
+    version: '20240622 beta7',
     host: '',
     homeTid: '', // 首页推荐。一般填写第一个资源站的想要的推荐分类的id.可以空
     homeUrl: '/api.php/provide/vod/?ac=detail&t={{rule.homeTid}}',
     detailUrl: '/api.php/provide/vod/?ac=detail&ids=fyid',
-    searchUrl: '/api.php/provide/vod/?wd=**&pg=fypage',
+    searchUrl: '/api.php/provide/vod/?wd=**&pg=1#page=fypage',
     classUrl: '/api.php/provide/vod/',
     url: '/api.php/provide/vod/?ac=detail&pg=fypage&t=fyfilter',
     filter_url: '{{fl.类型}}',
@@ -194,27 +194,37 @@ var rule = {
     搜索: $js.toString(() => {
         VODS = [];
         if (rule.classes) {
-            let search_classes = rule.search_limit?rule.classes.slice(0, rule.search_limit):rule.classes;
-            search_classes.forEach(it => {
-                let _url = urljoin(it.type_id, input);
-                if (it.api) {
-                    _url = _url.replace('/api.php/provide/vod/', it.api)
-                }
-                // log(_url);
-                try {
-                    let html = request(_url);
-                    let json = JSON.parse(html);
-                    let data = json.list;
-                    data.forEach(i => {
-                        i.vod_id = it.type_id + '$' + i.vod_id;
-                        i.vod_remarks = i.vod_remarks + '|' + it.type_name;
-                    });
-                    VODS = VODS.concat(data);
-                } catch (e) {
-                    log(`请求:${it.type_id}发生错误:${e.message}`)
-                }
+            log(MY_PAGE);
+            if (rule.search_limit) {
+                let start = (Number(MY_PAGE) - 1) * rule.search_limit;
+                let end = Number(MY_PAGE) * rule.search_limit;
+                log('start:' + start);
+                log('end:' + end);
+                if (start < rule.classes.length) {
+                    let search_classes = rule.classes.slice(start, end);
+                    search_classes.forEach(it => {
+                        let _url = urljoin(it.type_id, input);
+                        if (it.api) {
+                            _url = _url.replace('/api.php/provide/vod/', it.api)
+                        }
+                        // log(_url);
+                        try {
+                            let html = request(_url);
+                            let json = JSON.parse(html);
+                            let data = json.list;
+                            data.forEach(i => {
+                                i.vod_id = it.type_id + '$' + i.vod_id;
+                                i.vod_remarks = i.vod_remarks + '|' + it.type_name;
+                            });
+                            VODS = VODS.concat(data);
+                        } catch (e) {
+                            log(`请求:${it.type_id}发生错误:${e.message}`)
+                        }
 
-            });
+                    });
+
+                }
+            }
         }
     }),
     lazy: $js.toString(() => {
