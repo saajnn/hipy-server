@@ -1887,7 +1887,7 @@ function homeParse(homeObj) {
     if (homeObj.filter) {
         resp.filters = homeObj.filter;
     }
-    console.log(JSON.stringify(resp));
+    console.log(classes.length + '|' + JSON.stringify(resp));
     return JSON.stringify(resp);
 
 }

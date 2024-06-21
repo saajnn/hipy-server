@@ -114,8 +114,8 @@ class Drpy:
     def init(self, extend=""):
         self.call('init', extend)
 
-    def homeContent(self, filter=None):
-        return self.setDict(self.call('home', filter))
+    def homeContent(self, filter=None, home_html=None, class_parse=None):
+        return self.setDict(self.call('home', filter, home_html, class_parse))
 
     def homeVideoContent(self):
         return self.setDict(self.call('homeVod'))

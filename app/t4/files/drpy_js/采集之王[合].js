@@ -7,12 +7,12 @@
 var rule = {
     title: '采集之王[合]',
     author: '道长',
-    version: '20240622 beta7',
+    version: '20240621 beta6',
     host: '',
     homeTid: '', // 首页推荐。一般填写第一个资源站的想要的推荐分类的id.可以空
     homeUrl: '/api.php/provide/vod/?ac=detail&t={{rule.homeTid}}',
     detailUrl: '/api.php/provide/vod/?ac=detail&ids=fyid',
-    searchUrl: '/api.php/provide/vod/?wd=**&pg=1#page=fypage',
+    searchUrl: '/api.php/provide/vod/?wd=**&pg=#TruePage##page=fypage',
     classUrl: '/api.php/provide/vod/',
     url: '/api.php/provide/vod/?ac=detail&pg=fypage&t=fyfilter',
     filter_url: '{{fl.类型}}',
@@ -194,10 +194,13 @@ var rule = {
     搜索: $js.toString(() => {
         VODS = [];
         if (rule.classes) {
-            log(MY_PAGE);
+            let page = Number(MY_PAGE);
+            page = (MY_PAGE - 1) % Math.ceil(rule.classes.length / rule.search_limit) + 1;
+            let truePage = Math.ceil(MY_PAGE / Math.ceil(rule.classes.length / rule.search_limit));
             if (rule.search_limit) {
-                let start = (Number(MY_PAGE) - 1) * rule.search_limit;
-                let end = Number(MY_PAGE) * rule.search_limit;
+                let start = (page - 1) * rule.search_limit;
+                let end = page * rule.search_limit;
+
                 log('start:' + start);
                 log('end:' + end);
                 if (start < rule.classes.length) {
@@ -207,7 +210,7 @@ var rule = {
                         if (it.api) {
                             _url = _url.replace('/api.php/provide/vod/', it.api)
                         }
-                        // log(_url);
+                        _url = _url.replace("#TruePage#", "" + truePage);
                         try {
                             let html = request(_url);
                             let json = JSON.parse(html);

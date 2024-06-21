@@ -112,43 +112,46 @@ class jsoup:
         :param ret: pd对象结果
         :return:
         """
-        nparse_rule, nparse_index, excludes = self.getParseInfo(nparse)
-        # print('nparse_rule:', nparse_rule)
-        # print('nparse:', nparse)
+        try:
+            nparse_rule, nparse_index, excludes = self.getParseInfo(nparse)
+            # print('nparse_rule:', nparse_rule)
+            # print('nparse:', nparse)
 
-        not_prefix = nparse_rule
-        not_regex = ''
-        not_endfix = ''
-        if self.contains(nparse_rule, ':not'):
-            not_prefix = nparse_rule.split(':not')[0]
-            not_reg_array = re.search(r':not\((.*)\)(.*)', nparse_rule, re.M | re.I).groups()
-            not_regex = not_reg_array[0] if len(not_reg_array) > 0 else not_regex
-            not_endfix = not_reg_array[1] if len(not_reg_array) > 1 else not_endfix
+            not_prefix = nparse_rule
+            not_regex = ''
+            not_endfix = ''
+            if self.contains(nparse_rule, ':not'):
+                not_prefix = nparse_rule.split(':not')[0]
+                not_reg_array = re.search(r':not\((.*)\)(.*)', nparse_rule, re.M | re.I).groups()
+                not_regex = not_reg_array[0] if len(not_reg_array) > 0 else not_regex
+                not_endfix = not_reg_array[1] if len(not_reg_array) > 1 else not_endfix
 
-        if not ret:
-            ret = doc(not_prefix)
-        else:
-            ret = ret(not_prefix)
+            if not ret:
+                ret = doc(not_prefix)
+            else:
+                ret = ret(not_prefix)
 
-        if not_regex:
-            ret = ret.not_(not_regex)
-        if not_endfix:
-            ret = ret(not_endfix)
+            if not_regex:
+                ret = ret.not_(not_regex)
+            if not_endfix:
+                ret = ret(not_endfix)
 
-        # print(ret)
-        # print(f'nparse_rule:{nparse_rule},nparse_index:{nparse_index},excludes:{excludes},ret:{ret}')
-        if self.contains(nparse, ':eq'):
-            ret = ret.eq(nparse_index)
-            # if nparse_index > 4:
-            #     print('nparse_index',ret,not ret)
+            # print(ret)
+            # print(f'nparse_rule:{nparse_rule},nparse_index:{nparse_index},excludes:{excludes},ret:{ret}')
+            if self.contains(nparse, ':eq'):
+                ret = ret.eq(nparse_index)
+                # if nparse_index > 4:
+                #     print('nparse_index',ret,not ret)
 
-        if excludes and ret:
-            # print(excludes)
-            ret = ret.clone()  # 克隆一个,免得直接remove会影响doc的缓存
-            for exclude in excludes:
-                # ret.remove(exclude)
-                ret(exclude).remove()
-        return ret
+            if excludes and ret:
+                # print(excludes)
+                ret = ret.clone()  # 克隆一个,免得直接remove会影响doc的缓存
+                for exclude in excludes:
+                    # ret.remove(exclude)
+                    ret(exclude).remove()
+            return ret
+        except Exception as e:
+            print(f'parseOneRule发生了错误:{e}')
 
     def pdfa(self, html, parse: str):
         # 看官方文档才能解决这个问题!!!
