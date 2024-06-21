@@ -194,10 +194,8 @@ var rule = {
     搜索: $js.toString(() => {
         VODS = [];
         if (rule.classes) {
-            if (rule.search_limit) {
-                rule.classes = rule.classes.slice(0, rule.search_limit);
-            }
-            rule.classes.forEach(it => {
+            let search_classes = rule.search_limit?rule.classes.slice(0, rule.search_limit):rule.classes;
+            search_classes.forEach(it => {
                 let _url = urljoin(it.type_id, input);
                 if (it.api) {
                     _url = _url.replace('/api.php/provide/vod/', it.api)
