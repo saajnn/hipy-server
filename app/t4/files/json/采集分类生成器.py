@@ -6,6 +6,9 @@
 
 import os
 import json
+import gzip
+import base64
+
 from urllib.parse import urljoin
 from concurrent.futures import ThreadPoolExecutor
 from pprint import pprint
@@ -19,6 +22,16 @@ headers = {
 }
 
 timeout = 5  # 5秒
+
+use_gzip = False
+
+
+def compress_and_encode(data: str):
+    # 压缩数据
+    compressed_data = gzip.compress(data.encode('utf-8'))
+    # 对压缩数据进行Base64编码
+    encoded_data = base64.b64encode(compressed_data).decode('utf-8')
+    return encoded_data
 
 
 def get_classes(rec):
@@ -57,9 +70,10 @@ def convert_class(classes, name=None):
         if cls.get('type_name') and cls.get('type_id'):
             class_urls.append(str(cls['type_id']))
             class_names.append(str(cls['type_name']))
+    global use_gzip
     return {
         "name": name,
-        "class_name": '&'.join(class_names),
+        "class_name": compress_and_encode('&'.join(class_names)) if use_gzip else '&'.join(class_names),
         "class_url": '&'.join(class_urls),
     }
 
@@ -100,4 +114,5 @@ def main():
 
 
 if __name__ == '__main__':
+    use_gzip = True
     main()
