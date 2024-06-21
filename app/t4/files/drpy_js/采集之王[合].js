@@ -7,7 +7,7 @@
 var rule = {
     title: '采集之王[合]',
     author: '道长',
-    version: '20240621 beta5',
+    version: '20240621 beta6',
     host: '',
     homeTid: '', // 首页推荐。一般填写第一个资源站的想要的推荐分类的id.可以空
     homeUrl: '/api.php/provide/vod/?ac=detail&t={{rule.homeTid}}',
@@ -31,19 +31,19 @@ var rule = {
     //
     // }),
     预处理: $js.toString(() => {
-        function getClasses(homeObj) {
+        function getClasses(item) {
             let classes = [];
-            if (homeObj.class_name && homeObj.class_url) {
-                if (!/&|电影|电视剧|综艺|动漫[\u4E00-\u9FA5]+/.test(homeObj.class_name)) {
+            if (item.class_name && item.class_url) {
+                if (!/&|电影|电视剧|综艺|动漫[\u4E00-\u9FA5]+/.test(item.class_name)) {
                     try {
-                        homeObj.class_name = ungzip(homeObj.class_name)
+                        item.class_name = ungzip(item.class_name)
                     } catch (e) {
                         log(`不识别的class_name导致gzip解码失败:${e}`)
                         return classes
                     }
                 }
-                let names = homeObj.class_name.split('&');
-                let urls = homeObj.class_url.split('&');
+                let names = item.class_name.split('&');
+                let urls = item.class_url.split('&');
                 let cnt = Math.min(names.length, urls.length);
                 for (let i = 0; i < cnt; i++) {
                     classes.push({
