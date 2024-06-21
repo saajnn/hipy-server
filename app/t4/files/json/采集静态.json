@@ -1,14 +1,5 @@
 [
   {
-    "name": "乐视资源",
-    "url": "https://leshiapi.com",
-    "parse_url": "https://leshivideoplayurl.com/?url=",
-    "cate_exclude": "",
-    "api": "/api.php/provide/vod/at/json/",
-    "class_name": "H4sIADMldWYC/zVRWXbCMAy8jc/JUiAJjyWvNC3Lg1KWAE1fQlkKCQ6XsS3nFrVl+yszkmc0UmB04fRIID9w+gZ+h8jnHIof7sdEJDGUfY2q7VjcUo14sGN0pt+BdxTNFqI45PdCI1EfilqkkXpru8L7YLmPtWimyoiCHYxQAUEK9IC1KWV5jNMWe0XsNPH4JlA8pJ8Tvo6rcdsSnWeQOfK+USJHMLbTDDJxL9HL+BtHJRCzxBGzpyWXP76OHDllNokS6A/gtWS8kumZ8E3H7g31spqUuG0jgSjEfVpXVuAtGH2VjV95mbK86/y11wKvzB5bGLZRiyuxmw+5O4Jp2riW8N6yqk1sQjPFdQY9SRPwzO02p+orFPWu+lGqs5arFivGrPwk/H5mxQr2T3kNiHwJxXluYhPoZ6pTNSm/Nf4BxMaYBRkCAAA=",
-    "class_url": "1&2&3&4&5&6&7&8&9&10&11&12&20&21&22&23&24&25&26&27&28&29&30&31&32&33&34&35&36&37&38&39&40&41&42&44&46&48&49&50&51&52&53&54&55&56&57&58&59"
-  },
-  {
     "name": "业余资源",
     "url": "https://yyff.540734621.xyz",
     "parse_url": "",
@@ -63,5 +54,14 @@
     "cate_exclude": "",
     "class_name": "H4sIADMldWYC/yXIOw5AQBRG4d3clVKMgmKEQlBNhiAoiBiPzfjdsQsxmpMvh+MJ+0j2LNh0EJrYbFashKC6t4aQ7deqv38vPaLBKVVPWTu1mo/wE/z5MomTd3KjyMocviDIGLL++wIj0AZ/awAAAA==",
     "class_url": "1&2&3&4&20&21&22&23&24&25&26&27"
+  },
+  {
+    "name": "乐视资源",
+    "url": "https://leshiapi.com",
+    "parse_url": "https://leshivideoplayurl.com/?url=",
+    "cate_exclude": "",
+    "api": "/api.php/provide/vod/at/json/",
+    "class_name": "H4sIADMldWYC/zVRWXbCMAy8jc/JUiAJjyWvNC3Lg1KWAE1fQlkKCQ6XsS3nFrVl+yszkmc0UmB04fRIID9w+gZ+h8jnHIof7sdEJDGUfY2q7VjcUo14sGN0pt+BdxTNFqI45PdCI1EfilqkkXpru8L7YLmPtWimyoiCHYxQAUEK9IC1KWV5jNMWe0XsNPH4JlA8pJ8Tvo6rcdsSnWeQOfK+USJHMLbTDDJxL9HL+BtHJRCzxBGzpyWXP76OHDllNokS6A/gtWS8kumZ8E3H7g31spqUuG0jgSjEfVpXVuAtGH2VjV95mbK86/y11wKvzB5bGLZRiyuxmw+5O4Jp2riW8N6yqk1sQjPFdQY9SRPwzO02p+orFPWu+lGqs5arFivGrPwk/H5mxQr2T3kNiHwJxXluYhPoZ6pTNSm/Nf4BxMaYBRkCAAA=",
+    "class_url": "1&2&3&4&5&6&7&8&9&10&11&12&20&21&22&23&24&25&26&27&28&29&30&31&32&33&34&35&36&37&38&39&40&41&42&44&46&48&49&50&51&52&53&54&55&56&57&58&59"
   }
 ]

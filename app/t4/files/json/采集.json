@@ -1,12 +1,5 @@
 [
   {
-    "name": "乐视资源",
-    "url": "https://leshiapi.com",
-    "parse_url": "https://leshivideoplayurl.com/?url=",
-    "cate_exclude": "",
-    "api": "/api.php/provide/vod/at/json/"
-  },
-  {
     "name": "业余资源",
     "url": "https://yyff.540734621.xyz",
     "parse_url": "",
@@ -47,5 +40,12 @@
     "url": "http://caiji.ikum.cc:8099",
     "parse_url": "",
     "cate_exclude": ""
+  },
+  {
+    "name": "乐视资源",
+    "url": "https://leshiapi.com",
+    "parse_url": "https://leshivideoplayurl.com/?url=",
+    "cate_exclude": "",
+    "api": "/api.php/provide/vod/at/json/"
   }
 ]
