@@ -24,7 +24,7 @@ var rule = {
     // params: 'http://127.0.0.1:5707/files/json/%E9%87%87%E9%9B%86.json',
     预处理: $js.toString(() => {
         let _url = rule.params;
-        if (_url && typeof (_url) === 'string' && _url.startsWith('http')) {
+        if (_url && typeof (_url) === 'string' && /^(http|file)/.test(_url)) {
             let html = request(_url);
             let json = JSON.parse(html);
             let _classes = [];
@@ -99,14 +99,18 @@ var rule = {
         input = rule.classes;
     }),
     推荐: $js.toString(() => {
+        VODS = [];
         if (rule.classes) {
             let _url = urljoin(rule.classes[0].type_id, input);
-            let html = request(_url);
-            let json = JSON.parse(html);
-            VODS = json.list;
-            VODS.forEach(it => {
-                it.vod_id = rule.classes[0].type_id + '$' + it.vod_id
-            });
+            try {
+                let html = request(_url);
+                let json = JSON.parse(html);
+                VODS = json.list;
+                VODS.forEach(it => {
+                    it.vod_id = rule.classes[0].type_id + '$' + it.vod_id
+                });
+            } catch (e) {
+            }
         }
     }),
     一级: $js.toString(() => {
