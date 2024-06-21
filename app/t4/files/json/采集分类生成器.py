@@ -96,9 +96,9 @@ def get_convert_classes(rec):
     return classes
 
 
-def main():
-    file_path = './采集.json'
-    out_file_path = './采集静态.json'
+def main(fname='采集'):
+    file_path = f'./{fname}.json'
+    out_file_path = file_path.replace('.json', '静态.json')
     if not os.path.exists(file_path):
         exit(f'不存在采集文件路径:{file_path}')
     with open(file_path, encoding='utf-8') as f:
@@ -127,4 +127,6 @@ def main():
 
 if __name__ == '__main__':
     use_gzip = True
-    main()
+    fname = str(input('请输入文件名,留空默认为采集:\n'))
+    fname = fname or '采集'
+    main(fname)
