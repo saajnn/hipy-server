@@ -22,10 +22,9 @@ var rule = {
         let _url = input.split('#')[0];
         if (MY_CATE === 'singer') {
             if (MY_FL.region) {
-                _url += '&where=region_id&keywords=' + MY_FL.region;
-            }
-            if (MY_FL.form) {
-                _url += '&where=form_id&keywords=' + MY_FL.form;
+                _url += '&where=region_id&keywords=' + MY_FL.region + '&size=21';
+            } else if (MY_FL.form) {
+                _url += '&where=form_id&keywords=' + MY_FL.form + '&size=21';
             }
             let html = request(_url);
             let json = JSON.parse(html);
@@ -40,10 +39,9 @@ var rule = {
             });
         } else if (MY_CATE === 'song') {
             if (MY_FL.lan) {
-                _url += '&where=language_id&keywords=' + MY_FL.lan;
-            }
-            if (MY_FL.type) {
-                _url += '&where=type_id&keywords=' + MY_FL.type;
+                _url += '&where=language_id&keywords=' + MY_FL.lan + '&size=21';
+            } else if (MY_FL.type) {
+                _url += '&where=type_id&keywords=' + MY_FL.type + '&size=21';
             }
             let html = request(_url);
             let json = JSON.parse(html);
@@ -77,10 +75,15 @@ var rule = {
         if (id.endsWith('.mkv')) {
             VOD.vod_play_url = '嗅探播放$' + id;
         } else {
-            let url = `${rule.host}/searchmv?table=song&where=singer_names&keywords=${id}&size=999`;
-            let res = request(url);
-            let json = JSON.parse(res);
-            VOD.vod_play_url = (json.map(item => {
+            let data = [];
+            for (let i = 0; i < 2; i++) {
+                let pg = Number(i) + 1;
+                let url = `${rule.host}/searchmv?table=song&where=singer_names&keywords=${id}&size=500&pg=${pg}`;
+                let res = request(url);
+                let json = JSON.parse(res);
+                data = data.concat(json);
+            }
+            VOD.vod_play_url = (data.map(item => {
                 return item.name + '$' + rule.mktvUrl + item.number + '.mkv';
             })).join('#');
         }
