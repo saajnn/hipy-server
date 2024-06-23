@@ -26,7 +26,7 @@ var rule = {
     play_parse: true,
     parse_url: '', // 这个参数暂时不起作用。聚合类的每个资源应该有自己独立的解析口。单独配置在采集.json里的parse_url有效
     // params: 'http://127.0.0.1:5707/files/json/%E9%87%87%E9%9B%86.json',
-    // params: 'http://127.0.0.1:5707/files/json/采集静态.json',
+    params: 'http://127.0.0.1:5707/files/json/采集静态.json',
     // hostJs:$js.toString(()=>{
     //
     // }),
@@ -55,6 +55,7 @@ var rule = {
             return classes
         }
 
+        log(typeof (batchFetch));
         let _url = rule.params;
         if (_url && typeof (_url) === 'string' && /^(http|file)/.test(_url)) {
             let html = request(_url);
@@ -200,31 +201,69 @@ var rule = {
             if (rule.search_limit) {
                 let start = (page - 1) * rule.search_limit;
                 let end = page * rule.search_limit;
+                let t1 = new Date().getTime();
 
                 log('start:' + start);
                 log('end:' + end);
+                // log('t1:' + t1);
                 if (start < rule.classes.length) {
                     let search_classes = rule.classes.slice(start, end);
+                    let urls = [];
                     search_classes.forEach(it => {
                         let _url = urljoin(it.type_id, input);
                         if (it.api) {
                             _url = _url.replace('/api.php/provide/vod/', it.api)
                         }
                         _url = _url.replace("#TruePage#", "" + truePage);
-                        try {
-                            let html = request(_url);
-                            let json = JSON.parse(html);
-                            let data = json.list;
-                            data.forEach(i => {
-                                i.vod_id = it.type_id + '$' + i.vod_id;
-                                i.vod_remarks = i.vod_remarks + '|' + it.type_name;
-                            });
-                            VODS = VODS.concat(data);
-                        } catch (e) {
-                            log(`请求:${it.type_id}发生错误:${e.message}`)
-                        }
-
+                        urls.push(_url);
                     });
+                    let results = [];
+                    if (typeof (batchFetch) === 'function') {
+                        let reqUrls = urls.map(it => {
+                            return {
+                                url: it,
+                                options: {}
+                            }
+                        });
+                        let rets = batchFetch(reqUrls);
+                        rets.forEach((ret, idx) => {
+                            let it = search_classes[idx];
+                            if (ret) {
+                                try {
+                                    let json = JSON.parse(ret);
+                                    let data = json.list;
+                                    data.forEach(i => {
+                                        i.vod_id = it.type_id + '$' + i.vod_id;
+                                        i.vod_remarks = i.vod_remarks + '|' + it.type_name;
+                                    });
+                                    results = results.concat(data);
+                                } catch (e) {
+                                    log(`请求:${it.type_id}发生错误:${e.message}`)
+                                }
+                            }
+                        });
+                    } else {
+                        urls.forEach((_url, idx) => {
+                            let it = search_classes[idx];
+                            try {
+                                let html = request(_url);
+                                let json = JSON.parse(html);
+                                let data = json.list;
+                                data.forEach(i => {
+                                    i.vod_id = it.type_id + '$' + i.vod_id;
+                                    i.vod_remarks = i.vod_remarks + '|' + it.type_name;
+                                });
+                                results = results.concat(data);
+                            } catch (e) {
+                                log(`请求:${it.type_id}发生错误:${e.message}`)
+                            }
+                        });
+                    }
+
+                    VODS = results;
+                    let t2 = new Date().getTime();
+                    // log('t2:'+t2);
+                    log(`搜索:${urls.length}个站耗时:${(Number(t2) - Number(t1))}ms`)
 
                 }
             }

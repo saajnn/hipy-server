@@ -8,7 +8,7 @@ import ujson
 import requests
 # from core.logger import logger
 from t4.base.htmlParser import jsoup
-from utils.vod_tool import fetch, req, 重定向, toast, image
+from utils.vod_tool import fetch, req, batchFetch, 重定向, toast, image
 from urllib.parse import urljoin
 from utils.local_cache import local
 from core.config import settings
@@ -99,6 +99,7 @@ def initContext(ctx, url, prefix_code, env, getParams, getCryptoJS):
     ctx.add_callable("fetCodeByWebView", fetCodeByWebView)
     # ctx.add_callable("req", lambda _url, _object: ctx.parse_json(ujson.dumps(req(_url, _object))))
     ctx.add_callable("req", lambda _url, _object: toJsObJect(req(_url, toDict(_object))))
+    ctx.add_callable("batchFetch", lambda _list: toJsObJect(batchFetch(toDict(_list))))
     ctx.add_callable("urljoin", urljoin)
     ctx.add_callable("joinUrl", urljoin)
     ctx.eval("const console = {log};")

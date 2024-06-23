@@ -7,6 +7,7 @@
 import ujson
 from time import time
 import base64
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 import requests
 import warnings
 
@@ -33,6 +34,7 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
     @param cloudfare: 使用过5秒盾请求
     @return:
     """
+    # print(f'_url:{_url},_object:{_object},_js_type:{_js_type}')
     if cloudfare and _cloudfare_enable:
         s = scraper
     else:
@@ -44,6 +46,14 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
 
     method = (_object.get('method') or 'get').lower()
     timeout = _object.get('timeout') or 5
+    max_timeout = 30
+    if max_timeout < timeout < 100:
+        # 限制最大30秒超时。如果传的数值大于这个但是小于100，说明错误，自动变成30
+        timeout = max_timeout
+    elif timeout >= 100:
+        # 限制最大30秒超时。如果传的数值大于100，说明是把毫秒和秒理解错误，自动除以1000
+        timeout = round(timeout / 1000, 2)
+    # print(f'timeout:{timeout}')
     body = _object.get('body') or ''
     data = _object.get('data') or {}
     headers = _object.get('headers') or {}
@@ -160,6 +170,27 @@ def req(_url, _object):
     @return:
     """
     return base_request(_url, _object, 1)
+
+
+def batchFetch(items, max_workers=16):
+    """
+    海阔视界批量请求 [{url:'',options:{}},{url:'',options:{}}]
+    batchFetch([{url:'http://www.a.cn', options:{headers:{},body:'a=1&b=2',method:'POST'}}, {url:'http://www.b.cn'}]);setError(data[0] + '=====' + data[1]);
+    @param items:
+    @param max_workers:
+    @return:
+    """
+    # print(items)
+    results = [None for item in items]
+    with ThreadPoolExecutor(max_workers=min(len(items), max_workers)) as pool:
+        tasks = [pool.submit(fetch, item.get('url'), item.get('options')) for item in
+                 items]  # 构造一个列表，循环向线程池内submit提交执行的方法
+        try:
+            pool.shutdown(wait=True)  # 线程数等待所有线程结束，这里 卡住主线程
+            results = [task.result() for task in tasks]
+        except Exception as e:
+            print(f'执行batchFetch发生了错误:{e}')
+    return results
 
 
 def 重定向(_url: str):

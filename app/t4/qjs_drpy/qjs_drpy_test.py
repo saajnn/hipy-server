@@ -35,7 +35,8 @@ if __name__ == '__main__':
     # with open('../files/drpy_js/bilfun(自动).js', encoding='utf-8') as f:
     # with open('../files/drpy_js/无插件直播.js', encoding='utf-8') as f:
     # with open('../files/drpy_js/最新4K.js', encoding='utf-8') as f:
-    with open('../files/drpy_js/分享短视频.js', encoding='utf-8') as f:
+    # with open('../files/drpy_js/分享短视频.js', encoding='utf-8') as f:
+    with open('../files/drpy_js/采集之王[合].js', encoding='utf-8') as f:
         # with open('../files/drpy_js/耐看.js', encoding='utf-8') as f:
         code = f.read()
     code = code.replace('$nmjx_url', 'http://127.0.0.1:5708/nm?all=&url=')
@@ -69,6 +70,7 @@ if __name__ == '__main__':
     # print(drpy.playerContent("量子资源", "https://nkvod.com/play/185851-2-1.html", []))
     # print(drpy.playerContent("优质", "https://yzzy.play-cdn21.com/20240329/13829_b63e7c01/index.m3u8", []))
     # print(drpy.searchContent("斗罗大陆", False, 1))
+    print(drpy.searchContent("玫瑰的故事", False, 1))
     # print(drpy.searchContent("完美世界", False, 1))
     # print(drpy.detailContent("https://001.pm/index
     # print(drpy.detailContent("https://001.pm/index.php/vod/detail/id/118802.html"))
