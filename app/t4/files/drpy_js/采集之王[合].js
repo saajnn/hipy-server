@@ -206,9 +206,10 @@ var rule = {
                 let start = (page - 1) * rule.search_limit;
                 let end = page * rule.search_limit;
                 let t1 = new Date().getTime();
-
+                let searchMode = typeof (batchFetch) === 'function' ? '批量' : '单个';
                 log('start:' + start);
                 log('end:' + end);
+                log('搜索模式:' + searchMode);
                 // log('t1:' + t1);
                 if (start < rule.classes.length) {
                     let search_classes = rule.classes.slice(start, end);
@@ -222,11 +223,12 @@ var rule = {
                         urls.push(_url);
                     });
                     let results = [];
+
                     if (typeof (batchFetch) === 'function') {
                         let reqUrls = urls.map(it => {
                             return {
                                 url: it,
-                                options: {}
+                                options: {timeout:rule.timeout}
                             }
                         });
                         let rets = batchFetch(reqUrls);
@@ -267,7 +269,7 @@ var rule = {
                     VODS = results;
                     let t2 = new Date().getTime();
                     // log('t2:'+t2);
-                    log(`搜索:${urls.length}个站耗时:${(Number(t2) - Number(t1))}ms`)
+                    log(`${searchMode}搜索:${urls.length}个站耗时:${(Number(t2) - Number(t1))}ms`)
 
                 }
             }
