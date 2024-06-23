@@ -26,7 +26,7 @@ var rule = {
     play_parse: true,
     parse_url: '', // 这个参数暂时不起作用。聚合类的每个资源应该有自己独立的解析口。单独配置在采集.json里的parse_url有效
     // params: 'http://127.0.0.1:5707/files/json/%E9%87%87%E9%9B%86.json',
-    params: 'http://127.0.0.1:5707/files/json/采集静态.json',
+    // params: 'http://127.0.0.1:5707/files/json/采集静态.json',
     // hostJs:$js.toString(()=>{
     //
     // }),
