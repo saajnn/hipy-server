@@ -55,7 +55,11 @@ var rule = {
             return classes
         }
 
-        log(typeof (batchFetch));
+        if (typeof (batchFetch) === 'function') {
+            // 支持批量请求直接放飞自我。搜索限制最大线程数量16
+            rule.search_limit = 16;
+            log('当前程序支持批量请求[batchFetch],搜索限制已设置为16');
+        }
         let _url = rule.params;
         if (_url && typeof (_url) === 'string' && /^(http|file)/.test(_url)) {
             let html = request(_url);
