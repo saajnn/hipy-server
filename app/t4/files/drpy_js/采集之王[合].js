@@ -10,11 +10,15 @@ globalThis.getRandomItem = function (items) {//从列表随机取出一个元素
 var rule = {
     title: '采集之王[合]',
     author: '道长',
-    version: '20240624 beta7',
+    version: '20240624 beta8',
     update_info: `
 20240604:
 1.首页推荐取消硬控等待。增加随机推荐功能。
 2.首页推荐新增更新日志查看功能
+【特别说明】目前只支持标准json格式的采集站(资源站一般都提供xml和json两种接口，目前没有支持xml的想法，没什么必要)
+有些资源站的json接口不是标准的/api.php/provide/vod/,需要自己在采集静态.json中编辑对应的api属性填写比如:/api.php/provide/vod/at/json/
+有些资源站的采集数据是加密后的切片片段，可能需要采集站特定的解析接口，需要自己编辑json里的parse_url属性
+资源站部分大分类下无数据很正常，可以自行编辑json里cate_exclude属性排除掉自己测试过无数据的分类(小程序无法自动识别，只能人工测好哪些分类无数据)
 `,
     host: '',
     homeTid: '', // 首页推荐。一般填写第一个资源站的想要的推荐分类的id.可以空
