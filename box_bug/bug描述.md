@@ -11,3 +11,9 @@
 预期及抓包发现搜索接口返回了很多条数据，结果壳子跑去执行了detail方法最后搜索数据不对了  
 [接口抓包](./t4搜索接口.jpg)  
 [问题](./t4搜索问题.jpg)
+
+4.qjs缺少batchFetch函数的注入，期待壳子加入(hipy-t4已实现),下面是使用示例
+```javascript
+let data = batchFetch([{url:'http://www.a.cn', options:{headers:{},body:'a=1&b=2',method:'POST'}}, {url:'http://www.b.cn'}]);
+log(data[0] + '=====' + data[1]);
+```
