@@ -45,16 +45,14 @@ function getMubans() {
         },
         mxpro: {
             title: '',
-            host: '',
-            // homeUrl:'/',
+            host: '', // homeUrl:'/',
             url: '/vodshow/fyclass--------fypage---.html',
             searchUrl: '/vodsearch/**----------fypage---.html',
             searchable: 2,//是否启用全局搜索,
             quickSearch: 0,//是否启用快速搜索,
             filterable: 0,//是否启用分类筛选,
             headers: {//网站的请求头,完整支持所有的,常带ua和cookies
-                'User-Agent': 'MOBILE_UA',
-                // "Cookie": "searchneed=ok"
+                'User-Agent': 'MOBILE_UA', // "Cookie": "searchneed=ok"
             },
             class_parse: '.navbar-items li:gt(2):lt(8);a&&Text;a&&href;/(\\d+).html',
             play_parse: true,
@@ -72,8 +70,7 @@ function getMubans() {
                 "lists": ".module-play-list:eq(#id) a"
             },
             搜索: 'body .module-item;.module-card-item-title&&Text;.lazyload&&data-original;.module-item-note&&Text;a&&href;.module-info-item-content&&Text',
-        },
-        mxone5: {
+        }, mxone5: {
             title: '',
             host: '',
             url: '/show/fyclass--------fypage---.html',
@@ -97,8 +94,7 @@ function getMubans() {
                 "lists": ".module-player-list:eq(#id)&&.scroll-content&&a"
             },
             搜索: '.module-items .module-search-item;a&&title;img&&data-src;.video-serial&&Text;a&&href',
-        },
-        首图: {
+        }, 首图: {
             title: '',
             host: '',
             url: '/vodshow/fyclass--------fypage---/',
@@ -107,8 +103,7 @@ function getMubans() {
             quickSearch: 0,//是否启用快速搜索,
             filterable: 0,//是否启用分类筛选,
             headers: {//网站的请求头,完整支持所有的,常带ua和cookies
-                'User-Agent': 'MOBILE_UA',
-                // "Cookie": "searchneed=ok"
+                'User-Agent': 'MOBILE_UA', // "Cookie": "searchneed=ok"
             },
             class_parse: '.myui-header__menu li.hidden-sm:gt(0):lt(5);a&&Text;a&&href;/(\\d+).html',
             play_parse: true,
@@ -126,8 +121,7 @@ function getMubans() {
                 "lists": ".myui-content__list:eq(#id) li"
             },
             搜索: '#searchList li;a&&title;.lazyload&&data-original;.text-muted&&Text;a&&href;.text-muted:eq(-1)&&Text',
-        },
-        首图2: {
+        }, 首图2: {
             title: '',
             host: '',
             url: '/list/fyclass-fypage.html',
@@ -136,10 +130,8 @@ function getMubans() {
             quickSearch: 0,//是否启用快速搜索,
             filterable: 0,//是否启用分类筛选,
             headers: {
-                'User-Agent': 'UC_UA',
-                // "Cookie": ""
-            },
-            // class_parse:'.stui-header__menu li:gt(0):lt(7);a&&Text;a&&href;/(\\d+).html',
+                'User-Agent': 'UC_UA', // "Cookie": ""
+            }, // class_parse:'.stui-header__menu li:gt(0):lt(7);a&&Text;a&&href;/(\\d+).html',
             class_parse: '.stui-header__menu li:gt(0):lt(7);a&&Text;a&&href;.*/(.*?).html',
             play_parse: true,
             lazy: '',
@@ -158,8 +150,7 @@ function getMubans() {
             搜索: 'ul.stui-vodlist__media:eq(0),ul.stui-vodlist:eq(0),#searchList li;a&&title;.lazyload&&data-original;.text-muted&&Text;a&&href;.text-muted:eq(-1)&&Text',
             搜索1: 'ul.stui-vodlist&&li;a&&title;.lazyload&&data-original;.text-muted&&Text;a&&href;.text-muted:eq(-1)&&Text',
             搜索2: 'ul.stui-vodlist__media&&li;a&&title;.lazyload&&data-original;.text-muted&&Text;a&&href;.text-muted:eq(-1)&&Text',
-        },
-        默认: {
+        }, 默认: {
             title: '',
             host: '',
             url: '',
@@ -191,8 +182,9 @@ function getMubans() {
                 tab_text: 'body&&Text',
                 list_text: 'body&&Text',
                 list_url: 'a&&href'
-            },,
-        vfed: {
+            },
+            搜索: '列表;标题;图片;描述;链接;详情',
+        }, vfed: {
             title: '',
             host: '',
             url: '/index.php/vod/show/id/fyclass/page/fypage.html',
@@ -202,8 +194,7 @@ function getMubans() {
             filterable: 0,//是否启用分类筛选,
             headers: {
                 'User-Agent': 'UC_UA',
-            },
-            // class_parse:'.fed-pops-navbar&&ul.fed-part-rows&&a.fed-part-eone:gt(0):lt(5);a&&Text;a&&href;.*/(.*?).html',
+            }, // class_parse:'.fed-pops-navbar&&ul.fed-part-rows&&a.fed-part-eone:gt(0):lt(5);a&&Text;a&&href;.*/(.*?).html',
             class_parse: '.fed-pops-navbar&&ul.fed-part-rows&&a;a&&Text;a&&href;.*/(.*?).html',
             play_parse: true,
             lazy: '',
@@ -220,8 +211,7 @@ function getMubans() {
                 "lists": ".fed-play-item:eq(#id)&&ul:eq(1)&&li"
             },
             搜索: '.fed-deta-info;h1&&Text;.lazyload&&data-original;.fed-list-remarks&&Text;a&&href;.fed-deta-content&&Text',
-        },
-        海螺3: {
+        }, 海螺3: {
             title: '',
             host: '',
             searchUrl: '/v_search/**----------fypage---.html',
@@ -250,8 +240,7 @@ function getMubans() {
             searchable: 2,//是否启用全局搜索,
             quickSearch: 0,//是否启用快速搜索,
             filterable: 0,//是否启用分类筛选,
-        },
-        海螺2: {
+        }, 海螺2: {
             title: '',
             host: '',
             searchUrl: '/index.php/vod/search/page/fypage/wd/**/',
@@ -279,19 +268,16 @@ function getMubans() {
             searchable: 2,//是否启用全局搜索,
             quickSearch: 0,//是否启用快速搜索,
             filterable: 0,//是否启用分类筛选,
-        },
-        短视: {
+        }, 短视: {
             title: '',
-            host: '',
-            // homeUrl:'/',
+            host: '', // homeUrl:'/',
             url: '/channel/fyclass-fypage.html',
             searchUrl: '/search.html?wd=**',
             searchable: 2,//是否启用全局搜索,
             quickSearch: 0,//是否启用快速搜索,
             filterable: 0,//是否启用分类筛选,
             headers: {//网站的请求头,完整支持所有的,常带ua和cookies
-                'User-Agent': 'MOBILE_UA',
-                // "Cookie": "searchneed=ok"
+                'User-Agent': 'MOBILE_UA', // "Cookie": "searchneed=ok"
             },
             class_parse: '.menu_bottom ul li;a&&Text;a&&href;.*/(.*?).html',
             cate_exclude: '解析|动态',
@@ -310,8 +296,7 @@ function getMubans() {
                 "lists": ".player:eq(#id) li"
             },
             搜索: '.sr_lists&&ul&&li;h3&&Text;img&&data-src;.int&&p:eq(0)&&Text;a&&href',
-        },
-        短视2: {
+        }, 短视2: {
             title: '',
             host: '',
             class_name: '电影&电视剧&综艺&动漫',
@@ -341,8 +326,7 @@ function getMubans() {
                 "lists": ".anthology-list-box:eq(#id) li"
             },
             搜索: 'json:list;name;pic;;id',
-        },
-        采集1: {
+        }, 采集1: {
             title: '',
             host: '',
             homeTid: '13',
@@ -351,8 +335,7 @@ function getMubans() {
             searchUrl: '/api.php/provide/vod/?wd=**&pg=fypage',
             url: '/api.php/provide/vod/?ac=detail&pg=fypage&t=fyclass',
             headers: {'User-Agent': 'MOBILE_UA'},
-            timeout: 5000,
-            // class_name: '电影&电视剧&综艺&动漫',
+            timeout: 5000, // class_name: '电影&电视剧&综艺&动漫',
             // class_url: '1&2&3&4',
             // class_parse:'js:let html=request(input);input=JSON.parse(html).class;',
             class_parse: 'json:class;',
@@ -389,6 +372,7 @@ function getMubans() {
     return JSON.parse(JSON.stringify(mubanDict));
 }
 
-    var mubanDict = getMubans();
-    var muban = getMubans();
-    module.exports = {muban, getMubans};
+
+var mubanDict = getMubans();
+var muban = getMubans();
+module.exports = {muban, getMubans};
