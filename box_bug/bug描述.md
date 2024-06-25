@@ -5,7 +5,38 @@
 [解决办法](./base64错误解决.png)
 
 2.本地代理需要支持可选参数4和5，分别是headers和to_bytes。同时对py和js源生效  
-[修改位置](./本地代理图片.jpg)
+[修改位置](./本地代理图片.jpg)  
+建议代码:
+
+```java
+private Object[] proxy1(Map<String, String> params) {
+        JSObject object = new JSUtils<String>().toObj(ctx, params);
+        JSONArray array = ((JSArray) jsObject.getJSFunction("proxy").call(object)).toJsonArray();
+        int code = array.optInt(0);
+        String mime = array.optString(1);
+        ByteArrayInputStream input = getStream(array.opt(2));
+        Map<String, String> headers = null;
+        if(array.length() > 3){
+            headers = Json.toMap(array.opt(3).toString());
+        }
+        if (array.length() > 4) {
+            try {
+                int type = array.optInt(4);
+                if (type == 1) {
+                    String content = array.optString(2);
+                    if (content.contains("base64,"))
+                        content = content.substring(content.indexOf("base64,") + 7);
+                    LOG.e(content);
+                    input = new ByteArrayInputStream(Base64.decode(content, Base64.DEFAULT));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return new Object[]{code, mime, input, headers};
+    }
+
+```
 
 3.t4搜索受数据无图片影响会自动乱请求detail接口，建议无图模式不要做这种操作，不然数据结果对不上  
 预期及抓包发现搜索接口返回了很多条数据，结果壳子跑去执行了detail方法最后搜索数据不对了  
