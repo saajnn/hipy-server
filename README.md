@@ -15,6 +15,7 @@
 [gpt-4o免费用](https://www.coze.com/s/Zs8Mqh1pY/)  
 [gpt-4o写筛选](https://www.coze.com/s/Zs8MqmrBF/)  
 [写源简述](./写源简述.md)  
+[未来计划](./未来计划.md)  
 
 #### zy佬一键部署
 ```shell
