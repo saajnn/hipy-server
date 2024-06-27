@@ -396,6 +396,8 @@ var rule = {
     lazy: $js.toString(() => {
         if (/\.(m3u8|mp4)/.test(input)) {
             input = {parse: 0, url: input}
+        } else if (/yangshipin/.test(input)) {
+            input = {parse: 1, url: input, js: '', header: {'User-Agent': PC_UA}, parse_extra: '&is_pc=1'};
         } else {
             input
         }
