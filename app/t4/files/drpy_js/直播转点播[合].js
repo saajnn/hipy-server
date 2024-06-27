@@ -108,7 +108,7 @@ globalThis.__ext = {data_dict: {}};
 var rule = {
     title: '直播转点播[合]',
     author: '道长',
-    version: '20240627 beta1',
+    version: '20240627 beta2',
     update_info: `
 20240627 beta1:
 1.将原drpy项目的live2cms.js转换成hipy传参源。
@@ -278,11 +278,13 @@ var rule = {
                     let vod_play_from = '来自搜索';
                     vod_play_from += `:${_get_url}`;
                     let vod_play_url = rule.groupDict[_get_url].map(x => x.replace(',', '$')).join('#');
+                    log(orId);
                     VOD = {
                         vod_name: '搜索:' + vod_name,
                         type_name: "直播列表",
                         vod_pic: rule.def_pic,
-                        vod_content: orId,
+                        // vod_content: orId,
+                        vod_content: orId.replace(getHome(orId), 'http://***'),
                         vod_play_from: vod_play_from,
                         vod_play_url: vod_play_url,
                         vod_director: rule.tips,
@@ -336,12 +338,14 @@ var rule = {
                         vod_play_url = _list.join('#');
                         vod_play_from = vod_name;
                     }
+                    log(orId);
                     VOD = {
                         vod_id: orId,
                         vod_name: vod_name + '|' + _tab,
                         type_name: "直播列表",
                         vod_pic: rule.def_pic,
-                        vod_content: orId,
+                        // vod_content: orId,
+                        vod_content: orId.replace(getHome(orId), 'http://***'),
                         vod_play_from: vod_play_from,
                         vod_play_url: vod_play_url,
                         vod_director: rule.tips,
