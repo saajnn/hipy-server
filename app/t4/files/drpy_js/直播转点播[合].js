@@ -108,7 +108,7 @@ globalThis.__ext = {data_dict: {}};
 var rule = {
     title: '直播转点播[合]',
     author: '道长',
-    version: '20240627 beta2',
+    version: '20240627 beta3',
     update_info: `
 20240627 beta1:
 1.将原drpy项目的live2cms.js转换成hipy传参源。
@@ -159,6 +159,7 @@ var rule = {
                 let _obj = {
                     type_name: it.name,
                     type_id: it.url,
+                    img: it.img,
                 };
                 _classes.push(_obj);
                 let json1 = [{'n': '多线路分组', 'v': 'groups'}, {'n': '单线路', 'v': 'all'}];
@@ -191,6 +192,9 @@ var rule = {
         if (rule.classes) {
             let randomClass = getRandomItem(rule.classes);
             let _get_url = randomClass.type_id;
+            // let current_vod = rule.classes.find(item => item.type_id === _get_url);
+            // let _pic = current_vod ? current_vod.img : '';
+            let _pic = randomClass.img;
             let html;
             if (__ext.data_dict[_get_url]) {
                 html = __ext.data_dict[_get_url];
@@ -209,7 +213,7 @@ var rule = {
                     VODS.push({
                         vod_name: vname,
                         vod_id: _get_url + '$' + vname,
-                        vod_pic: rule.def_pic,
+                        vod_pic: _pic || rule.def_pic,
                         vod_remarks: vtab,
                     });
                 });
@@ -228,6 +232,8 @@ var rule = {
                 setItem('showMode', rule.showMode);
             }
             let _get_url = input.split('#')[0];
+            let current_vod = rule.classes.find(item => item.type_id === MY_CATE);
+            let _pic = current_vod ? current_vod.img : '';
             let html;
             if (__ext.data_dict[_get_url]) {
                 html = __ext.data_dict[_get_url];
@@ -247,7 +253,7 @@ var rule = {
                         // vod_name:it.split(',')[0],
                         vod_name: vname,
                         vod_id: _get_url + '$' + vname,
-                        vod_pic: rule.def_pic,
+                        vod_pic: _pic || rule.def_pic,
                         vod_remarks: vtab,
                     });
                 });
@@ -291,6 +297,8 @@ var rule = {
                         vod_remarks: rule.tips,
                     }
                 } else {
+                    let current_vod = rule.classes.find(item => item.type_id === _get_url);
+                    let _pic = current_vod ? current_vod.img : '';
                     let html;
                     if (__ext.data_dict[_get_url]) {
                         html = __ext.data_dict[_get_url];
@@ -343,7 +351,7 @@ var rule = {
                         vod_id: orId,
                         vod_name: vod_name + '|' + _tab,
                         type_name: "直播列表",
-                        vod_pic: rule.def_pic,
+                        vod_pic: _pic || rule.def_pic,
                         // vod_content: orId,
                         vod_content: orId.replace(getHome(orId), 'http://***'),
                         vod_play_from: vod_play_from,
@@ -360,6 +368,8 @@ var rule = {
         VODS = [];
         if (rule.classes && MY_PAGE <= 1) {
             let _get_url = __ext.data[0].url;
+            let current_vod = rule.classes.find(item => item.type_id === _get_url);
+            let _pic = current_vod ? current_vod.img : '';
             let html;
             if (__ext.data_dict[_get_url]) {
                 html = __ext.data_dict[_get_url];
@@ -392,7 +402,7 @@ var rule = {
                 VODS.push({
                     'vod_name': it,
                     'vod_id': it + '$' + KEY + '#search#',
-                    'vod_pic': rule.def_pic,
+                    'vod_pic': _pic || rule.def_pic,
                 });
             });
         }
