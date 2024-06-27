@@ -52,6 +52,7 @@ let data = batchFetch([{
 }, {url: 'http://www.b.cn'}]);
 log(data[0] + '=====' + data[1]);
 ```
+[解决方案](./batchFetch解决方案.md)
 
 5.壳子hipy兼容drpy源传参问题  
 壳子自动处理的./和../相对路径替换存在逻辑漏洞，替换的结果可能不正确。建议修改
