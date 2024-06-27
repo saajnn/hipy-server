@@ -1,0 +1,10 @@
+[
+  {
+    "name": "GitHub",
+    "url": "https://ghproxy.net/https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt"
+  },
+  {
+    "name": "CNTV",
+    "url": "./live_cntv.txt"
+  }
+]
