@@ -41,7 +41,7 @@ function convertM3uToNormal(m3u) {
                 result += `${TV}\,${splitLine[0]}\n`;
             }
         });
-        return result.trim();
+        return result.trim()
     } catch (e) {
         log(`m3u直播转普通直播发生错误:${e.message}`);
         return m3u
@@ -90,7 +90,7 @@ function gen_group_dict(arr, parse) {
             k = parse(k);
         }
         if (!dict[k]) {
-            dict[k] = [it]
+            dict[k] = [it];
         } else {
             dict[k].push(it);
         }
@@ -148,14 +148,17 @@ var rule = {
         if (_url && typeof (_url) === 'string' && /^(http|file)/.test(_url)) {
             let html = request(_url);
             let json = JSON.parse(html);
-            __ext.data = json;
+
             let _classes = [];
             rule.filter = {};
             rule.filter_def = {};
             json.forEach(it => {
+                if (it.url && !/^(http|file)/.test(it.url)) {
+                    it.url = urljoin(_url, it.url);
+                }
                 let _obj = {
                     type_name: it.name,
-                    type_id: it.url && !/^(http|file)/.test(it.url) ? urljoin(_url, it.url) : it.url,
+                    type_id: it.url,
                 };
                 _classes.push(_obj);
                 let json1 = [{'n': '多线路分组', 'v': 'groups'}, {'n': '单线路', 'v': 'all'}];
@@ -170,6 +173,7 @@ var rule = {
                     rule.filter[it.url] = json1
                 }
             });
+            __ext.data = json;
             rule.classes = _classes;
         }
     }),
@@ -223,7 +227,6 @@ var rule = {
                 rule.showMode = MY_FL.show;
                 setItem('showMode', rule.showMode);
             }
-            log(input);
             let _get_url = input.split('#')[0];
             let html;
             if (__ext.data_dict[_get_url]) {
@@ -253,7 +256,6 @@ var rule = {
             }
         }
     }),
-    // 一级: 'json:list;vod_name;vod_pic;vod_remarks;vod_id;vod_play_from',
     二级: $js.toString(() => {
         VOD = {};
         if (orId === 'update_info') {
@@ -275,8 +277,6 @@ var rule = {
                     let vod_name = _tab.replace('#search#', '');
                     let vod_play_from = '来自搜索';
                     vod_play_from += `:${_get_url}`;
-                    // let vod_play_url = vod_name+'$'+_get_url;
-                    // log(vod_play_url);
                     let vod_play_url = rule.groupDict[_get_url].map(x => x.replace(',', '$')).join('#');
                     VOD = {
                         vod_name: '搜索:' + vod_name,
@@ -325,9 +325,9 @@ var rule = {
                         let tabs = [];
                         for (let i = 0; i < groups.length; i++) {
                             if (i === 0) {
-                                tabs.push(vod_name + '1')
+                                tabs.push(vod_name + '1');
                             } else {
-                                tabs.push(` ${i + 1} `)
+                                tabs.push(` ${i + 1} `);
                             }
                         }
                         vod_play_url = groups.map(it => it.join('#')).join('$$$');
@@ -375,14 +375,16 @@ var rule = {
             let plays = Array.from(new Set(links));
             log('搜索关键词:' + KEY);
             log('过滤前:' + plays.length);
-            plays = plays.filter(it => it.includes(KEY));
+            // plays = plays.filter(it => it.includes(KEY));
+            plays = plays.filter(it => new RegExp(KEY, 'i').test(it));
             log('过滤后:' + plays.length);
             log(plays);
             let new_group = gen_group_dict(plays);
             rule.groupDict = Object.assign(rule.groupDict, new_group);
             // 搜索分组结果存至本地方便二级调用
             setItem('groupDict', JSON.stringify(rule.groupDict));
-            Object.keys(rule.groupDict).forEach((it) => {
+            // 返回的还是搜索的new_group
+            Object.keys(new_group).forEach((it) => {
                 VODS.push({
                     'vod_name': it,
                     'vod_id': it + '$' + KEY + '#search#',
