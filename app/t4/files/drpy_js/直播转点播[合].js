@@ -132,8 +132,11 @@ globalThis.__ext = {data_dict: {}};
 var rule = {
     title: '直播转点播[合]',
     author: '道长',
-    version: '20240628 beta4',
+    version: '20240628 beta5',
     update_info: `
+20240628 beta5:
+1.增加范冰冰v6源
+2.修复带图标的m3u源识别
 20240627 beta1:
 1.将原drpy项目的live2cms.js转换成hipy传参源。
 【特别说明】支持m3u和txt的直播
@@ -361,7 +364,7 @@ var rule = {
                             if (i === 0) {
                                 tabs.push(vod_name + '1');
                             } else {
-                                tabs.push(` ${i + 1} `);
+                                tabs.push(`@${i + 1} `);
                             }
                         }
                         vod_play_url = groups.map(it => it.join('#')).join('$$$');
@@ -434,7 +437,7 @@ var rule = {
     lazy: $js.toString(() => {
         if (/\.(m3u8|mp4)/.test(input)) {
             input = {parse: 0, url: input}
-        } else if (/yangshipin/.test(input)) {
+        } else if (/yangshipin|1905\.com/.test(input)) {
             input = {parse: 1, url: input, js: '', header: {'User-Agent': PC_UA}, parse_extra: '&is_pc=1'};
         } else {
             input
