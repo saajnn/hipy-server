@@ -163,6 +163,10 @@ async function main() {
                 '?type=url&params=../json/采集静态.json',
                 '?type=url&params=../json/采集[密]静态.json',
             ];
+        }else if (rname.includes('直播转点播')) {
+            extras = [
+                '?type=url&params=../json/live2cms.json',
+            ];
         }
 
         //let excludes = ['玩偶哥哥','阿里土豆'];
