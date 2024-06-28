@@ -169,13 +169,14 @@ globalThis.__ext = {data_dict: {}};
 var rule = {
     title: '直播转点播[合]',
     author: '道长',
-    version: '20240628 beta6',
+    version: '20240628 beta7',
     update_info: `
 20240628 beta6:
 1.增加范冰冰v6源
 2.修复带图标的m3u源识别
 3.修复m3u8链接带参数转义问题
 4.合并重复的频道名称下的链接
+5.支持相对图片链接
 20240627 beta1:
 1.将原drpy项目的live2cms.js转换成hipy传参源。
 【特别说明】支持m3u和txt的直播
@@ -222,6 +223,9 @@ var rule = {
             json.forEach(it => {
                 if (it.url && !/^(http|file)/.test(it.url)) {
                     it.url = urljoin(_url, it.url);
+                }
+                if (it.img && !/^(http|file)/.test(it.img)) {
+                    it.img = urljoin(_url, it.img);
                 }
                 let _obj = {
                     type_name: it.name,
