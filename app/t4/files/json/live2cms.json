@@ -23,5 +23,10 @@
     "name": "1905",
     "url": "./live_1905.txt",
     "img": "https://image11.m1905.cn/uploadfile/2022/0510/thumb_1_285_100_20220510030520666149.jpg"
+  },
+  {
+    "name": "测试(随时失效)",
+    "url": "https://gitee.com/svcd2008/tv/raw/master/430.txt",
+    "img": ""
   }
 ]
