@@ -63,7 +63,8 @@ function convertM3uToNormal(m3u) {
                 result += `${TV}\,${splitLine[0]}\n`;
             }
         });
-        result = result.trim();
+        // result = result.trim();
+        result = mergeChannels(result);
         // log(result);
         return result
     } catch (e) {
@@ -122,6 +123,42 @@ function gen_group_dict(arr, parse) {
     return dict
 }
 
+/**
+ * txt格式直播自动合并频道链接
+ * @param text
+ * @returns {string}
+ */
+function mergeChannels(text) {
+    const lines = text.split('\n');
+    const channelMap = new Map();
+    let currentChannel = ''; // 当前处理的频道
+
+    lines.forEach(line => {
+        // 使用正则表达式匹配频道行，假设频道行包含",#"即可识别为频道行
+        if (/,#/.test(line)) {
+            // 如果是频道名称，作为键值存储，初始化为空数组
+            currentChannel = line;
+            if (!channelMap.has(line)) {
+                channelMap.set(line, []);
+            }
+        } else if (line) { // 忽略空行
+            // 将当前行（链接）添加到当前频道数组中
+            if (currentChannel) {
+                channelMap.get(currentChannel).push(line);
+            }
+        }
+    });
+
+    // 构建结果字符串
+    let result = '';
+    channelMap.forEach((value, key) => {
+        result += key + '\n' + value.join('\n') + '\n\n';
+    });
+
+    return result.trim(); // 移除尾部的多余换行符
+}
+
+globalThis.mergeChannels = mergeChannels;
 globalThis.convertM3uToNormal = convertM3uToNormal;
 globalThis.splitArray = splitArray;
 globalThis.gen_group_dict = gen_group_dict;
@@ -132,11 +169,13 @@ globalThis.__ext = {data_dict: {}};
 var rule = {
     title: '直播转点播[合]',
     author: '道长',
-    version: '20240628 beta5',
+    version: '20240628 beta6',
     update_info: `
-20240628 beta5:
+20240628 beta6:
 1.增加范冰冰v6源
 2.修复带图标的m3u源识别
+3.修复m3u8链接带参数转义问题
+4.合并重复的频道名称下的链接
 20240627 beta1:
 1.将原drpy项目的live2cms.js转换成hipy传参源。
 【特别说明】支持m3u和txt的直播
@@ -156,7 +195,8 @@ var rule = {
     play_parse: true,
     // params: 'http://127.0.0.1:5707/files/json/live2cms.json',
     // 下面自定义一些源的配置
-    def_pic: 'https://avatars.githubusercontent.com/u/97389433?s=120&v=4', //默认列表图片
+    // def_pic: 'https://avatars.githubusercontent.com/u/97389433?s=120&v=4', //默认列表图片
+    def_pic: 'https://ghproxy.net/https://raw.githubusercontent.com/hjdhnx/hipy-server/master/app/static/img/lives.jpg', //默认列表图片
     showMode: 'groups',// groups按组分类显示 all全部一条线路展示
     groupDict: {},// 搜索分组字典
     tips: '', //二级提示信息
@@ -229,6 +269,8 @@ var rule = {
                 html = request(_get_url);
                 if (/#EXTM3U/.test(html)) {
                     html = convertM3uToNormal(html);
+                } else {
+                    html = mergeChannels(html);
                 }
                 __ext.data_dict[_get_url] = html;
             }
@@ -268,6 +310,8 @@ var rule = {
                 html = request(_get_url);
                 if (/#EXTM3U/.test(html)) {
                     html = convertM3uToNormal(html);
+                } else {
+                    html = mergeChannels(html);
                 }
                 __ext.data_dict[_get_url] = html;
             }
@@ -333,6 +377,8 @@ var rule = {
                         html = request(_get_url);
                         if (/#EXTM3U/.test(html)) {
                             html = convertM3uToNormal(html);
+                        } else {
+                            html = mergeChannels(html);
                         }
                         __ext.data_dict[_get_url] = html;
                     }
@@ -362,9 +408,9 @@ var rule = {
                         let tabs = [];
                         for (let i = 0; i < groups.length; i++) {
                             if (i === 0) {
-                                tabs.push(vod_name + '1');
+                                tabs.push(vod_name + '@1');
                             } else {
-                                tabs.push(`@${i + 1} `);
+                                tabs.push(`@${i + 1}`);
                             }
                         }
                         vod_play_url = groups.map(it => it.join('#')).join('$$$');
@@ -404,6 +450,8 @@ var rule = {
                 html = request(_get_url);
                 if (/#EXTM3U/.test(html)) {
                     html = convertM3uToNormal(html);
+                } else {
+                    html = mergeChannels(html);
                 }
                 __ext.data_dict[_get_url] = html;
             }
@@ -436,9 +484,12 @@ var rule = {
     }),
     lazy: $js.toString(() => {
         if (/\.(m3u8|mp4)/.test(input)) {
+            if (input.includes('?') && typeof (playObj) == 'object' && playObj.url) {
+                input = playObj.url;
+            }
             input = {parse: 0, url: input}
         } else if (/yangshipin|1905\.com/.test(input)) {
-            input = {parse: 1, url: input, js: '', header: {'User-Agent': PC_UA}, parse_extra: '&is_pc=1'};
+            input = {parse: 1, jx: 0, url: input, js: '', header: {'User-Agent': PC_UA}, parse_extra: '&is_pc=1'};
         } else {
             input
         }
