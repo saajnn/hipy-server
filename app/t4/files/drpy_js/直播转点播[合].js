@@ -30,18 +30,42 @@ function convertM3uToNormal(m3u) {
         let currentGroupTitle = '';
         lines.forEach((line) => {
             if (line.startsWith('#EXTINF:')) {
-                const groupTitle = line.split('"')[1].trim();
-                TV = line.split('"')[2].substring(1);
+                line = line.replace(/'/g, '"');
+                let groupTitle = '未知频道';
+                let tvg_name = '';
+                let tvg_logo = '';
+                try {
+                    groupTitle = line.match(/group-title="(.*?)"/)[1].trim();
+                } catch (e) {
+                }
+                try {
+                    tvg_name = line.match(/tvg-name="(.*?)"/)[1].trim();
+                } catch (e) {
+                }
+                try {
+                    tvg_logo = line.match(/tvg-logo="(.*?)"/)[1].trim();
+                } catch (e) {
+                }
+                TV = line.split(',').slice(-1)[0].trim();
                 if (currentGroupTitle !== groupTitle) {
                     currentGroupTitle = groupTitle;
-                    result += `\n${currentGroupTitle},${flag}\n`;
+                    let ret_list = [currentGroupTitle, flag];
+                    // if(tvg_name){
+                    //     ret_list.push(tvg_name);
+                    // }
+                    // if(tvg_logo){
+                    //     ret_list.push(tvg_logo);
+                    // }
+                    result += `\n${ret_list.join(",")}\n`;
                 }
             } else if (line.startsWith('http')) {
                 const splitLine = line.split(',');
                 result += `${TV}\,${splitLine[0]}\n`;
             }
         });
-        return result.trim()
+        result = result.trim();
+        log(result);
+        return result
     } catch (e) {
         log(`m3u直播转普通直播发生错误:${e.message}`);
         return m3u
@@ -108,7 +132,7 @@ globalThis.__ext = {data_dict: {}};
 var rule = {
     title: '直播转点播[合]',
     author: '道长',
-    version: '20240627 beta3',
+    version: '20240628 beta4',
     update_info: `
 20240627 beta1:
 1.将原drpy项目的live2cms.js转换成hipy传参源。
