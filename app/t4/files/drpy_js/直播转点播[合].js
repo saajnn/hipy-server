@@ -64,7 +64,7 @@ function convertM3uToNormal(m3u) {
             }
         });
         result = result.trim();
-        log(result);
+        // log(result);
         return result
     } catch (e) {
         log(`m3u直播转普通直播发生错误:${e.message}`);
