@@ -25,8 +25,13 @@
     "img": "https://image11.m1905.cn/uploadfile/2022/0510/thumb_1_285_100_20220510030520666149.jpg"
   },
   {
-    "name": "测试(随时失效)",
+    "name": "测试1(随时失效)",
     "url": "https://gitee.com/svcd2008/tv/raw/master/430.txt",
+    "img": ""
+  },
+  {
+    "name": "测试2(随时失效)",
+    "url": "https://gitee.com/flying-snow-wu/tv/raw/main/itvlist.txt",
     "img": ""
   }
 ]
