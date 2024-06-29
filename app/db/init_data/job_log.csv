@@ -1,3 +1,6 @@
 id,created_time,creator_id,modified_time,modifier_id,is_deleted,job_id,job_name,job_group,func_name,func_args,func_kwargs,run_info,run_except_info,run_status,run_time
 1,2024-06-20 13:35:01.560084,0,2024-06-20 13:35:01.560084,0,0,,active_sniffer_after_run,,,,,"----------------task_id:active_sniffer_after_run,args:(),kwargs:{}----------------""嗅探器激活成功,当前使用的嗅探器为:http://127.0.0.1:5708""",,1,2024-06-20 13:35:01.536005
 2,2024-06-20 13:35:02.794360,0,2024-06-20 13:35:02.794360,0,0,tv_spider,tv源爬虫,setInterval,tasks.tv_spider.main,[],{},爬取直播文件行数:272本次成功写入本地文件tv.txt 本次成功写入本地文件mytv.txt,,1,2024-06-20 13:35:01.000000
+3,2024-06-29 06:45:37.742907,0,2024-06-29 06:45:37.742907,0,0,,active_sniffer_after_run,,,,,"----------------task_id:active_sniffer_after_run,args:(),kwargs:{}----------------""嗅探器激活成功,当前使用的嗅探器为:http://hipy.nokia.press:5708""",,1,2024-06-29 06:45:37.697665
+4,2024-06-29 06:45:40.584421,0,2024-06-29 06:45:40.584421,0,0,tv_spider,tv源爬虫,setInterval,tasks.tv_spider.main,[],{},爬取直播文件行数:418本次成功写入本地文件tv.txt 本次成功写入本地文件mytv.txt,,1,2024-06-29 06:45:37.000000
+5,2024-06-29 06:52:34.338899,0,2024-06-29 06:52:34.338899,0,0,,active_sniffer_after_run,,,,,"----------------task_id:active_sniffer_after_run,args:(),kwargs:{}----------------""嗅探器激活成功,当前使用的嗅探器为:http://hipy.nokia.press:5708""",,1,2024-06-29 06:52:34.299416
