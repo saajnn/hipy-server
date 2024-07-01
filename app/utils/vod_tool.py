@@ -83,17 +83,20 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
 
     elif not body and data and method != 'get':
         content_type_keys = [key for key in headers if key.lower() == 'content-type']
-        content_type = 'application/json'
+        default_type = 'application/json'
+        content_type = default_type
         if content_type_keys:
             content_type_key = content_type_keys[-1]
             old_content_type = headers[content_type_key]
-            if content_type not in old_content_type:
-                headers[content_type_key] = content_type
+            # if content_type not in old_content_type:
+            #     headers[content_type_key] = content_type
+            content_type = old_content_type
         else:
-            headers['Content-Type'] = content_type
+            headers['Content-Type'] = default_type
 
-        if isinstance(data, dict):
+        if isinstance(data, dict) and default_type in content_type:
             data = ujson.dumps(data, ensure_ascii=False)
+
     buffer = _object.get('buffer') or 1
     redirect = False if _object.get('redirect') == 0 or _object.get('redirect') == False else True
     withHeaders = bool(_object.get('withHeaders') or False)
