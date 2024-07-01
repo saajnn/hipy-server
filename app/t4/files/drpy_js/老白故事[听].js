@@ -247,7 +247,9 @@ var rule = {
             pid: 0,
             key: KEY,
         };
-        var params = pk.encrypt(JSON.stringify(data), 'base64').replace(/^\s*\n|\s*$/gm, '');
+        // var params = pk.encrypt(JSON.stringify(data), 'base64').replace(/^\s*\n|\s*$/gm, '');
+        var params = pk.encrypt(JSON.stringify(data), 'base64');
+        log('params长度:' + params.length);
         let post_obj = {
             params: params,
             version: appVersion,
@@ -286,8 +288,11 @@ var rule = {
             aid: info[0],
             pid: info[1],
         };
-        var params = pk.encrypt(JSON.stringify(data), 'base64').replace(/^\s*\n|\s*$/gm, '');
+        // var params = pk.encrypt(JSON.stringify(data), 'base64').replace(/^\s*\n|\s*$/gm, '');
+        var params = pk.encrypt(JSON.stringify(data), 'base64');
         // log('params:' + params);
+        // log([params]);
+        log('params长度:' + params.length);
         let post_obj = {
             params: params,
             version: appVersion,

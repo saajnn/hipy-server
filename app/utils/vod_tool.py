@@ -64,7 +64,8 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
     if body and not data:
         if '&' in body:
             for p in body.split('&'):
-                k, v = p.split('=')
+                k = p.split('=')[0]
+                v = '='.join(p.split('=')[1:])
                 data[k] = v
             # 修复pythonmonkey没有自动把 JSObjectProxy 转为python的dict导致的后续错误
             data = dict(data)
@@ -84,7 +85,6 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
 
         if isinstance(data, dict):
             data = ujson.dumps(data, ensure_ascii=False)
-
     encoding = _object.get('encoding') or 'utf-8'
     buffer = _object.get('buffer') or 1
     redirect = False if _object.get('redirect') == 0 or _object.get('redirect') == False else True
