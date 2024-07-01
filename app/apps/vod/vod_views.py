@@ -352,6 +352,12 @@ def vod_generate(*, api: str = "", request: Request,
 
     home_data = vod.homeContent(filterable) or {}
     home_video_data = vod.homeVideoContent() or {}
+    try:
+        _type = vod.getRule('类型')
+        home_data.update({"type": _type})
+    except Exception as e:
+        if is_drpy:
+            logger.error(f'尝试获取源类型发生错误:{e}')
     home_data.update(home_video_data)
 
     if debug:
