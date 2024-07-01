@@ -3,6 +3,7 @@
 # File  : vod_tool.py
 # Author: DaShenHan&道长-----先苦后甜，任凭晚风拂柳颜------
 # Date  : 2024/2/5
+import re
 
 import ujson
 from time import time
@@ -55,11 +56,19 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
         timeout = round(timeout / 1000, 2)
     # print(f'timeout:{timeout}')
     body = _object.get('body') or ''
+    encoding = _object.get('encoding') or 'utf-8'
     data = _object.get('data') or {}
-    headers = _object.get('headers') or {}
-    headers = dict(headers)
-    for key, value in headers.items():
-        headers[key] = str(value)
+    _headers = _object.get('headers') or {}
+    _headers = dict(_headers)
+    headers = {}
+    for key, value in _headers.items():
+        headers[str(key).lower()] = str(value)
+
+    if headers.get('content-type') and re.search('charset=(.*)', headers['content-type'], re.I):
+        try:
+            encoding = re.search('charset=(.*)', headers['content-type'], re.I).groups()[0]
+        except:
+            pass
 
     if body and not data:
         if '&' in body:
@@ -85,10 +94,8 @@ def base_request(_url, _object, _js_type=0, cloudfare=False):
 
         if isinstance(data, dict):
             data = ujson.dumps(data, ensure_ascii=False)
-    encoding = _object.get('encoding') or 'utf-8'
     buffer = _object.get('buffer') or 1
     redirect = False if _object.get('redirect') == 0 or _object.get('redirect') == False else True
-
     withHeaders = bool(_object.get('withHeaders') or False)
     r = None
     r_text = ''
