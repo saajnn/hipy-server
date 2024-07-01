@@ -336,6 +336,12 @@ def vod_generate(*, api: str = "", request: Request,
         try:
             id_list = ids.split(',')
             data = vod.detailContent(id_list)
+            try:
+                _type = vod.getRule('类型')
+                data.update({"type": _type})
+            except Exception as e:
+                if is_drpy:
+                    logger.error(f'二级尝试获取源类型发生错误:{e}')
             return respVodJson(data)
         except Exception as e:
             error_msg = f"detailContent执行发生内部服务器错误:{e}"
@@ -357,7 +363,7 @@ def vod_generate(*, api: str = "", request: Request,
         home_data.update({"type": _type})
     except Exception as e:
         if is_drpy:
-            logger.error(f'尝试获取源类型发生错误:{e}')
+            logger.error(f'首页尝试获取源类型发生错误:{e}')
     home_data.update(home_video_data)
 
     if debug:
