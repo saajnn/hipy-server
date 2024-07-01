@@ -16,7 +16,7 @@ var rule = {
     },
     timeout: 5000,
     class_parse: $js.toString(() => {
-        let _classes = [{type_id: 1, type_name: "🎧串烧舞曲"}, {type_id: 2, type_name: "🎧外文舞曲"}, {
+        const classes = [{type_id: 1, type_name: "🎧串烧舞曲"}, {type_id: 2, type_name: "🎧外文舞曲"}, {
             type_id: 3,
             type_name: "🎧早场暖场"
         }, {type_id: 4, type_name: "🎧中文舞曲"}, {type_id: 5, type_name: "🎧其他舞曲"}, {
@@ -47,7 +47,7 @@ var rule = {
             type_id: 8017,
             type_name: "🎧Hardstyle"
         }, {type_id: 8018, type_name: "🎧Hands Up"}];
-        input = _classes;
+        input = classes;
     }),
     cate_exclude: '',
     play_parse: true,
@@ -61,7 +61,7 @@ var rule = {
     }),
     double: false,
     推荐: '*',
-    一级: 'ul.djddv_djList li;strong&&Text;img&&src;font&&Text;a&&href',
+    一级: 'ul.djddv_djList li;strong&&Text;img&&src;font:eq(5)&&Text;a:eq(1)&&href',
     二级: '*',
     搜索: '*',
 }
